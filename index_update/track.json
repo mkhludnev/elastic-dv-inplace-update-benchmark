@@ -1,0 +1,93 @@
+{
+	"version": 2,
+	"description": "Benchmark for research task",
+	"indices": [
+		{
+			"name": "books",
+			"body": "books_index.json",
+			"types": [ "book" ]
+		},
+		{
+			"name": "subscriptions",
+			"body": "subscriptions_index.json",
+			"types": [ "subscription" ]
+		}
+	],
+	"corpora": [
+		{
+			"name": "benchmark-research",
+			"documents": [
+				{
+					"source-file": "books.json",
+					"document-count": 1255615,
+					"uncompressed-bytes": 139798974,
+					"target-index": "books",
+					"target-type": "book"
+				},
+				{
+					"source-file": "subscriptions_v1.json",
+					"document-count": 1255615,
+					"target-index":"subscriptions",
+					"target-type": "subscription"
+				}
+			]
+		}
+	],
+	"challenges": [
+		{
+			"name": "index-and-query",
+			"default": true,
+			"schedule": [
+				{
+					"operation": {
+						"operation-type": "delete-index"
+					}
+				},
+				{
+					"operation": {
+						"operation-type": "create-index"
+					}
+				},
+				{
+					"operation": {
+						"name": "query-update-all",
+						"operation-type": "bulk",
+						"indices":"subscriptions",
+						"bulk-size": 5000,
+						"body": {
+							"script" : {
+								"source": "ctx._source.subscriptions.add(params.tag)",
+								"lang": "painless",
+								"params" : {
+									"tag" : "AAA"
+								}
+							}
+						}
+					},
+					"clients": 8,
+					"iterations": 1000,
+					"target-throughput": 100
+				},
+				{
+					"operation": {
+						"name": "query-match-title",
+						"operation-type": "search",
+						"index":"books",
+						"body": {
+							"query": {
+								"match": {
+									"title": "poem"
+								}
+							}
+						}
+					},
+					"clients": 8,
+					"warmup-iterations": 1000,
+					"iterations": 1000,
+					"target-throughput": 100
+				}
+			]
+		}
+	]
+}
+

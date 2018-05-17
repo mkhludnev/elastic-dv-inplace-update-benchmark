@@ -1,0 +1,21 @@
+{
+  "settings": {
+    "index.number_of_replicas": 0
+  },
+  "mappings": {
+    "book": {
+      "dynamic": "strict",
+      "properties": {
+        "title": {
+          "type": "text"
+        },
+        "author": {
+          "type": "text"
+        },
+        "pubDate": {
+          "type": "text"
+        }
+      }
+    }
+  }
+}
