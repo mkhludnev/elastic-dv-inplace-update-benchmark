@@ -49,43 +49,43 @@
 					}
 				},
 				{
-					"operation": {
-						"name": "query-update-all",
-						"operation-type": "bulk",
-						"indices":"subscriptions",
-						"bulk-size": 5000,
-						"body": {
-							"script" : {
-								"source": "ctx._source.subscriptions.add(params.tag)",
-								"lang": "painless",
-								"params" : {
-									"tag" : "AAA"
+					{
+						"operation": {
+							"name": "query-update-all",
+							"operation-type": "raw-request",
+							"path":"/books/_update_by_query",
+							"method":"POST",
+							"body": {
+								"script" : {
+									"source": "ctx._source.subscriptions.add(params.tag)",
+									"lang": "painless",
+									"params" : {
+										"tag" : "AAA"
+									}
+								},
+								"query" : {
+									"term" : { "title" : "poems poem" }
 								}
 							}
 						}
 					},
-					"clients": 8,
-					"iterations": 1000,
-					"target-throughput": 100
-				},
-				{
 					"operation": {
 						"name": "query-match-title",
 						"operation-type": "search",
-						"index":"books",
+						"index":"_all",
 						"body": {
 							"query": {
-								"match": {
-									"title": "poem"
+								"terms": {
+									{"title": "poem poems"},
+									{"subscription":"AAA"}
 								}
 							}
 						}
 					},
 					"clients": 8,
-					"warmup-iterations": 1000,
 					"iterations": 1000,
 					"target-throughput": 100
-				}
+				}	
 			]
 		}
 	]

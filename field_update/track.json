@@ -1,0 +1,102 @@
+{
+  "version": 2,
+  "description": "Benchmark for research task",
+  "indices": [
+    {
+      "name": "books",
+      "body": "books_index.json",
+      "types": [ "book" ]
+    }
+  ],
+  "corpora": [
+    {
+      "name": "benchmark-research",
+      "documents": [
+        {
+          "source-file": "books.json",
+          "document-count": 1255615,
+          "uncompressed-bytes": 185626847
+        }
+      ]
+    }
+  ],
+  "challenges": [
+    {
+      "name": "index-and-query",
+      "default": true,
+      "schedule": [
+        {
+          "operation": {
+            "operation-type": "delete-index"
+          }
+        },
+        {
+          "operation": {
+            "operation-type": "create-index"
+          }
+        },
+        {
+          "operation": {
+            "name": "search-before-update",
+            "operation-type": "search",
+            "body":{
+              "query": {
+                "bool": {
+                  "must": [
+                    { "match" : { "title": "poems poem"} },
+                    { "match" : { "subscriptions": "EN HI CD EB FB AA"} }
+                  ]
+                }
+              }
+            }
+          },
+          "clients": 8,
+          "warmup-iterations": 1000,
+          "iterations": 1000,
+          "target-throughput": 100
+        },
+        {
+          "operation": {
+            "name": "query-update-all",
+            "operation-type": "raw-request",
+            "path":"/books/_update_by_query",
+            "method":"POST",
+            "body": {
+              "script" : {
+                "source": "ctx._source.subscriptions.add(params.tag)",
+                "lang": "painless",
+                "params" : {
+                  "tag" : "AAA"
+                }
+              },
+              "query" : {
+                "term" : { "title" : "poems poem" }
+              }
+            }
+          }
+        },
+        {
+          "operation": {
+            "name": "search-after-update",
+            "operation-type": "search",
+            "body":{
+              "query": {
+                "bool": {
+                  "must": [
+                    { "match" : { "title": "poems poem"} },
+                    { "match" : { "subscriptions": "EN HI CD EB FB AA AAA"} }
+                  ]
+                }
+              }
+            }
+          },
+          "clients": 8,
+          "warmup-iterations": 1000,
+          "iterations": 1000,
+          "target-throughput": 100
+        }
+      ]
+    }
+  ]
+}
+
