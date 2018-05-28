@@ -31,7 +31,7 @@ def get_random_subscription(params):
     return "%s" % random.choice(params["subscriptions"])
 
 def get_random_book_id(params):
-    return "%s" % random.randint(0,999)#params["num_ids"])
+    return "%s" % random.randint(0,9999)
 
 def get_random_books_update_query(track, params, **kwargs):
     es = Elasticsearch("127.0.0.1:39200")
@@ -40,35 +40,18 @@ def get_random_books_update_query(track, params, **kwargs):
     index_name = params.get("index", default_index)
     type_name = params.get("type", default_type)
     subscription = get_random_subscription(params)
-    output = [
-        {
-            "_index": index_name,
-            "_type": type_name,
-            "_id": get_random_book_id(params),
-            "_op_type": "update",
-            "script" : { "source": "ctx._source.subscriptions.add('DF')"}
-        }
-        for x in range(0, 100)
-    ]
-        #output.append({ "update" : {"_id" : "%s" % get_random_book_id(params), "_type" : type_name, "_index" : index_name, "retry_on_conflict" : 1} })
-        #output.append({ "script" : { "source": "ctx._source.subscriptions.add[parameters.subscription]", "lang" : "painless", "parameters" : {"subscription" : subscription }}})
-    #output = {
-    #    "body":"\n".join(map(json.dumps,output)),
-    #    "path":"/_bulk",
-    #    "method":"POST",
-    #    "headers":"Content-Type: application/json"
-    #}
-    
-    helpers.bulk(es, output)
-    result = {
-        "body":"{}",
-        "path":"/_bulk",
-        "method":"POST",
-        "headers":"Content-Type: application/json",
-        "action_metadata_present":"False",
-        "bulk-size":"1"
+    body=""
+    for x in range(0,100):
+        body+=(json.dumps({ "update" : {"_id" : "%s" % get_random_book_id(params), "_type" : type_name, "_index" : index_name} })+'\n')
+        body+=(json.dumps({ "script" : { "source": "ctx._source.subscriptions.add(params.subscription)", "lang" : "painless", "params" : {"subscription" : subscription }}})+'\n')
+    output = {
+        "body":body,
+        "action_metadata_present":"True",
+        "bulk-size":100,
+        "index":index_name,
+        "type":type_name
     }
-    return result
+    return output
     
 def insert_bulk_data(track, params, **kwargs):
     es = Elasticsearch("127.0.0.1:39200")
@@ -76,40 +59,20 @@ def insert_bulk_data(track, params, **kwargs):
     default_type = "book"
     index_name = params.get("index", default_index)
     type_name = params.get("type", default_type)
-    try:  
-        fp = open('books.json') 
-        output = [
-            {
-                "_index": index_name,
-                "_type": type_name,
-                "_id": x,
-                "_op_type": "create",
-                "_source": json.loads(fp.readline())
-            }
-            for x in range(0, 1000)#params["num_ids"])
-           
-        ]
-
-    finally:  
-        fp.close()
-    helpers.bulk(es, output)
+    body="" 
+    fp = open('books.json') 
+    for x in range(0, 10000):
+        body+=(json.dumps({ "create" : {"_id" : x, "_type" : type_name, "_index" : index_name } })+'\n')
+        body+=(fp.readline()+'\n')
+    fp.close()
     result = {
-        "body":"{}",
-        "path":"/_bulk",
-        "method":"POST",
-        "headers":"Content-Type: application/json",
-        "action_metadata_present":"False",
-        "bulk-size":"1"
+        "body":body,
+        "action_metadata_present":"True",
+        "bulk-size":10000,
+        "index":index_name,
+        "type":type_name
     }
     return result
-        #output.append({ "update" : {"_id" : "%s" % get_random_book_id(params), "_type" : type_name, "_index" : index_name, "retry_on_conflict" : 1} })
-        #output.append({ "script" : { "source": "ctx._source.subscriptions.add[parameters.subscription]", "lang" : "painless", "parameters" : {"subscription" : subscription }}})
-    #output = {
-    #    "body":"\n".join(map(json.dumps,output)),
-    #    "path":"/_bulk",
-    #    "method":"POST",
-    #    "headers":"Content-Type: application/json"
-    #}
     
 
 def register(registry):
