@@ -64,7 +64,6 @@
 								"iterations": 1000,
 								"target-throughput": 100
 							},
-							,
 							{
 								"operation": {
 									"name": "bulk-update",
