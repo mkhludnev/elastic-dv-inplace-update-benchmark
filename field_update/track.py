@@ -1,7 +1,4 @@
 import random, json
-from elasticsearch import Elasticsearch
-from elasticsearch import helpers
-
 
 def get_random_search_parameters(track, params, **kwargs):
     default_index = "books"
@@ -12,11 +9,8 @@ def get_random_search_parameters(track, params, **kwargs):
           "body":{
             "query": {
               "bool": {
-                "must": { "match_all" : { }},
-                 "filter": [
-                    { "term" : { "title": get_random_book_title(params) } },
-                    { "term" : { "subscriptions": get_random_subscription(params) } }
-                  ]
+                "must": {"match" : {"title": get_random_book_title(params)}},
+                "filter": { "term" : { "subscriptions": get_random_subscription(params) } }
               }
             }
           },
@@ -34,16 +28,21 @@ def get_random_book_id(params):
     return "%s" % random.randint(0,9999)
 
 def get_random_books_update_query(track, params, **kwargs):
-    es = Elasticsearch("127.0.0.1:39200")
     default_index = "books"
     default_type = "book"
+    operations = ["add","remove"]
     index_name = params.get("index", default_index)
     type_name = params.get("type", default_type)
     subscription = get_random_subscription(params)
+
     body=""
     for x in range(0,100):
         body+=(json.dumps({ "update" : {"_id" : "%s" % get_random_book_id(params), "_type" : type_name, "_index" : index_name} })+'\n')
-        body+=(json.dumps({ "script" : { "source": "ctx._source.subscriptions.add(params.subscription)", "lang" : "painless", "params" : {"subscription" : subscription }}})+'\n')
+        operation = random.choice(operations)
+        if random.randint(0,2)==0:
+            body+=(json.dumps({ "script" : { "source": "ctx._source.subscriptions.add(params.subscription)", "lang" : "painless", "params" : {"subscription" : subscription }}})+'\n')
+        else:
+            body+=(json.dumps({ "script" : { "source": "Random rand = new Random(); int subscriptionsSize = ctx._source.subscriptions.size(); ctx._source.subscriptions.remove(rand.nextInt(subscriptionsSize))", "lang" : "painless"}})+'\n')
     output = {
         "body":body,
         "action_metadata_present":"True",
@@ -54,7 +53,6 @@ def get_random_books_update_query(track, params, **kwargs):
     return output
     
 def insert_bulk_data(track, params, **kwargs):
-    es = Elasticsearch("127.0.0.1:39200")
     default_index = "books"
     default_type = "book"
     index_name = params.get("index", default_index)
