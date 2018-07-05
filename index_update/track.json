@@ -15,7 +15,7 @@
 	],
 	"challenges": [
 		{
-			"name": "index-and-query",
+			"name": "index-update-scenario",
 			"default": true,
 			"schedule": [
 				{
@@ -60,7 +60,6 @@
 									"subscriptions":{% include 'subscriptions.txt' %}
 								},
 								"clients": 8,
-								"warmup-iterations": 1000,
 								"iterations": 1000,
 								"target-throughput": 100
 							},
@@ -74,8 +73,7 @@
 									"subscriptions":{% include 'subscriptions.txt' %}
 								},
 								"clients": 1,
-								"warmup-iterations": 1000,
-								"iterations": 1000,
+								"iterations": 2000,
 								"target-throughput": 100
 							}
 

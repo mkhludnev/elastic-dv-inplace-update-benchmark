@@ -1,4 +1,5 @@
 import random, json
+from elasticsearch import Elasticsearch,helpers
 
 def get_random_search_parameters(track, params, **kwargs):
     default_index = "books"
@@ -25,7 +26,7 @@ def get_random_subscription(params):
     return "%s" % random.choice(params["subscriptions"])
 
 def get_random_book_id(params):
-    return "%s" % random.randint(0,9999)
+    return "%s" % random.randint(0,params["num_ids"])
 
 def get_random_books_update_query(track, params, **kwargs):
     default_index = "books"
@@ -34,11 +35,10 @@ def get_random_books_update_query(track, params, **kwargs):
     index_name = params.get("index", default_index)
     type_name = params.get("type", default_type)
     subscription = get_random_subscription(params)
-
+    bulkSize = 100
     body=""
-    for x in range(0,100):
+    for x in range(0,bulkSize):
         body+=(json.dumps({ "update" : {"_id" : "%s" % get_random_book_id(params), "_type" : type_name, "_index" : index_name} })+'\n')
-        operation = random.choice(operations)
         if random.randint(0,2)==0:
             body+=(json.dumps({ "script" : { "source": "ctx._source.subscriptions.add(params.subscription)", "lang" : "painless", "params" : {"subscription" : subscription }}})+'\n')
         else:
@@ -46,27 +46,28 @@ def get_random_books_update_query(track, params, **kwargs):
     output = {
         "body":body,
         "action_metadata_present":"True",
-        "bulk-size":100,
+        "bulk-size":bulkSize,
         "index":index_name,
         "type":type_name
     }
     return output
     
 def insert_bulk_data(track, params, **kwargs):
+    es = Elasticsearch("127.0.0.1:39200")
     default_index = "books"
     default_type = "book"
     index_name = params.get("index", default_index)
     type_name = params.get("type", default_type)
-    body="" 
+    data=[] 
     fp = open('books.json') 
-    for x in range(0, 10000):
-        body+=(json.dumps({ "create" : {"_id" : x, "_type" : type_name, "_index" : index_name } })+'\n')
-        body+=(fp.readline()+'\n')
+    for x in range(0, params["num_ids"]):
+        data.append({ "_id" : x, "_type" : type_name, "_index" : index_name,"_op_type": "create","_source":json.loads(fp.readline())})
     fp.close()
+    helpers.bulk(es, data)
     result = {
-        "body":body,
+        "body":"false",
         "action_metadata_present":"True",
-        "bulk-size":10000,
+        "bulk-size":10,
         "index":index_name,
         "type":type_name
     }
