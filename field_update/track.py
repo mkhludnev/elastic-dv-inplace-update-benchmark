@@ -1,5 +1,8 @@
 import random, json
 from elasticsearch import Elasticsearch,helpers
+from collections import defaultdict
+
+subscriptions_to_books_mapping=defaultdict(list)
 
 def get_random_search_parameters(track, params, **kwargs):
     default_index = "books"
@@ -35,14 +38,20 @@ def get_random_books_update_query(track, params, **kwargs):
     index_name = params.get("index", default_index)
     type_name = params.get("type", default_type)
     subscription = get_random_subscription(params)
-    bulkSize = 100
+    bulkSize = 10
     body=""
+    subscription_size = len(subscriptions_to_books_mapping[subscription])
     for x in range(0,bulkSize):
-        body+=(json.dumps({ "update" : {"_id" : "%s" % get_random_book_id(params), "_type" : type_name, "_index" : index_name} })+'\n')
-        if random.randint(0,2)==0:
+        if random.randint(0,2)==0 or subscription_size==0 or len(subscriptions_to_books_mapping[subscription])==0:
+            book_id = get_random_book_id(params)
+            body+=(json.dumps({ "update" : {"_id" : "%s" % book_id, "_type" : type_name, "_index" : index_name} })+'\n')
             body+=(json.dumps({ "script" : { "source": "ctx._source.subscriptions.add(params.subscription)", "lang" : "painless", "params" : {"subscription" : subscription }}})+'\n')
+            subscriptions_to_books_mapping[subscription].append(book_id)
         else:
-            body+=(json.dumps({ "script" : { "source": "Random rand = new Random(); int subscriptionsSize = ctx._source.subscriptions.size(); ctx._source.subscriptions.remove(rand.nextInt(subscriptionsSize))", "lang" : "painless"}})+'\n')
+            book_id = random.choice(subscriptions_to_books_mapping[subscription])
+            body+=(json.dumps({ "update" : {"_id" : "%s" % book_id, "_type" : type_name, "_index" : index_name} })+'\n')
+            body+=(json.dumps({ "script" : { "source": "ctx._source.subscriptions.remove(ctx._source.subscriptions.indexOf(\""+subscription+"\"))", "lang" : "painless"}})+'\n')
+            subscriptions_to_books_mapping[subscription].remove(str(book_id))
     output = {
         "body":body,
         "action_metadata_present":"True",
@@ -61,7 +70,12 @@ def insert_bulk_data(track, params, **kwargs):
     data=[] 
     fp = open('books.json') 
     for x in range(0, params["num_ids"]):
-        data.append({ "_id" : x, "_type" : type_name, "_index" : index_name,"_op_type": "create","_source":json.loads(fp.readline())})
+        book_object = json.loads(fp.readline())
+        data.append({ "_id" : x, "_type" : type_name, "_index" : index_name,"_op_type": "create","_source":book_object})
+        counter = 0
+        for subscrptn in book_object["subscriptions"]:
+            subscriptions_to_books_mapping[book_object["subscriptions"][counter]].append(x)
+            counter+=1
     fp.close()
     helpers.bulk(es, data)
     result = {
