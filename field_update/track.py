@@ -38,7 +38,7 @@ def get_random_books_update_query(track, params, **kwargs):
     index_name = params.get("index", default_index)
     type_name = params.get("type", default_type)
     subscription = get_random_subscription(params)
-    bulkSize = 10
+    bulkSize = 100
     body=""
     subscription_size = len(subscriptions_to_books_mapping[subscription])
     for x in range(0,bulkSize):
