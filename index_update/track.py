@@ -45,12 +45,14 @@ def get_random_subscriptions_update_query(track, params, **kwargs):
     type_name = params.get("type", default_type)
     body=""
     bulkSize = 1500
-    subscription=get_random_subscription(params)
-    body+=(json.dumps({ "update" : {"_id" : "%s" % subscription, "_type" : type_name, "_index" : index_name} })+'\n')
-    body+=(json.dumps({ "script" : { "source": "Random rand = new Random(); int booksSize = ctx._source.books.size(); ctx._source.books.clear()", "lang" : "painless"}})+'\n')
+    books_nums=[]
+    #subscription=get_random_subscription(params)
+    #body+=(json.dumps({ "update" : {"_id" : "%s" % subscription, "_type" : type_name, "_index" : index_name} })+'\n')
+    #body+=(json.dumps({ "script" : { "source": "Random rand = new Random(); int booksSize = ctx._source.books.size(); ctx._source.books.clear()", "lang" : "painless"}})+'\n')
     for x in range(0,bulkSize):
-        body+=(json.dumps({ "update" : {"_id" : "%s" % get_random_subscription(params), "_type" : type_name, "_index" : index_name} })+'\n')
-        body+=(json.dumps({ "script" : { "source": "ctx._source.books.add(params.book)", "lang" : "painless", "params" : {"book" : get_random_book_id(params)}}})+'\n')
+        books_nums+=[get_random_book_id(params)];
+    body+=(json.dumps({ "update" : {"_id" : "%s" % get_random_subscription(params), "_type" : type_name, "_index" : index_name} })+'\n')
+    body+=(json.dumps({ "books" : books_nums})+'\n')
     output = {
         "body":body,
         "action_metadata_present":"True",
