@@ -78,15 +78,8 @@ def insert_bulk_data(track, params, **kwargs):
             counter+=1
     fp.close()
     helpers.bulk(es, data)
-    result = {
-        "body":"false",
-        "action-metadata-present":"True",
-        "bulk-size":10,
-        "index":index_name,
-        "type":type_name
-    }
+    result = {"body":"false","action-metadata-present":True,"bulk-size":10,"index":index_name,"type":type_name }
     return result
-    
 
 def register(registry):
     registry.register_param_source("search-param-source", get_random_search_parameters)
