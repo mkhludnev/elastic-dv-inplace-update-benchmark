@@ -9,7 +9,8 @@
             "documents": [
               {
                 "source-file": "books.json",
-                "target-index": "books"
+                "target-index": "books",
+                "document-count": 1255615
               }
             ]
           }
