@@ -46,16 +46,13 @@ def get_random_subscriptions_update_query(track, params, **kwargs):
     body=""
     bulkSize = 1500
     books_nums=[]
-    #subscription=get_random_subscription(params)
-    #body+=(json.dumps({ "update" : {"_id" : "%s" % subscription, "_type" : type_name, "_index" : index_name} })+'\n')
-    #body+=(json.dumps({ "script" : { "source": "Random rand = new Random(); int booksSize = ctx._source.books.size(); ctx._source.books.clear()", "lang" : "painless"}})+'\n')
     for x in range(0,bulkSize):
         books_nums+=[get_random_book_id(params)];
     body+=(json.dumps({ "update" : {"_id" : "%s" % get_random_subscription(params), "_type" : type_name, "_index" : index_name} })+'\n')
     body+=(json.dumps({ "books" : books_nums})+'\n')
     output = {
         "body":body,
-        "action_metadata_present":"True",
+        "action-metadata-present":"True",
         "bulk-size":bulkSize,
         "index":index_name,
         "type":type_name
@@ -76,7 +73,7 @@ def insert_subscriptions_bulk_data(track, params, **kwargs):
     fp.close()
     result = {
         "body":body,
-        "action_metadata_present":"True",
+        "action-metadata-present":"True",
         "bulk-size":params["num_subscriptions"],
         "index":index_name,
         "type":type_name
@@ -97,7 +94,7 @@ def insert_books_bulk_data(track, params, **kwargs):
     helpers.bulk(es, data)
     result = {
         "body":"false",
-        "action_metadata_present":"True",
+        "action-metadata-present":"True",
         "bulk-size":10,
         "index":index_name,
         "type":type_name

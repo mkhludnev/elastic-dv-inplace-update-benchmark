@@ -54,7 +54,7 @@ def get_random_books_update_query(track, params, **kwargs):
             subscriptions_to_books_mapping[subscription].remove(str(book_id))
     output = {
         "body":body,
-        "action_metadata_present":"True",
+        "action-metadata-present":"True",
         "bulk-size":bulkSize,
         "index":index_name,
         "type":type_name
@@ -80,7 +80,7 @@ def insert_bulk_data(track, params, **kwargs):
     helpers.bulk(es, data)
     result = {
         "body":"false",
-        "action_metadata_present":"True",
+        "action-metadata-present":"True",
         "bulk-size":10,
         "index":index_name,
         "type":type_name
