@@ -50,7 +50,7 @@ def get_random_books_update_query(track, params, **kwargs):
         else:
             book_id = random.choice(subscriptions_to_books_mapping[subscription])
             body+=(json.dumps({ "update" : {"_id" : "%s" % book_id, "_type" : type_name, "_index" : index_name} })+'\n')
-            body+=(json.dumps({ "script" : { "source": "ctx._source.subscriptions.remove(ctx._source.subscriptions.indexOf(\""+subscription+"\"))", "lang" : "painless"}})+'\n')
+            body+=(json.dumps({ "script" : { "source": "ctx._source.subscriptions.remove(ctx._source.subscriptions.indexOf(params.subscription))", "lang" : "painless", "params" : {"subscription" : subscription }}})+'\n')
             subscriptions_to_books_mapping[subscription].remove(str(book_id))
     output = {
         "body":body,
