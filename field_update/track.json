@@ -1,6 +1,19 @@
 {
 	"version": 2,
 	"description": "Benchmark for research task",
+	"corpora": [
+          {
+            "name": "books",
+            "base-url": "./",
+            "target-type": "books",
+            "documents": [
+              {
+                "source-file": "books.json",
+                "target-index": "books"
+              }
+            ]
+          }
+        ],
 	"indices": [
 		{
 			"name": "books",
@@ -28,7 +41,7 @@
 						"name": "bulk-insert",
 						"operation-type": "bulk",
 						"bulk-size":1000,
-						"param-source": "insert-param-source",
+						"NOparam-source": "insert-param-source",
 						"num_ids":1255615
 					}
 				},
