@@ -6,7 +6,7 @@ subscriptions_to_books_mapping=defaultdict(list)
 
 def get_random_search_parameters(track, params, **kwargs):
     default_index = "books"
-    default_type = "book"
+    default_type = "books"
     index_name = params.get("index", default_index)
     type_name = params.get("type", default_type)
     return {
@@ -33,7 +33,7 @@ def get_random_book_id(params):
 
 def get_random_books_update_query(track, params, **kwargs):
     default_index = "books"
-    default_type = "book"
+    default_type = "books"
     operations = ["add","remove"]
     index_name = params.get("index", default_index)
     type_name = params.get("type", default_type)
@@ -72,7 +72,7 @@ def get_random_books_update_query(track, params, **kwargs):
 def insert_bulk_data(track, params, **kwargs):
     es = Elasticsearch("127.0.0.1:39200")
     default_index = "books"
-    default_type = "book"
+    default_type = "books"
     index_name = params.get("index", default_index)
     type_name = params.get("type", default_type)
     data=[] 
