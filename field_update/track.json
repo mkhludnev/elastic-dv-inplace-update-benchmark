@@ -19,7 +19,7 @@
 		{
 			"name": "books",
 			"body": "books_index.json",
-			"types": [ "book" ]
+			"types": [ "books" ]
 		}
 	],
 	"challenges": [
