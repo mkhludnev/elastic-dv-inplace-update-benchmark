@@ -29,7 +29,7 @@ def get_random_subscription(params):
     return "%s" % random.choice(params["subscriptions"])
 
 def get_random_book_id(params):
-    return "%s" % random.randint(0,params["num_ids"])
+    return "%10d" % random.randint(0,params["num_ids"])
 
 def get_random_books_update_query(track, params, **kwargs):
     default_index = "books"
