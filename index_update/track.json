@@ -13,6 +13,20 @@
 			"types": [ "subscription" ]
 		}
 	],
+	"corpora": [
+          {
+            "name": "books",
+            "base-url": "./",
+            "target-type": "book",
+            "documents": [
+              {
+                "source-file": "books.json",
+                "target-index": "books",
+                "document-count": 1255615
+              }
+            ]
+          }
+        ],
 	"challenges": [
 		{
 			"name": "index-update-scenario",
@@ -35,8 +49,10 @@
 						"name": "bulk-insert-books",
 						"operation-type": "bulk",
 						"bulk-size":1000,
-						"param-source": "books-insert-param-source",
-						"num_ids":1255615
+						"conflicts":"sequential",
+                        "conflict-probability":"0",
+						"NOparam-source": "books-insert-param-source",
+						"NOnum_ids":1255615
 					}
 				},
 				{

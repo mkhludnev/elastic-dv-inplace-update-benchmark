@@ -49,10 +49,10 @@ def get_random_subscriptions_update_query(track, params, **kwargs):
     for x in range(0,bulkSize):
         books_nums+=[get_random_book_id(params)];
     body+=(json.dumps({ "update" : {"_id" : "%s" % get_random_subscription(params), "_type" : type_name, "_index" : index_name} })+'\n')
-    body+=(json.dumps({ "books" : books_nums})+'\n')
+    body+=(json.dumps({"doc":{ "books" : books_nums}})+'\n')
     output = {
         "body":body,
-        "action-metadata-present":"True",
+        "action-metadata-present":True,
         "bulk-size":bulkSize,
         "index":index_name,
         "type":type_name
@@ -73,7 +73,7 @@ def insert_subscriptions_bulk_data(track, params, **kwargs):
     fp.close()
     result = {
         "body":body,
-        "action-metadata-present":"True",
+        "action-metadata-present":True,
         "bulk-size":params["num_subscriptions"],
         "index":index_name,
         "type":type_name
