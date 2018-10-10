@@ -40,21 +40,29 @@ def get_random_books_update_query(track, params, **kwargs):
     subscription = get_random_subscription(params)
     bulkSize = 100
     body=""
-    subscription_size = len(subscriptions_to_books_mapping[subscription])
     for x in range(0,bulkSize):
-        if random.randint(0,2)==0 or subscription_size==0 or len(subscriptions_to_books_mapping[subscription])==0:
-            book_id = get_random_book_id(params)
-            body+=(json.dumps({ "update" : {"_id" : "%s" % book_id, "_type" : type_name, "_index" : index_name} })+'\n')
-            body+=(json.dumps({ "script" : { "source": "ctx._source.subscriptions.add(params.subscription)", "lang" : "painless", "params" : {"subscription" : subscription }}})+'\n')
-            subscriptions_to_books_mapping[subscription].append(book_id)
-        else:
-            book_id = random.choice(subscriptions_to_books_mapping[subscription])
-            body+=(json.dumps({ "update" : {"_id" : "%s" % book_id, "_type" : type_name, "_index" : index_name} })+'\n')
-            body+=(json.dumps({ "script" : { "source": "ctx._source.subscriptions.remove(ctx._source.subscriptions.indexOf(params.subscription))", "lang" : "painless", "params" : {"subscription" : subscription }}})+'\n')
-            subscriptions_to_books_mapping[subscription].remove(str(book_id))
+        book_id = get_random_book_id(params)
+        subscs=[]
+        for s in range(0,5):
+            subscs+=[get_random_subscription(params)]
+        body+=(json.dumps({ "update" : {"_id" : "%s" % book_id, "_type" : type_name, "_index" : index_name} })+'\n')
+        body+=(json.dumps({ "doc" : { "subscriptions": subscs}})+'\n')
+    #        
+    #subscription_size = len(subscriptions_to_books_mapping[subscription])
+    #for x in range(0,bulkSize):
+    #    if random.randint(0,2)==0 or subscription_size==0 or len(subscriptions_to_books_mapping[subscription])==0:
+    #        book_id = get_random_book_id(params)
+    #        body+=(json.dumps({ "update" : {"_id" : "%s" % book_id, "_type" : type_name, "_index" : index_name} })+'\n')
+    #        body+=(json.dumps({ "script" : { "source": "ctx._source.subscriptions.add(params.subscription)", "lang" : "painless", "params" : {"subscription" : subscription }}})+'\n')
+    #        subscriptions_to_books_mapping[subscription].append(book_id)
+    #    else:
+    #        book_id = random.choice(subscriptions_to_books_mapping[subscription])
+    #        body+=(json.dumps({ "update" : {"_id" : "%s" % book_id, "_type" : type_name, "_index" : index_name} })+'\n')
+    #        body+=(json.dumps({ "script" : { "source": "ctx._source.subscriptions.remove(ctx._source.subscriptions.indexOf(params.subscription))", "lang" : "painless", "params" : {"subscription" : subscription }}})+'\n')
+    #        subscriptions_to_books_mapping[subscription].remove(str(book_id))
     output = {
         "body":body,
-        "action-metadata-present":"True",
+        "action-metadata-present":True,
         "bulk-size":bulkSize,
         "index":index_name,
         "type":type_name
