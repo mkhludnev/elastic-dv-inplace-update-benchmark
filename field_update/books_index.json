@@ -3,7 +3,7 @@
     "index.number_of_replicas": 0
   },
   "mappings": {
-    "book": {
+    "books": {
       "dynamic": "strict",
       "properties": {
         "title": {
