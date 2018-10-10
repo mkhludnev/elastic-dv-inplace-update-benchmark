@@ -42,8 +42,10 @@
 						"name": "bulk-insert",
 						"operation-type": "bulk",
 						"bulk-size":1000,
+						"conflicts":"sequential",
+						"conflict-probability":"0",
 						"NOparam-source": "insert-param-source",
-						"num_ids":1255615
+						"NOnum_ids":1255615
 					}
 				},
 				{
