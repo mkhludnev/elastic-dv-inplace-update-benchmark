@@ -71,7 +71,7 @@ def insert_subscriptions_bulk_data(track, params, **kwargs):
             body+=(json.dumps({ "create" : {"_id" : x+""+y, "_type" : type_name, "_index" : index_name } })+'\n')
             books_object = json.loads(fp.readline())
             paddedarr=["%10d"%i for i in books_object["books"]]
-            body+=(json.dumps({"doc":{"books":paddedarr}})+'\n')
+            body+=(json.dumps({"books":paddedarr})+'\n')
     fp.close()
     result = {
         "body":body,
