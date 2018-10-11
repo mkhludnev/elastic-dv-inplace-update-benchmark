@@ -36,7 +36,7 @@ def get_random_subscription(params):
     return "%s" % random.choice(params["subscriptions"])
 
 def get_random_book_id(params):
-    return "%s" % random.randint(0,params["num_ids"])
+    return "%10d" % random.randint(0,params["num_ids"])
 
 def get_random_subscriptions_update_query(track, params, **kwargs):
     default_index = "subscriptions"
@@ -69,7 +69,9 @@ def insert_subscriptions_bulk_data(track, params, **kwargs):
     for x in string.ascii_uppercase:
         for y in string.ascii_uppercase:
             body+=(json.dumps({ "create" : {"_id" : x+""+y, "_type" : type_name, "_index" : index_name } })+'\n')
-            body+=(fp.readline()+'\n')
+            books_object = json.loads(fp.readline())
+            paddedarr=["%10d"%i for i in books_object.books]
+            body+=(json.dumps({"doc":{"books":paddedarr}})+'\n')
     fp.close()
     result = {
         "body":body,
