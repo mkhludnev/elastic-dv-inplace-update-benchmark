@@ -1,7 +1,7 @@
 {
-	"version": 2,
-	"description": "Benchmark for research task",
-	"corpora": [
+    "version": 2,
+    "description": "Field update benchmark",
+    "corpora": [
           {
             "name": "books",
             "base-url": "./",
@@ -15,73 +15,72 @@
             ]
           }
         ],
-	"indices": [
-		{
-			"name": "books",
-			"body": "books_index.json",
-			"types": [ "books" ]
-		}
-	],
-	"challenges": [
-		{
-			"name": "field-update-scenario",
-			"default": true,
-			"schedule": [
-				{
-					"operation": {
-						"operation-type": "delete-index"
-					}
-				},
-				{
-					"operation": {
-						"operation-type": "create-index"
-					}
-				},
-				{
-					"operation": {
-						"name": "bulk-insert",
-						"operation-type": "bulk",
-						"bulk-size":1000,
-						"conflicts":"sequential",
-						"conflict-probability":"0",
-						"NOparam-source": "insert-param-source",
-						"NOnum_ids":1255615
-					}
-				},
-				{
-					"parallel": {
-						"tasks": [
-							{
-								"operation": {
-									"name": "randomized search",
-									"operation-type": "search",
-									"param-source": "search-param-source",
-									"titles":{% include 'titles.txt' %},
-									"subscriptions":{% include 'subscriptions.txt' %}
-								},
-								"clients": 8,
-								"iterations": 1000,
-								"target-throughput": 100
-							},
-							{
-								"operation": {
-									"name": "bulk-update",
-									"operation-type": "bulk",
-									"bulk-size":100,
-									"param-source": "update-param-source",
-									"num_ids":1255615,
-									"subscriptions":{% include 'subscriptions.txt' %}
-								},
-								"clients": 1,
-								"iterations": 4000,
-								"target-throughput": 100
-							}
+    "indices": [
+        {
+            "name": "books",
+            "body": "books_index.json",
+            "types": [ "books" ]
+        }
+    ],
+    "challenges": [
+        {
+            "name": "field-update-scenario",
+            "default": true,
+            "schedule": [
+                {
+                    "operation": {
+                        "operation-type": "delete-index"
+                    }
+                },
+                {
+                    "operation": {
+                        "operation-type": "create-index"
+                    }
+                },
+                {
+                    "operation": {
+                        "name": "bulk-insert",
+                        "operation-type": "bulk",
+                        "bulk-size":1000,
+                        "conflicts":"sequential",
+                        "conflict-probability":"0",
+                        "NOparam-source": "insert-param-source",
+                        "NOnum_ids":1255615
+                    }
+                },
+                {
+                    "parallel": {
+                        "completed-by":"bulk-update",
+                        "tasks": [
+                            {
+                                "operation": {
+                                    "name": "randomized search",
+                                    "operation-type": "search",
+                                    "param-source": "search-param-source",
+                                    "titles":{% include 'titles.txt' %},
+                                    "subscriptions":{% include 'subscriptions.txt' %}
+                                },
+                                "clients": 1,
+                                "target-throughput": 1
+                            },
+                            {
+                                "operation": {
+                                    "name": "bulk-update",
+                                    "operation-type": "bulk",
+                                    "bulk-size":100,
+                                    "param-source": "update-param-source",
+                                    "num_ids":1255615,
+                                    "subscriptions":{% include 'subscriptions.txt' %}
+                                },
+                                "clients": 1,
+                                "iterations": 1255615
+                            }
 
-						]
-					}
-				}
-			]
-		}
-	]
+                        ]
+                    }
+                }
+            ]
+        }
+    ]
 }
 

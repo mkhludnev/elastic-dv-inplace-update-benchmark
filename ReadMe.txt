@@ -3,5 +3,5 @@ At this moment the set has two folders, each of which contains one corresponding
 To run these tracks you should have elasticsearch rally installed on your computer. Please, see https://github.com/elastic/rally for detailed instructions on rally installation.
 To run a task, please open your terminal, navigate to required folder(field_update or index_update)  and type following command:
 
-esrally --distribution-version 6.2.0 --track-path=./
+esrally --distribution-version=6.4.0 --track-path=./
 
