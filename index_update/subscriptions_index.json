@@ -8,6 +8,9 @@
       "properties": {
         "books": {
           "type": "keyword"
+        },
+        "updated": {
+          "type": "boolean"
         }
       }
     }
