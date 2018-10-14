@@ -69,11 +69,11 @@
                                     "operation-type": "bulk",
                                     "bulk_size":100,
                                     "param-source": "update-param-source",
-                                    "num_ids":1255615,
+                                    "num_ids":1255614,
                                     "subscriptions":{% include 'subscriptions.txt' %}
                                 },
                                 "clients": 1,
-                                "iterations": 1255615
+                                "iterations": 12556
                             }
 
                         ]
