@@ -38,7 +38,7 @@ def get_random_books_update_query(track, params, **kwargs):
     type_name = params.get("type", default_type)
     bulkSize = params.get("bulk_size", default_index)
     body=""
-    for x in range(0,bulkSize):
+    for x in range(0,int(bulkSize)):
         book_id = get_random_book_id(params)
         subscs=[]
         for s in range(0,5):
