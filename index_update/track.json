@@ -81,7 +81,7 @@
                                 "operation": {
                                     "name": "bulk-update",
                                     "operation-type": "bulk",
-                                    "bulk-size":100,
+                                    "books-to-update":1500,
                                     "param-source": "update-param-source",
                                     "num_ids":1255614,
                                     "subscriptions":{% include 'subscriptions.txt' %}
