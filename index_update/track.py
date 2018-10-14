@@ -45,16 +45,16 @@ def get_random_subscriptions_update_query(track, params, **kwargs):
     index_name = params.get("index", default_index)
     type_name = params.get("type", default_type)
     body=""
-    bulkSize = 1500
+    books_upd = int(params.get("books-to-update", "1500"))
     books_nums=[]
-    for x in range(0,bulkSize):
+    for x in range(0,books_upd):
         books_nums+=[get_random_book_id(params)];
     body+=(json.dumps({ "update" : {"_id" : "%s" % get_random_subscription(params), "_type" : type_name, "_index" : index_name} })+'\n')
     body+=(json.dumps({"doc":{ "books" : books_nums, "updated":True}})+'\n')
     output = {
         "body":body,
         "action-metadata-present":True,
-        "bulk-size":bulkSize,
+        "bulk-size":1,
         "index":index_name,
         "type":type_name
     }
