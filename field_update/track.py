@@ -2,8 +2,6 @@ import random, json
 from elasticsearch import Elasticsearch,helpers
 from collections import defaultdict
 
-subscriptions_to_books_mapping=defaultdict(list)
-
 def get_random_search_parameters(track, params, **kwargs):
     default_index = "books"
     default_type = "books"
@@ -54,7 +52,47 @@ def get_random_books_update_query(track, params, **kwargs):
     }
     return output
 
+def insert_books_with_subscription_closure(words):
+    count =0
+    def random_text( num_words):
+        result=[]
+        for i in range(0,num_words):
+            result.append(random.choice(words))
+        return
+        
+    def insert_books(track, params, **kwargs):
+        index_name = params.get("index", "books")
+        type_name = params.get("type",  "book")
+        bulkSize = int(params.get("bulk-size", "100"))
+        maxSubs = int(params.get("subs-total", "10000"))
+        numSubs = int(params.get("subs-per-book", "100"))
+        body=""
+        for x in range(0,bulkSize):
+            book_id = "%d"%count
+            count+=1
+            subscs=[]
+            for s in range(0,numSubs):
+               subscs.append(hex(random.randint(0,maxSubs)))
+            body+=(json.dumps({ "index" : {"_id" : book_id, "_type" : type_name, "_index" : index_name} })+'\n')
+            #{"title": "Book of minerals", "author": "Albertus, Magnus, Saint, 1193?-1280", "pubDate": "1967","subscriptions": ["CK","MA","AH"]}
+            body+=(json.dumps({ "doc" : { 
+                "title": random_text(4),
+                "author": random_text(2),
+                "abstract": random_text(100),
+                "pubDate": 1837+(count+51)%(2018-1837),
+                "subscriptions": subscs, 
+                "updated":True}})+'\n')
+        output = {
+             "body":body,
+             "action-metadata-present":True,
+             "bulk-size":bulkSize,
+             "index":index_name,
+             "type":type_name
+        }
+        return output
+    return insert_books
+
 def register(registry):
     registry.register_param_source("search-param-source", get_random_search_parameters)
     registry.register_param_source("update-param-source", get_random_books_update_query)
-
+    registry.register_param_source("insert-books-subscription",insert_books_with_subscription_closure)

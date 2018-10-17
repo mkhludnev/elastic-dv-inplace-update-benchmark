@@ -1,20 +1,6 @@
 {
     "version": 2,
     "description": "Field update benchmark",
-    "corpora": [
-          {
-            "name": "books",
-            "base-url": "./",
-            "target-type": "books",
-            "documents": [
-              {
-                "source-file": "books.json",
-                "target-index": "books",
-                "document-count": 1255615
-              }
-            ]
-          }
-        ],
     "indices": [
         {
             "name": "books",
@@ -25,6 +11,7 @@
     "challenges": [
         {
             "name": "field-update-scenario",
+            {% set docs=1000000000 %}
             "default": true,
             "schedule": [
                 {
@@ -41,13 +28,14 @@
                     "operation": {
                         "name": "bulk-insert",
                         "operation-type": "bulk",
-                        "bulk-size":1000,
-                        "conflicts":"sequential",
-                        "conflict-probability":"0",
-                        "NOparam-source": "insert-param-source",
-                        "NOnum_ids":1255615
+                        {% set bulksize=1000 %}
+                        "bulk-size":{{docs/bulksize}},
+                        "param-source": "insert-books-subscription",
+                        "subs-total":200000,
+                        "subs-per-book":100 
+                        {#"not-in use- num docs in subscription":500000#}
                     }
-                },
+                }{#,
                 {
                     "parallel": {
                         "completed-by":"bulk-update",
@@ -78,7 +66,7 @@
 
                         ]
                     }
-                }
+                }#}
             ]
         }
     ]
