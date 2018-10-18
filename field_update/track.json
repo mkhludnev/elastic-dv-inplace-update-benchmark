@@ -25,7 +25,8 @@
                           "index": "books",
                           "body": {
                             "settings": {
-                              "index.number_of_shards": 100
+                              "number_of_shards": 100,
+                              "number_of_replicas": 0
                             },
                             "mappings": {
                                 "books": {
