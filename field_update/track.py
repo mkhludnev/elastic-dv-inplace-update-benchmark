@@ -54,10 +54,11 @@ def get_random_books_update_query(track, params, **kwargs):
 
 def insert_books_with_subscription_closure(words):
     def random_text( num_words):
+        nonlocal words
         result=[]
         for i in range(0,num_words):
             result.append(random.choice(words))
-        return
+        return result
     count=0
     def insert_books(track, params, **kwargs):
         nonlocal count
@@ -99,8 +100,18 @@ def register(registry):
     try:
          with open('/usr/share/dict/words', 'r') as f:
              for l in f :
-                words.append(l)
+                words.append(l.replace("\n",""))
     except Exception as e:
         words +=['foo','bar','baz','lorem','ipsum','dolores','moo','ban','crux','boom','greed','block']       
         print(e)
     registry.register_param_source("insert-books-subscription",insert_books_with_subscription_closure(words))
+
+def main():
+    w=[]
+    w+=["foo","bar"]
+    out=str(insert_books_with_subscription_closure(w)({"a":1},{"b":2}))
+    assert(out.count("foo")+out.count("bar")>0)
+    return
+    
+if __name__ == "__main__":
+    main()
