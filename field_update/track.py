@@ -96,8 +96,11 @@ def register(registry):
     registry.register_param_source("search-param-source", get_random_search_parameters)
     registry.register_param_source("update-param-source", get_random_books_update_query)
     words=[]
-    with open('workfile', 'r') as f:
-        for l in f :
-           words.append(l)
-           
+    try:
+         with open('/usr/share/dict/words', 'r') as f:
+             for l in f :
+                words.append(l)
+    except Exception as e:
+        words +=['foo','bar','baz','lorem','ipsum','dolores','moo','ban','crux','boom','greed','block']       
+        print(e)
     registry.register_param_source("insert-books-subscription",insert_books_with_subscription_closure(words))
