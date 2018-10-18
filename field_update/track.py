@@ -95,4 +95,9 @@ def insert_books_with_subscription_closure(words):
 def register(registry):
     registry.register_param_source("search-param-source", get_random_search_parameters)
     registry.register_param_source("update-param-source", get_random_books_update_query)
-    registry.register_param_source("insert-books-subscription",insert_books_with_subscription_closure)
+    words=[]
+    with open('workfile', 'r') as f:
+        for l in f :
+           words.append(l)
+           
+    registry.register_param_source("insert-books-subscription",insert_books_with_subscription_closure(words))
