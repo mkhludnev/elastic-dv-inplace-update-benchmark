@@ -53,14 +53,14 @@ def get_random_books_update_query(track, params, **kwargs):
     return output
 
 def insert_books_with_subscription_closure(words):
-    count =0
     def random_text( num_words):
         result=[]
         for i in range(0,num_words):
             result.append(random.choice(words))
         return
-        
+    count=0
     def insert_books(track, params, **kwargs):
+        nonlocal count
         index_name = params.get("index", "books")
         type_name = params.get("type",  "book")
         bulkSize = int(params.get("bulk-size", "100"))
