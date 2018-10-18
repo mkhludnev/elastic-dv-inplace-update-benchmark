@@ -4,7 +4,7 @@
     "indices": [
         {
             "name": "books",
-            "body": "books_index.json",
+            {#"body": "books_index.json",#}
             "types": [ "books" ]
         }
     ],
@@ -21,7 +21,38 @@
                 },
                 {
                     "operation": {
-                        "operation-type": "create-index"
+                        "operation-type": "create-index",
+                          "index": "books",
+                          "body": {
+                            "settings": {
+                              "index.number_of_shards": 100
+                            },
+                            "mappings": {
+                                "books": {
+                                  "dynamic": "strict",
+                                  "properties": {
+                                    "title": {
+                                      "type": "text"
+                                    },
+                                    "abstract": {
+                                      "type": "text"
+                                    },
+                                    "author": {
+                                      "type": "text"
+                                    },
+                                    "pubDate": {
+                                      "type": "text"
+                                    },
+                                    "subscriptions": {
+                                      "type":"keyword"
+                                    },
+                                    "updated": {
+                                      "type": "boolean"
+                                    }
+                                  }
+                                }
+                              }
+                          }
                     }
                 },
                 {
