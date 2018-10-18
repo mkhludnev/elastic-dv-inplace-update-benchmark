@@ -67,7 +67,7 @@
                         {#"not-in use- num docs in subscription":500000#}
                     },
                     "clients": 1,
-                    "iterations": {{docs/bulksize}}
+                    "iterations": {{(docs/bulksize)|int}}
                 }{#,
                 {
                     "parallel": {
