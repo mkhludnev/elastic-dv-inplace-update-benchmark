@@ -62,7 +62,7 @@ def insert_books_with_subscription_closure(words):
     def insert_books(track, params, **kwargs):
         nonlocal count
         index_name = params.get("index", "books")
-        type_name = params.get("type",  "book")
+        type_name = params.get("type",  "books")
         bulkSize = int(params.get("bulk-size", "100"))
         maxSubs = int(params.get("subs-total", "10000"))
         numSubs = int(params.get("subs-per-book", "100"))
@@ -89,6 +89,7 @@ def insert_books_with_subscription_closure(words):
              "index":index_name,
              "type":type_name
         }
+        #print(json.dumps(output))
         return output
     return insert_books
 
