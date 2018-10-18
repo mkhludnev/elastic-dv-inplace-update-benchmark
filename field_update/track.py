@@ -75,13 +75,12 @@ def insert_books_with_subscription_closure(words):
                subscs.append(hex(random.randint(0,maxSubs)))
             body+=(json.dumps({ "index" : {"_id" : book_id, "_type" : type_name, "_index" : index_name} })+'\n')
             #{"title": "Book of minerals", "author": "Albertus, Magnus, Saint, 1193?-1280", "pubDate": "1967","subscriptions": ["CK","MA","AH"]}
-            body+=(json.dumps({ "doc" : { 
+            body+=(json.dumps({  
                 "title": random_text(4),
                 "author": random_text(2),
                 "abstract": random_text(100),
                 "pubDate": 1837+(count+51)%(2018-1837),
-                "subscriptions": subscs, 
-                "updated":True}})+'\n')
+                "subscriptions": subscs})+'\n')
         output = {
              "body":body,
              "action-metadata-present":True,
