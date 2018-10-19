@@ -11,7 +11,7 @@
     "challenges": [
         {
             "name": "field-update-scenario",
-            {% set docs=1000000000 %}
+            {% set docs=10000000 %}
             "default": true,
             "schedule": [
                 {
@@ -63,8 +63,8 @@
                         {% set bulksize=1000 %}
                         "bulk-size":{{bulksize}},
                         "param-source": "insert-books-subscription",
-                        "subs-total":200000,
-                        "subs-per-book":100 
+                        "subs-total":2000,
+                        "subs-per-book":10 
                         {#"not-in use- num docs in subscription":500000#}
                     },
                     "clients": 1,

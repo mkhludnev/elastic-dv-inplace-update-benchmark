@@ -77,9 +77,9 @@ def insert_books_with_subscription_closure(words):
             body+=(json.dumps({ "index" : {"_id" : book_id, "_type" : type_name, "_index" : index_name} })+'\n')
             #{"title": "Book of minerals", "author": "Albertus, Magnus, Saint, 1193?-1280", "pubDate": "1967","subscriptions": ["CK","MA","AH"]}
             body+=(json.dumps({  
-                "title": random_text(4),
-                "author": random_text(2),
-                "abstract": random_text(100),
+                "title": " ".join(random_text(4)),
+                "author": " ".join(random_text(2)),
+                "abstract": " ".join(random_text(100)),
                 "pubDate": 1837+(count+51)%(2018-1837),
                 "subscriptions": subscs})+'\n')
         output = {
