@@ -3,9 +3,7 @@
     "description": "Field update benchmark",
     "indices": [
         {
-            "name": "books",
-            {#"body": "books_index.json",#}
-            "types": [ "books" ]
+            "name": "books"
         }
     ],
     "challenges": [
@@ -23,11 +21,11 @@
                     "operation": {
                         "operation-type": "create-index",
                           "index": "books",
-                          "body": {
-                            "settings": {
+                          "settings": {
                               "number_of_shards": 100,
                               "number_of_replicas": 0
                             },
+                          "body": {
                             "mappings": {
                                 "books": {
                                   "dynamic": "strict",
@@ -62,13 +60,14 @@
                         "operation-type": "bulk",
                         {% set bulksize=1000 %}
                         "bulk-size":{{bulksize}},
-                        "param-source": "insert-books-subscription",
+                        "param-source": "insert-books-subs-parallel",
                         "subs-total":2000,
-                        "subs-per-book":10 
+                        "subs-per-book":10,
+                        "books-total", {{docs}} 
                         {#"not-in use- num docs in subscription":500000#}
                     },
-                    "clients": 1,
-                    "iterations": {{(docs/bulksize)|int}}
+                    "clients": 10{#,
+                    "iterations": {{(docs/bulksize)|int}#}
                 }{#,
                 {
                     "parallel": {
