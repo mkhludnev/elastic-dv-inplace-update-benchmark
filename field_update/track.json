@@ -9,7 +9,6 @@
     "challenges": [
         {
             "name": "field-update-scenario",
-            {% set docs=10000000 %}
             "default": true,
             "schedule": [
                 {
@@ -58,16 +57,16 @@
                     "operation": {
                         "name": "bulk-insert",
                         "operation-type": "bulk",
+                        {% set docs=10000000 %}
                         {% set bulksize=1000 %}
                         "bulk-size":{{bulksize}},
                         "param-source": "insert-books-subs-parallel",
                         "subs-total":2000,
                         "subs-per-book":10,
-                        "books-total", {{docs}} 
+                        "books-total": {{docs}} 
                         {#"not-in use- num docs in subscription":500000#}
                     },
-                    "clients": 10{#,
-                    "iterations": {{(docs/bulksize)|int}#}
+                    "clients": 10
                 }{#,
                 {
                     "parallel": {

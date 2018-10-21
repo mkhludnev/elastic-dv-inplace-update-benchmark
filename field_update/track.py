@@ -143,7 +143,7 @@ class InsertBooksSubsClient:
                 "pubDate": 1837+(i+51)%(2018-1837),
                 "subscriptions": subscs})+'\n')
             i+=1
-            if i%self._factory._bulk_size:
+            if i%self._factory._bulk_size==0:
                 b=body
                 yield {
                     "body":b,
@@ -168,7 +168,7 @@ class InsertBooksSubsClient:
         """"
         number of bulks per partition
         """
-        return self._factory._max_books/self.total_partitions/self._factory._bulk_size
+        return int(self._factory._max_books/self.total_partitions/self._factory._bulk_size)
     def params(self):
         return next(self.iter)
 
