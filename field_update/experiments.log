@@ -1,0 +1,13 @@
+field update 
+                        {% set docs=10000000 %}
+                        {% set bulksize=1000 %}
+                        "bulk-size":{{bulksize}},
+                        "param-source": "insert-books-subs-parallel",
+                        "subs-total":2000,
+                        "subs-per-book":10,
+                        "books-total": {{docs}} 
+                        {#"not-in use- num docs in subscription":500000#}
+                    },
+                    "clients": 2
+10M docs  50 min by 2 clients got 17 gb storage, 1 g heap. 
+2K subscriptions, 50K docs per subscription 

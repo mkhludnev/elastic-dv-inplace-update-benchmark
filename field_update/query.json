@@ -1,0 +1,29 @@
+{
+    "size":1,
+	"aggs": {
+		"subs": {
+			"composite": {
+				"sources": [
+					{
+						"product": {
+							"terms": {
+								"field": "subscriptions.keyword"
+							}
+						}
+					}
+				],
+            "size": 3000
+			}
+		},
+		"subs_crdnl": {
+			"cardinality": {
+				"field": "subscriptions.keyword"
+			}
+		},
+        "subs_vals": {
+            "value_count": {
+                "field": "subscriptions.keyword"
+            }
+        }
+	}
+}

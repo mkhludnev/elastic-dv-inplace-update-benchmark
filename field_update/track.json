@@ -42,7 +42,7 @@
                                       "type": "text"
                                     },
                                     "subscriptions": {
-                                      "type":"keyword"
+                                      "type":"keyword   "
                                     },
                                     "updated": {
                                       "type": "boolean"
@@ -57,7 +57,7 @@
                     "operation": {
                         "name": "bulk-insert",
                         "operation-type": "bulk",
-                        {% set docs=10000000 %}
+                        {% set docs=100000000 %}
                         {% set bulksize=1000 %}
                         "bulk-size":{{bulksize}},
                         "param-source": "insert-books-subs-parallel",
@@ -66,7 +66,7 @@
                         "books-total": {{docs}} 
                         {#"not-in use- num docs in subscription":500000#}
                     },
-                    "clients": 2
+                    "clients": 4
                 }{#,
                 {
                     "parallel": {
