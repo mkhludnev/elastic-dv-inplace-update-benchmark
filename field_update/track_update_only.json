@@ -41,7 +41,7 @@
                                     "books-total": {{docs}} 
                                 },
                                 "clients": 1,
-                                "iterations": {{int(docs/insert_bulk_size/100)}}
+                                "iterations": {{(docs/insert_bulk_size/100)|int}}
                             }
 
                         ]
