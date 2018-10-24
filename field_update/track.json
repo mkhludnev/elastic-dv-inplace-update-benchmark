@@ -58,16 +58,18 @@
                         "name": "bulk-insert",
                         "operation-type": "bulk",
                         {% set docs=100000000 %}
-                        {% set bulksize=1000 %}
-                        "bulk-size":{{bulksize}},
+                        {% set insert_bulk_size=1000 %}
+                        {% set subs=2000 %}
+                        {% set subs_per_book=10 %}
+                        "bulk-size":{{insert_bulk_size}},
                         "param-source": "insert-books-subs-parallel",
-                        "subs-total":2000,
-                        "subs-per-book":10,
+                        "subs-total":{{subs}},
+                        "subs-per-book":{{subs_per_book}},
                         "books-total": {{docs}} 
-                        {#"not-in use- num docs in subscription":500000#}
+                        {#"not-in use- num docs in subscription":50000#}
                     },
                     "clients": 4
-                }{#,
+                },
                 {
                     "parallel": {
                         "completed-by":"bulk-update",
@@ -77,8 +79,7 @@
                                     "name": "randomized search",
                                     "operation-type": "search",
                                     "param-source": "search-param-source",
-                                    "titles":{% include 'titles.txt' %},
-                                    "subscriptions":{% include 'subscriptions.txt' %}
+                                    "subs-total":{{subs}}
                                 },
                                 "clients": 1,
                                 "target-throughput": 1
@@ -87,18 +88,19 @@
                                 "operation": {
                                     "name": "bulk-update",
                                     "operation-type": "bulk",
-                                    "bulk_size":100,
+                                    "bulk-size":{{insert_bulk_size}},
                                     "param-source": "update-param-source",
-                                    "num_ids":1255614,
-                                    "subscriptions":{% include 'subscriptions.txt' %}
+                                    "subs-total":{{subs}},
+                                    "subs-per-book":{{subs_per_book}},
+                                    "books-total": {{docs}} 
                                 },
                                 "clients": 1,
-                                "iterations": 12556
+                                "iterations": {{int(docs/insert_bulk_size/100)}}
                             }
 
                         ]
                     }
-                }#}
+                }
             ]
         }
     ]

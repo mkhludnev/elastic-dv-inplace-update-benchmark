@@ -11,3 +11,6 @@ field update
                     "clients": 2
 10M docs  50 min by 2 clients got 17 gb storage, 1 g heap. 
 2K subscriptions, 50K docs per subscription 
+
+--
+runing 4 client on 100M docs almost fully utilizes 16G

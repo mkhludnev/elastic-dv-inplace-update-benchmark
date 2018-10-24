@@ -4,18 +4,18 @@ from track import InsertBooksSubsParamSource
 
 class TestBooksSubsInsert(unittest.TestCase):
 
-    def test_math(self):
-        bulk_size=1000
+    def test_insert(self):
+        bulk_size=4
         c = InsertBooksSubsParamSource({"a":1},
                                        {
                         "bulk-size":bulk_size,
-                        "subs-total":2000,
-                        "subs-per-book":10,
-                        "books-total": 10000000 
+                        "subs-total":20,
+                        "subs-per-book":2,
+                        "books-total": 100 
                                        }
                                        )
-        for p in range(0,10):
-          part = c.partition(p, 10)
+        for p in range(0,3):
+          part = c.partition(p, 3)
           bulks = part.size()
           for b in range(0, bulks):
               params = part.params()
