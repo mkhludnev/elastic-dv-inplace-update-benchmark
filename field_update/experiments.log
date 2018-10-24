@@ -1,4 +1,7 @@
 field update 
+
+ esrally --distribution-version=6.4.0 --track-path=track.json --offline --preserve-install true --car="8gheap"
+
                         {% set docs=10000000 %}
                         {% set bulksize=1000 %}
                         "bulk-size":{{bulksize}},
@@ -11,6 +14,7 @@ field update
                     "clients": 2
 10M docs  50 min by 2 clients got 17 gb storage, 1 g heap. 
 2K subscriptions, 50K docs per subscription 
+
 
 --
 runing 4 client on 100M docs almost fully utilizes 16G
