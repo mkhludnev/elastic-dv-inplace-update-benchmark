@@ -6,7 +6,7 @@ words=[]
 try:
      with open('/usr/share/dict/words', 'r') as f:
          for l in f :
-            self._words.append(l.replace("\n",""))
+            words.append(l.replace("\n",""))
 except Exception as e:
     words +=['foo','bar','baz','lorem','ipsum','dolores',
              'moo','ban','crux','boom','greed','block']
