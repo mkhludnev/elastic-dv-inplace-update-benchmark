@@ -42,7 +42,7 @@
                                       "type": "text"
                                     },
                                     "subscriptions": {
-                                      "type":"keyword   "
+                                      "type":"keyword"
                                     },
                                     "updated": {
                                       "type": "boolean"
@@ -68,7 +68,7 @@
                         "books-total": {{docs}} 
                         {#"not-in use- num docs in subscription":50000#}
                     },
-                    "clients": 4
+                    "clients": 2
                 },
                 {
                     "parallel": {

@@ -18,3 +18,20 @@ field update
 
 --
 runing 4 client on 100M docs almost fully utilizes 16G
+
+
+2018-10-24 19:51:58,949 ActorAddr-(T|:45633)/PID:3027 esrally.actor ERROR Error in track preparator
+Traceback (most recent call last):
+
+  File "/usr/local/lib/python3.7/site-packages/esrally/utils/modules.py", line 90, in load
+    root_module = self._load_component(component_name, module_dirs)
+
+  File "/usr/local/lib/python3.7/site-packages/esrally/utils/modules.py", line 48, in _load_component
+    m = importlib.import_module(p)
+
+
+  File "/home/ec2-user/elasticsearch-index-benchmark/field_update/track_tests.py", line 3, in <module>
+    from track import InsertBooksSubsParamSource
+
+ModuleNotFoundError: No module named 'track'
+
