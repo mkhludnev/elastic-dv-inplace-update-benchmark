@@ -1,6 +1,7 @@
 field update 
 
- esrally --distribution-version=6.4.0 --track-path=track.json --offline --preserve-install true --car="8gheap"
+ esrally --distribution-version=6.4.0 --track-path=track.json --offline --preserve-install true --car="8gheap"  --on-error=abort
+
 
                         {% set docs=10000000 %}
                         {% set bulksize=1000 %}
@@ -8,7 +9,7 @@ field update
                         "param-source": "insert-books-subs-parallel",
                         "subs-total":2000,
                         "subs-per-book":10,
-                        "books-total": {{docs}} 
+                        "books-total": {{docs}}, 
                         {#"not-in use- num docs in subscription":500000#}
                     },
                     "clients": 2

@@ -65,7 +65,7 @@
                         "param-source": "insert-books-subs-parallel",
                         "subs-total":{{subs}},
                         "subs-per-book":{{subs_per_book}},
-                        "books-total": {{docs}} 
+                        "books-total": {{docs}},
                         {#"not-in use- num docs in subscription":50000#}
                         "detailed-results": true
                     },
