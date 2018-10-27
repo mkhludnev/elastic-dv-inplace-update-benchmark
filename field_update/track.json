@@ -58,7 +58,7 @@
                         "name": "bulk-insert",
                         "operation-type": "bulk",
                         {% set docs=100000000 %}
-                        {% set insert_bulk_size=1000 %}
+                        {% set insert_bulk_size=100%}
                         {% set subs=2000 %}
                         {% set subs_per_book=10 %}
                         "bulk-size":{{insert_bulk_size}},
@@ -67,6 +67,7 @@
                         "subs-per-book":{{subs_per_book}},
                         "books-total": {{docs}} 
                         {#"not-in use- num docs in subscription":50000#}
+                        "detailed-results": true
                     },
                     "clients": 2
                 },
