@@ -1,28 +1,31 @@
 {
-    "version": 2,
-    "description": "Field update benchmark",
-    "indices": [
+	"version": 2,
+	"description": "Field update benchmark",
+	"indices": [
+		{
+			"name": "books"
+		},
+		{
+			"name": "subscriptions"
+		}
+	],
+	"challenges": [
         {
-            "name": "books"
-        }
-    ],
-    "challenges": [
-        {
-            "name": "field-update-scenario",
-            "default": true,
+            "name": "field-update",
             "schedule": [
                 {
                     "operation": {
                         "operation-type": "delete-index"
                     }
                 },
-                {
+                                {
                     "operation": {
                         "operation-type": "create-index",
                           "index": "books",
                           "settings": {
                               "number_of_shards": 100,
-                              "number_of_replicas": 0
+                              "number_of_replicas": 0,
+                              "refresh_interval":"-1"
                             },
                           "body": {
                             "mappings": {
@@ -58,7 +61,7 @@
                         "name": "bulk-insert",
                         "operation-type": "bulk",
                         {% set docs=100000000 %}
-                        {% set insert_bulk_size=100%}
+                        {% set insert_bulk_size=500%}
                         {% set subs=2000 %}
                         {% set subs_per_book=10 %}
                         "bulk-size":{{insert_bulk_size}},
@@ -66,8 +69,148 @@
                         "subs-total":{{subs}},
                         "subs-per-book":{{subs_per_book}},
                         "books-total": {{docs}},
-                        {#"not-in use- num docs in subscription":50000#}
-                        "detailed-results": true
+                        "detailed-results": true    
+                    },
+                    "clients": 2
+                },
+                {
+                    "operation":{ "operation-type":"refresh"}
+                },
+                {
+                    "parallel": {
+                        "completed-by":"bulk-update",
+                        "tasks": [
+                            {
+                                "operation": {
+                                    "name": "randomized search",
+                                    "operation-type": "search",
+                                    "param-source": "search-param-source",
+                                    "subs-total":{{subs}}
+                                },
+                                "clients": 1,
+                                "target-throughput": 1
+                            },
+                            {
+                                "operation": {
+                                    "name": "bulk-update",
+                                    "operation-type": "bulk",
+                                    "bulk-size":{{insert_bulk_size}},
+                                    "param-source": "update-param-source",
+                                    "subs-total":{{subs}},
+                                    "subs-per-book":{{subs_per_book}},
+                                    "books-total": {{docs}} 
+                                },
+                                "clients": 1,
+                                "iterations": {{(docs/insert_bulk_size/100)|int}}
+                            }
+
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "terms-lookup",
+            "schedule": [
+                {
+                    "operation": {
+                        "operation-type": "delete-index",
+                        "index":["books","subscriptions"]
+                    }
+                },
+
+                {
+                    "parallel": {
+                    "tasks": [
+                        {
+                            "operation": {
+                                "operation-type": "create-index",
+                                  "index": "books",
+                                  "settings": {
+                                      "number_of_shards": 100,
+                                      "number_of_replicas": 0,
+                                      "refresh_interval":"-1"
+                                    },
+                                  "body": {
+                                    "mappings": {
+                                        "books": {
+                                          "dynamic": "strict",
+                                          "properties": {
+                                            "title": {
+                                              "type": "text"
+                                            },
+                                            "abstract": {
+                                              "type": "text"
+                                            },
+                                            "author": {
+                                              "type": "text"
+                                            },
+                                            "pubDate": {
+                                              "type": "text"
+                                            }
+                                          }
+                                        }
+                                      }
+                                  }
+                            }
+                        },
+                       {
+                        "operation": {
+                            "operation-type": "create-index",
+                              "index": "subscriptions",
+                              "settings": {
+                                  "number_of_shards": 1,
+                                  "number_of_replicas": 0,
+                                  "refresh_interval":"-1"
+                                },
+                              "body": {
+                                "mappings": {
+                                   "subscription": {
+                                     "dynamic": "strict",
+                                     "properties": {
+                                       "books": {
+                                         "type": "keyword"
+                                       },
+                                       "updated": {
+                                         "type": "boolean"
+                                       }
+                                     }
+                                   }
+                                 }
+                              }
+                        }
+                    }
+                ]}},
+                
+                {
+                    "operation":{ "operation-type":"refresh"}
+                },
+                
+                  {
+                    "parallel": {
+                        "completed-by":"bulk-update",
+                        "tasks": [
+                {
+                    "operation": {
+                        "name": "bulk-insert",
+                        "operation-type": "bulk",
+                        "bulk-size":{{insert_bulk_size}},
+                        "param-source": "insert-books-only",
+                        "books-total": {{docs}},
+                        "detailed-results": true    
+                    },
+                    "clients": 2
+                },
+                {
+                    "operation": {
+                        "name": "bulk-insert",
+                        "operation-type": "bulk",
+                        "bulk-size":{{insert_bulk_size}},
+                        "param-source": "insert-subs-only",
+                        "subs-total":{{subs}},
+                        "books-per-subs":{{(docs*subs_per_book/subs)|int}},
+                        "books-total": {{docs}},
+                        "detailed-results": true    
                     },
                     "clients": 2
                 },
@@ -104,6 +247,6 @@
                 }
             ]
         }
-    ]
-}
+    }]
+}]}
 

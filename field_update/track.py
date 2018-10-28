@@ -80,11 +80,13 @@ class InsertBooksSubsParamSource:
         return InsertBooksSubsClient(self,partition_index,total_partitions)
 
 class InsertBooksSubsClient:
-    def __init__(self, factory:InsertBooksSubsParamSource, partition_index, total_partitions):
+    def __init__(self, factory:InsertBooksSubsParamSource, partition_index, total_partitions,
+                 index_subs=True):
         self._factory=factory
         self.partition_index=partition_index
         self.total_partitions=total_partitions
         self.iter = self.create_iter()
+        self.index_subs=index_subs
 
     def create_iter(self):
         """
@@ -94,15 +96,19 @@ class InsertBooksSubsClient:
         i=0
         body=""
         for book_id in range(int(book_per_part*self.partition_index), int(book_per_part*(self.partition_index+1))):
-            subscs = few_subscriptions(self._factory._num_subs, self._factory._max_subs)
             body+=(json.dumps({ "index" : {"_id" : book_id, "_type" : self._factory._type_name, "_index" : self._factory._index_name} })+'\n')
             #{"title": "Book of minerals", "author": "Albertus, Magnus, Saint, 1193?-1280", "pubDate": "1967","subscriptions": ["CK","MA","AH"]}
-            body+=(json.dumps({  
+            
+            d = {  
                 "title": " ".join(random_text(4)),
                 "author": " ".join(random_text(2)),
                 "abstract": " ".join(random_text(100)),
-                "pubDate": 1837+(i+51)%(2018-1837),
-                "subscriptions": subscs})+'\n')
+                "pubDate": 1837+(i+51)%(2018-1837)
+                }
+            if self.index_subs :
+                subscs = few_subscriptions(self._factory._num_subs, self._factory._max_subs)
+                d["subscriptions"]=subscs
+            body+=(json.dumps(d)+'\n')
             i+=1
             if i%self._factory._bulk_size==0:
                 b=body
@@ -133,14 +139,13 @@ class InsertBooksSubsClient:
     def params(self):
         return next(self.iter)
 
-    #def random_text(self,num_words):
-    #    result=[]
-    #    for i in range(0,num_words):
-    #        result.append(random.choice(self._factory._words))
-    #    return result
-
+class InsertBooksOnly(InsertBooksSubsParamSource):
+    def partition(self, partition_index, total_partitions):
+        return InsertBooksSubsClient(self,partition_index,total_partitions, index_subs=False)
 
 def register(registry):
     registry.register_param_source("search-param-source", get_random_search_parameters)
     registry.register_param_source("update-param-source", get_random_books_update_query)
     registry.register_param_source("insert-books-subs-parallel",InsertBooksSubsParamSource)
+    registry.register_param_source("insert-books-only", InsertBooksOnly)
+    registry.register_param_source("insert-subs-only", InsertSubsOnly)
