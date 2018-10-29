@@ -124,7 +124,7 @@
                     "tasks": [
                         {
                             "operation": {
-                                "operation-type": "create-index",
+                                "operation-type": "create-index-books-only",
                                   "index": "books",
                                   "settings": {
                                       "number_of_shards": 100,
@@ -156,7 +156,7 @@
                         },
                        {
                         "operation": {
-                            "operation-type": "create-index",
+                            "operation-type": "create-index-subs-only",
                               "index": "subscriptions",
                               "settings": {
                                   "number_of_shards": 1,
