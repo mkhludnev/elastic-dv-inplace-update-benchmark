@@ -24,8 +24,8 @@
                           "index": "books",
                           "settings": {
                               "number_of_shards": 100,
-                              "number_of_replicas": 0,
-                              "refresh_interval":"-1"
+                              "number_of_replicas": 0{#,
+                              "refresh_interval":"-1"#}
                             },
                           "body": {
                             "mappings": {
@@ -73,9 +73,9 @@
                     },
                     "clients": 2
                 },
-                {
+                {#
                     "operation":{ "operation-type":"refresh"}
-                },
+                },#}
                 {
                     "parallel": {
                         "completed-by":"bulk-update",
@@ -128,8 +128,8 @@
                                   "index": "books",
                                   "settings": {
                                       "number_of_shards": 100,
-                                      "number_of_replicas": 0,
-                                      "refresh_interval":"-1"
+                                      "number_of_replicas": 0{#,
+                                      "refresh_interval":"-1"#}
                                     },
                                   "body": {
                                     "mappings": {
@@ -160,8 +160,8 @@
                               "index": "subscriptions",
                               "settings": {
                                   "number_of_shards": 1,
-                                  "number_of_replicas": 0,
-                                  "refresh_interval":"-1"
+                                  "number_of_replicas": 0{#,
+                                  "refresh_interval":"-1"#}
                                 },
                               "body": {
                                 "mappings": {
@@ -181,11 +181,9 @@
                         }
                     }
                 ]}},
-                
-                {
+                {#
                     "operation":{ "operation-type":"refresh"}
-                },
-                
+                },#}
                   {
                     "parallel": {
                         "completed-by":"bulk-update",
@@ -208,7 +206,7 @@
                         "bulk-size":{{insert_bulk_size}},
                         "param-source": "insert-subs-only",
                         "subs-total":{{subs}},
-                        "books-per-subs":{{(docs*subs_per_book/subs)|int}},
+                        "books-per-sub":{{(docs*subs_per_book/subs)|int}},
                         "books-total": {{docs}},
                         "detailed-results": true    
                     },
