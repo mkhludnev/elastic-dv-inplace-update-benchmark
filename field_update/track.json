@@ -186,7 +186,6 @@
                 },#}
                   {
                     "parallel": {
-                        "completed-by":"bulk-update",
                         "tasks": [
                 {
                     "operation": {
