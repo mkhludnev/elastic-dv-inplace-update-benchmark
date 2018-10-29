@@ -118,6 +118,7 @@ class TestBooksSubsInsert(unittest.TestCase):
         #template_name=io.basename(template_file_name)
         tmp=env.get_template("track.json")
         j=tmp.render()
+        #print(j)
         json.loads(j)
         
 if __name__ == '__main__':

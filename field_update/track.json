@@ -211,7 +211,7 @@
                         "detailed-results": true    
                     },
                     "clients": 2
-                },
+                }]}},
                 {
                     "parallel": {
                         "completed-by":"bulk-update",
@@ -245,6 +245,6 @@
                 }
             ]
         }
-    }]
-}]}
+    ]
+}
 
