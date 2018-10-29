@@ -159,7 +159,7 @@
                        {
                         "operation": {
                             "operation-type": "create-index",
-                            "name":"make subs"
+                            "name":"make subs",
                               "index": "subscriptions",
                               "settings": {
                                   "number_of_shards": 1,
