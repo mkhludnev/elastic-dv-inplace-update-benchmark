@@ -211,10 +211,63 @@ class InsertSubsClient:
     def params(self):
         return next(self.iter)
 
+def get_random_term_lookup_parameters(track, params, **kwargs):
+    default_index = "books"
+    default_type = "book"
+    index_name = params.get("index", default_index)
+    type_name = params.get("type", default_type)
+    return {
+        "body":{
+            "query": {
+                "bool": {
+                    "must": {
+                        "match" : {"title": " ".join(random_text(2))}
+                    },
+                    "filter":{
+                        "terms": {
+                            "_id": {
+                                "index": "subscriptions",
+                                "type": "subscription",
+                                "id": few_subscriptions(1,_max_subs)[0],
+                                "path": "books"
+                            }
+                        }       
+                    }
+                }
+            }
+        },
+        "index": index_name,
+        "type": type_name
+    }
+    
+def get_random_subscriptions_update_query(track, params, **kwargs):
+    default_index = "subscriptions"
+    default_type = "subscription"
+    index_name = params.get("index", default_index)
+    type_name = params.get("type", default_type)
+    body=""
+    books_upd = int(self._factory._params.get("books-per-sub", "1000"))
+    books_total = int(self._factory._params.get("books-total", "100000"))
+    subs_total = int(self._factory._params.get("subs-total","2000"))
+    books_nums=[]
+    for x in range(0,books_upd):
+        books_nums.append(random.randint(0, self.books_total))
+    body+=(json.dumps({ "update" : {"_id" : few_subscriptions(1, subs_total)[0], "_type" : type_name, "_index" : index_name} })+'\n')
+    body+=(json.dumps({"doc":{ "books" : books_nums, "updated":True}})+'\n')
+    output = {
+        "body":body,
+        "action-metadata-present":True,
+        "bulk-size":1,
+        "index":index_name,
+        "type":type_name
+    }
+    return output
 
 def register(registry):
-    registry.register_param_source("search-param-source", get_random_search_parameters)
-    registry.register_param_source("update-param-source", get_random_books_update_query)
+    registry.register_param_source("search-subs-filter", get_random_search_parameters)
+    registry.register_param_source("update-subs-in-books", get_random_books_update_query)
     registry.register_param_source("insert-books-subs-parallel",InsertBooksSubsParamSource)
     registry.register_param_source("insert-books-only", InsertBooksOnly)
     registry.register_param_source("insert-subs-only", InsertSubsOnly)
+    registry.register_param_source("search-terms-lookup", get_random_term_lookup_parameters)
+    registry.register_param_source("update-subs-only", get_random_subscriptions_update_query)

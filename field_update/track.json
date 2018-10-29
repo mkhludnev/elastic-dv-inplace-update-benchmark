@@ -84,7 +84,7 @@
                                 "operation": {
                                     "name": "randomized search",
                                     "operation-type": "search",
-                                    "param-source": "search-param-source",
+                                    "param-source": "search-subs-filter",
                                     "subs-total":{{subs}}
                                 },
                                 "clients": 1,
@@ -95,13 +95,13 @@
                                     "name": "bulk-update",
                                     "operation-type": "bulk",
                                     "bulk-size":{{insert_bulk_size}},
-                                    "param-source": "update-param-source",
+                                    "param-source": "update-subs-in-books",
                                     "subs-total":{{subs}},
                                     "subs-per-book":{{subs_per_book}},
                                     "books-total": {{docs}} 
                                 },
                                 "clients": 1,
-                                "iterations": {{(docs/insert_bulk_size/100)|int}}
+                                "iterations": {{(docs/insert_bulk_size)|int}}
                             }
 
                         ]
@@ -110,7 +110,7 @@
             ]
         },
         {
-            "name": "terms-lookup",
+            "name": "term-lookups",
             "schedule": [
                 {
                     "operation": {
@@ -220,7 +220,7 @@
                                 "operation": {
                                     "name": "randomized search",
                                     "operation-type": "search",
-                                    "param-source": "search-param-source",
+                                    "param-source": "search-terms-lookup",
                                     "subs-total":{{subs}}
                                 },
                                 "clients": 1,
@@ -231,13 +231,13 @@
                                     "name": "bulk-update",
                                     "operation-type": "bulk",
                                     "bulk-size":{{insert_bulk_size}},
-                                    "param-source": "update-param-source",
+                                    "param-source": "update-subs-only",
+                                    "books-per-sub":{{(docs*subs_per_book/subs)|int}},
                                     "subs-total":{{subs}},
-                                    "subs-per-book":{{subs_per_book}},
                                     "books-total": {{docs}} 
                                 },
                                 "clients": 1,
-                                "iterations": {{(docs/insert_bulk_size/100)|int}}
+                                "iterations": {{subs}}
                             }
 
                         ]
