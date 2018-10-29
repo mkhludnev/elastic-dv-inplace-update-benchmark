@@ -190,7 +190,7 @@
                         "tasks": [
                 {
                     "operation": {
-                        "name": "bulk-insert",
+                        "name": "bulk-insert-books-only",
                         "operation-type": "bulk",
                         "bulk-size":{{insert_bulk_size}},
                         "param-source": "insert-books-only",
@@ -201,7 +201,7 @@
                 },
                 {
                     "operation": {
-                        "name": "bulk-insert",
+                        "name": "bulk-insert-subs-only",
                         "operation-type": "bulk",
                         "bulk-size":{{insert_bulk_size}},
                         "param-source": "insert-subs-only",
@@ -214,11 +214,11 @@
                 }]}},
                 {
                     "parallel": {
-                        "completed-by":"bulk-update",
+                        "completed-by":"bulk-update-term-lookup",
                         "tasks": [
                             {
                                 "operation": {
-                                    "name": "randomized search",
+                                    "name": "randomized search term lookup",
                                     "operation-type": "search",
                                     "param-source": "search-terms-lookup",
                                     "subs-total":{{subs}}
@@ -228,7 +228,7 @@
                             },
                             {
                                 "operation": {
-                                    "name": "bulk-update",
+                                    "name": "bulk-update-term-lookup",
                                     "operation-type": "bulk",
                                     "bulk-size":{{insert_bulk_size}},
                                     "param-source": "update-subs-only",
