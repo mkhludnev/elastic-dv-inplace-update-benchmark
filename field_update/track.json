@@ -111,6 +111,7 @@
         },
         {
             "name": "term-lookups",
+            "default":true,
             "schedule": [
                 {
                     "operation": {
@@ -124,7 +125,7 @@
                     "tasks": [
                         {
                             "operation": {
-                                "operation-type": "create-index-books-only",
+                                "operation-type": "create-index",
                                   "index": "books",
                                   "settings": {
                                       "number_of_shards": 100,
@@ -156,7 +157,7 @@
                         },
                        {
                         "operation": {
-                            "operation-type": "create-index-subs-only",
+                            "operation-type": "create-index",
                               "index": "subscriptions",
                               "settings": {
                                   "number_of_shards": 1,
