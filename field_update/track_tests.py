@@ -80,15 +80,15 @@ class TestBooksSubsInsert(unittest.TestCase):
               #notice tailing \n
               for i in range(0,len(body)-1,2):
                   meta = json.loads(body[i])
-                  assert "index" in meta
-                  id = int(meta["index"]["_id"],16)
+                  assert "update" in meta
+                  id = int(meta["update"]["_id"],16)
                   assert id>=0 and id<20, "%s"%id
                   docs = body[i+1]
                   doc = json.loads(docs)
-                  bookslist = doc["books"]
-                  assert len(bookslist)==200, "%d =>%s" % (id,bookslist)
-                  for b in bookslist:
-                      assert b>=0 and b<=100, "%d"%b
+                  #bookslist = doc["books"]
+                  #assert len(bookslist)==200, "%d =>%s" % (id,bookslist)
+                  #for b in bookslist:
+                  #    assert b>=0 and b<=100, "%d"%b
               if p==0 and b==0:
                    print(params)
         return
