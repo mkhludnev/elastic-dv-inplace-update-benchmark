@@ -230,7 +230,7 @@
                             },
                             {
                                 "operation": {
-                                    "name": "bulk-insert-subs-only",
+                                    "name": {#"bulk-insert-subs-only"#}"bulk-update-term-lookup",
                                     "operation-type": "bulk",
                                     "bulk-size":1{#{insert_bulk_size}#},
                                     "param-source": "insert-subs-only",
