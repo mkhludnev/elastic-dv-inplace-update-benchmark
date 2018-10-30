@@ -230,7 +230,7 @@
                             },
                             {
                                 "operation": {
-                                    "name": {#"bulk-insert-subs-only"#}"bulk-update-term-lookup",
+                                    "name": "bulk-update-term-lookup",
                                     "operation-type": "bulk",
                                     "bulk-size":1{#{insert_bulk_size}#},
                                     "param-source": "insert-subs-only",
@@ -241,19 +241,6 @@
                                 },
                                 "clients": 1
                             }
-                            {#
-                                "operation": {
-                                    "name": "bulk-update-term-lookup",
-                                    "operation-type": "bulk",
-                                    "bulk-size":{{insert_bulk_size}},
-                                    "param-source": "update-subs-only",
-                                    "books-per-sub":{{(docs*subs_per_book/subs)|int}},
-                                    "subs-total":{{subs}},
-                                    "books-total": {{docs}} 
-                                },
-                                "clients": 1,
-                                "iterations": {{subs}}
-                            #}
                         ]
                     }
                 }
