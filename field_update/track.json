@@ -191,14 +191,14 @@
                     "operation": {
                         "name": "bulk-insert-subs-only",
                         "operation-type": "bulk",
-                        "bulk-size":{{insert_bulk_size}},
+                        "bulk-size":1{#{insert_bulk_size}#},
                         "param-source": "insert-subs-only",
                         "subs-total":{{subs}},
                         "books-per-sub":{{(docs*subs_per_book/subs)|int}},
                         "books-total": {{docs}},
                         "detailed-results": true    
                     },
-                    "clients": 2
+                    "clients": 1
                 },
                   {
                  {#   "parallel": {
@@ -230,6 +230,19 @@
                             },
                             {
                                 "operation": {
+                                    "name": "bulk-insert-subs-only",
+                                    "operation-type": "bulk",
+                                    "bulk-size":1{#{insert_bulk_size}#},
+                                    "param-source": "insert-subs-only",
+                                    "subs-total":{{subs}},
+                                    "books-per-sub":{{(docs*subs_per_book/subs)|int}},
+                                    "books-total": {{docs}},
+                                    "detailed-results": true    
+                                },
+                                "clients": 1
+                            }
+                            {#
+                                "operation": {
                                     "name": "bulk-update-term-lookup",
                                     "operation-type": "bulk",
                                     "bulk-size":{{insert_bulk_size}},
@@ -240,8 +253,7 @@
                                 },
                                 "clients": 1,
                                 "iterations": {{subs}}
-                            }
-
+                            #}
                         ]
                     }
                 }

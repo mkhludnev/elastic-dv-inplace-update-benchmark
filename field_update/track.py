@@ -198,11 +198,11 @@ class InsertSubsClient:
                                "script" : { "source": 
                                             "int [] bks=new int[params.count];"+
                                             "int n=0;"+
-                                            "for(int i=0; i<params.count/5; ++i,++n){bks[n]=(n*params.a+params.b)%params.max;}"+
-                                            "for(int i=0; i<params.count/5; ++i,++n){bks[n]=(n*params.a+params.b)%params.max;}"+
-                                            "for(int i=0; i<params.count/5; ++i,++n){bks[n]=(n*params.a+params.b)%params.max;}"+
-                                            "for(int i=0; i<params.count/5; ++i,++n){bks[n]=(n*params.a+params.b)%params.max;}"+
-                                            "for(int i=0; i<params.count/5; ++i,++n){bks[n]=(n*params.a+params.b)%params.max;}"+
+                                            "for(int i=0; i<params.count/5; ++i){bks[n]=(n*params.a+params.b)%params.max;++n;}"+
+                                            "for(int i=0; i<params.count/5; ++i){bks[n]=(n*params.a+params.b)%params.max;++n;}"+
+                                            "for(int i=0; i<params.count/5; ++i){bks[n]=(n*params.a+params.b)%params.max;++n;}"+
+                                            "for(int i=0; i<params.count/5; ++i){bks[n]=(n*params.a+params.b)%params.max;++n;}"+
+                                            "for(int i=0; i<params.count/5; ++i){bks[n]=(n*params.a+params.b)%params.max;++n;}"+
                                             "ctx._source.books=bks;", 
                                             "lang" : "painless", 
                                             "params" : {
