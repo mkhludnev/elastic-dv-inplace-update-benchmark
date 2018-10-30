@@ -187,20 +187,6 @@
                 {#
                     "operation":{ "operation-type":"refresh"}
                 },#}
-                  {
-                    "parallel": {
-                        "tasks": [
-                {
-                    "operation": {
-                        "name": "bulk-insert-books-only",
-                        "operation-type": "bulk",
-                        "bulk-size":{{insert_bulk_size}},
-                        "param-source": "insert-books-only",
-                        "books-total": {{docs}},
-                        "detailed-results": true    
-                    },
-                    "clients": 2
-                },
                 {
                     "operation": {
                         "name": "bulk-insert-subs-only",
@@ -213,7 +199,21 @@
                         "detailed-results": true    
                     },
                     "clients": 2
-                }]}},
+                },
+                  {
+                 {#   "parallel": {
+                        "tasks": [
+                {#}
+                    "operation": {
+                        "name": "bulk-insert-books-only",
+                        "operation-type": "bulk",
+                        "bulk-size":{{insert_bulk_size}},
+                        "param-source": "insert-books-only",
+                        "books-total": {{docs}},
+                        "detailed-results": true    
+                    },
+                    "clients": 2
+                } {#}]}}  #},
                 {
                     "parallel": {
                         "completed-by":"bulk-update-term-lookup",
