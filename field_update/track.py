@@ -254,6 +254,7 @@ def get_random_term_lookup_parameters(track, params, **kwargs):
     default_type = "book"
     index_name = params.get("index", default_index)
     type_name = params.get("type", default_type)
+    _max_subs = int(params.get("subs-total","1000"))
     return {
         "body":{
             "query": {
