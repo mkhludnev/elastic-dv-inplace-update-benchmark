@@ -172,7 +172,8 @@
                                      "dynamic": "strict",
                                      "properties": {
                                        "books": {
-                                         "type": "keyword"
+                                         "type": "keyword",
+                                         "index": false
                                        },
                                        "updated": {
                                          "type": "boolean"
