@@ -63,7 +63,7 @@
                         {% set docs=100000000 %}
                         {% set insert_bulk_size=500%}
                         {% set subs=2000 %}
-                        {% set subs_per_book=10 %}
+                        {% set subs_per_book=5 %}
                         "bulk-size":{{insert_bulk_size}},
                         "param-source": "insert-books-subs-parallel",
                         "subs-total":{{subs}},
