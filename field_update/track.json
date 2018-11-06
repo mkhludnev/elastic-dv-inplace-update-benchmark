@@ -11,21 +11,22 @@
 	],
 	"challenges": [
         {
-            "name": "field-update",
+            "name": "field-update-then-index",
+            "default":true,
             "schedule": [
                 {
                     "operation": {
-                        "operation-type": "delete-index"
+                        "operation-type": "delete-index",
+                        "index":["books","subscriptions"]
                     }
                 },
-                                {
+                {
                     "operation": {
                         "operation-type": "create-index",
                           "index": "books",
                           "settings": {
                               "number_of_shards": 100,
-                              "number_of_replicas": 0{#,
-                              "refresh_interval":"-1"#}
+                              "number_of_replicas": 0
                             },
                           "body": {
                             "mappings": {
@@ -56,6 +57,34 @@
                           }
                     }
                 },
+                 {
+                        "operation": {
+                            "operation-type": "create-index",
+                            "name":"make subs",
+                              "index": "subscriptions",
+                              "settings": {
+                                  "number_of_shards": 1,
+                                  "number_of_replicas": 0{#,
+                                  "refresh_interval":"-1"#}
+                                },
+                              "body": {
+                                "mappings": {
+                                   "subscription": {
+                                     "dynamic": "strict",
+                                     "properties": {
+                                       "books": {
+                                         "type": "keyword",
+                                         "index": false
+                                       },
+                                       "updated": {
+                                         "type": "boolean"
+                                       }
+                                     }
+                                   }
+                                 }
+                              }
+                        }
+                    },
                 {
                     "operation": {
                         "name": "bulk-insert",
@@ -73,16 +102,26 @@
                     },
                     "clients": 2
                 },
-                {#
-                    "operation":{ "operation-type":"refresh"}
-                },#}
+                {
+                    "operation": {
+                        "name": "bulk-insert-subs-only",
+                        "operation-type": "bulk",
+                        "bulk-size":1,
+                        "param-source": "insert-subs-only",
+                        "subs-total":{{subs}},
+                        "books-per-sub":{{(docs*subs_per_book/subs)|int}},
+                        "books-total": {{docs}},
+                        "detailed-results": true    
+                    },
+                    "clients": 1
+                },
                 {
                     "parallel": {
                         "completed-by":"bulk-update",
                         "tasks": [
                             {
                                 "operation": {
-                                    "name": "randomized search",
+                                    "name": "randomized search index updte",
                                     "operation-type": "search",
                                     "param-source": "search-subs-filter",
                                     "subs-total":{{subs}}
@@ -92,7 +131,7 @@
                             },
                             {
                                 "operation": {
-                                    "name": "bulk-update",
+                                    "name": "bulk-update index",
                                     "operation-type": "bulk",
                                     "bulk-size":{{insert_bulk_size}},
                                     "param-source": "update-subs-in-books",
@@ -106,12 +145,41 @@
 
                         ]
                     }
+                },
+                {
+                    "parallel": {
+                        "completed-by":"bulk-update-term-lookup",
+                        "tasks": [
+                            {
+                                "operation": {
+                                    "name": "randomized search term lookup",
+                                    "operation-type": "search",
+                                    "param-source": "search-terms-lookup",
+                                    "subs-total":{{subs}}
+                                },
+                                "clients": 1,
+                                "target-throughput": 1
+                            },
+                            {
+                                "operation": {
+                                    "name": "bulk-update-term-lookup",
+                                    "operation-type": "bulk",
+                                    "bulk-size":1{#{insert_bulk_size}#},
+                                    "param-source": "insert-subs-only",
+                                    "subs-total":{{subs}},
+                                    "books-per-sub":{{(docs*subs_per_book/subs)|int}},
+                                    "books-total": {{docs}},
+                                    "detailed-results": true    
+                                },
+                                "clients": 1
+                            }
+                        ]
+                    }
                 }
             ]
         },
         {
-            "name": "term-lookups",
-            "default":true,
+            "name": "term-lookups-broken",
             "schedule": [
                 {
                     "operation": {
@@ -130,8 +198,7 @@
                                   "index": "books",
                                   "settings": {
                                       "number_of_shards": 100,
-                                      "number_of_replicas": 0{#,
-                                      "refresh_interval":"-1"#}
+                                      "number_of_replicas": 0
                                     },
                                   "body": {
                                     "mappings": {
@@ -185,9 +252,6 @@
                         }
                     }
                 ]}},
-                {#
-                    "operation":{ "operation-type":"refresh"}
-                },#}
                 {
                     "operation": {
                         "name": "bulk-insert-subs-only",
@@ -202,9 +266,6 @@
                     "clients": 1
                 },
                   {
-                 {#   "parallel": {
-                        "tasks": [
-                {#}
                     "operation": {
                         "name": "bulk-insert-books-only",
                         "operation-type": "bulk",
@@ -214,37 +275,7 @@
                         "detailed-results": true    
                     },
                     "clients": 2
-                } {#}]}}  #},
-                {
-                    "parallel": {
-                        "completed-by":"bulk-update-term-lookup",
-                        "tasks": [
-                            {
-                                "operation": {
-                                    "name": "randomized search term lookup",
-                                    "operation-type": "search",
-                                    "param-source": "search-terms-lookup",
-                                    "subs-total":{{subs}}
-                                },
-                                "clients": 1,
-                                "target-throughput": 1
-                            },
-                            {
-                                "operation": {
-                                    "name": "bulk-update-term-lookup",
-                                    "operation-type": "bulk",
-                                    "bulk-size":1{#{insert_bulk_size}#},
-                                    "param-source": "insert-subs-only",
-                                    "subs-total":{{subs}},
-                                    "books-per-sub":{{(docs*subs_per_book/subs)|int}},
-                                    "books-total": {{docs}},
-                                    "detailed-results": true    
-                                },
-                                "clients": 1
-                            }
-                        ]
-                    }
-                }
+                } 
             ]
         }
     ]
