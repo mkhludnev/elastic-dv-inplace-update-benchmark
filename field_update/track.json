@@ -117,7 +117,7 @@
                 },
                 {
                     "parallel": {
-                        "completed-by":"bulk-update",
+                        "completed-by":"bulk-update-index",
                         "tasks": [
                             {
                                 "operation": {
@@ -131,7 +131,7 @@
                             },
                             {
                                 "operation": {
-                                    "name": "bulk-update index",
+                                    "name": "bulk-update-index",
                                     "operation-type": "bulk",
                                     "bulk-size":{{insert_bulk_size}},
                                     "param-source": "update-subs-in-books",
