@@ -178,7 +178,7 @@ class InsertSubsClient:
         self.total_partitions=total_partitions
         self.bulk_size = int(self._factory._params.get("bulk-size", "100"))
         self._index_name=self._factory._params.get("index", "subscriptions")
-        self._type_name=self._factory._params.get("type", "subscription")
+        self._type_name=self._factory._params.get("type", "subscriptions")
         self.books_per_subs = int(self._factory._params.get("books-per-sub", "1000"))
         self.books_total = int(self._factory._params.get("books-total", "100000"))
         self.subs_total = int(self._factory._params.get("subs-total","2000"))
@@ -266,7 +266,7 @@ def get_random_term_lookup_parameters(track, params, **kwargs):
                         "terms": {
                             "_id": {
                                 "index": "subscriptions",
-                                "type": "subscription",
+                                "type": "subscriptions",
                                 "id": few_subscriptions(1,_max_subs)[0],
                                 "path": "books"
                             }
@@ -281,7 +281,7 @@ def get_random_term_lookup_parameters(track, params, **kwargs):
     
 def get_random_subscriptions_update_query(track, params, **kwargs):
     default_index = "subscriptions"
-    default_type = "subscription"
+    default_type = "subscriptions"
     index_name = params.get("index", default_index)
     type_name = params.get("type", default_type)
     body=""

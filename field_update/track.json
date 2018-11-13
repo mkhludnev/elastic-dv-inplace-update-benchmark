@@ -139,8 +139,9 @@
                                     "subs-per-book":{{subs_per_book}},
                                     "books-total": {{docs}} 
                                 },
-                                "clients": 1,
-                                "iterations": {{(docs/insert_bulk_size)|int}}
+                                "clients": 2,
+                                {#reducing updates 50 times#}
+                                "iterations": {{(docs/insert_bulk_size/50)|int}}
                             }
 
                         ]
@@ -164,118 +165,19 @@
                                 "operation": {
                                     "name": "bulk-update-term-lookup",
                                     "operation-type": "bulk",
-                                    "bulk-size":1{#{insert_bulk_size}#},
+                                    "bulk-size":1,
                                     "param-source": "insert-subs-only",
-                                    "subs-total":{{subs}},
+                                    {#reducing updates twice#}
+                                    "subs-total":{{subs/2}},
                                     "books-per-sub":{{(docs*subs_per_book/subs)|int}},
                                     "books-total": {{docs}},
                                     "detailed-results": true    
                                 },
-                                "clients": 1
+                                "clients": 2
                             }
                         ]
                     }
                 }
-            ]
-        },
-        {
-            "name": "term-lookups-broken",
-            "schedule": [
-                {
-                    "operation": {
-                        "operation-type": "delete-index",
-                        "index":["books","subscriptions"]
-                    }
-                },
-
-                {
-                    "parallel": {
-                    "tasks": [
-                        {
-                            "operation": {
-                                "name":"make books",
-                                "operation-type": "create-index",
-                                  "index": "books",
-                                  "settings": {
-                                      "number_of_shards": 100,
-                                      "number_of_replicas": 0
-                                    },
-                                  "body": {
-                                    "mappings": {
-                                        "books": {
-                                          "dynamic": "strict",
-                                          "properties": {
-                                            "title": {
-                                              "type": "text"
-                                            },
-                                            "abstract": {
-                                              "type": "text"
-                                            },
-                                            "author": {
-                                              "type": "text"
-                                            },
-                                            "pubDate": {
-                                              "type": "text"
-                                            }
-                                          }
-                                        }
-                                      }
-                                  }
-                            }
-                        },
-                       {
-                        "operation": {
-                            "operation-type": "create-index",
-                            "name":"make subs",
-                              "index": "subscriptions",
-                              "settings": {
-                                  "number_of_shards": 1,
-                                  "number_of_replicas": 0{#,
-                                  "refresh_interval":"-1"#}
-                                },
-                              "body": {
-                                "mappings": {
-                                   "subscription": {
-                                     "dynamic": "strict",
-                                     "properties": {
-                                       "books": {
-                                         "type": "keyword",
-                                         "index": false
-                                       },
-                                       "updated": {
-                                         "type": "boolean"
-                                       }
-                                     }
-                                   }
-                                 }
-                              }
-                        }
-                    }
-                ]}},
-                {
-                    "operation": {
-                        "name": "bulk-insert-subs-only",
-                        "operation-type": "bulk",
-                        "bulk-size":1{#{insert_bulk_size}#},
-                        "param-source": "insert-subs-only",
-                        "subs-total":{{subs}},
-                        "books-per-sub":{{(docs*subs_per_book/subs)|int}},
-                        "books-total": {{docs}},
-                        "detailed-results": true    
-                    },
-                    "clients": 1
-                },
-                  {
-                    "operation": {
-                        "name": "bulk-insert-books-only",
-                        "operation-type": "bulk",
-                        "bulk-size":{{insert_bulk_size}},
-                        "param-source": "insert-books-only",
-                        "books-total": {{docs}},
-                        "detailed-results": true    
-                    },
-                    "clients": 2
-                } 
             ]
         }
     ]
