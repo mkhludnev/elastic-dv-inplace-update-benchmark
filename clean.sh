@@ -1,2 +1,2 @@
 #!/bin/bash
-rm -rf ~/.rally/logs/rally.log ~/.rally/benchmarks/races/*
+rm -rf ~/.rally/benchmarks/races/*
