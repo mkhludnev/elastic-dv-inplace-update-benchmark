@@ -64,8 +64,7 @@
                               "index": "subscriptions",
                               "settings": {
                                   "number_of_shards": 1,
-                                  "number_of_replicas": 0{#,
-                                  "refresh_interval":"-1"#}
+                                  "number_of_replicas": 0
                                 },
                               "body": {
                                 "mappings": {
@@ -87,7 +86,7 @@
                     },
                 {
                     "operation": {
-                        "name": "bulk-insert",
+                        "name": "insert books",
                         "operation-type": "bulk",
                         {% set docs=100000000 %}
                         {% set insert_bulk_size=500%}
@@ -104,7 +103,7 @@
                 },
                 {
                     "operation": {
-                        "name": "bulk-insert-subs-only",
+                        "name": "insert subs",
                         "operation-type": "bulk",
                         "bulk-size":1,
                         "param-source": "insert-subs-only",
@@ -116,22 +115,38 @@
                     "clients": 1
                 },
                 {
+                  "operation": {
+                      "operation-type":"force-merge",
+                     "max-num-segments":5
+                  }
+                },
+                {
+                    "operation": {
+                         "name": "warming filter by field",
+                                    "operation-type": "search",
+                                    "param-source": "search-subs-filter",
+                                    {% set subs_searching=5 %}
+                                    "subs-total":{{subs_searching}}
+                    },
+                    "iterations":30
+                },
+                {
                     "parallel": {
-                        "completed-by":"bulk-update-index",
+                        "completed-by":"update field",
                         "tasks": [
                             {
                                 "operation": {
-                                    "name": "randomized search index updte",
+                                    "name": "filter by field",
                                     "operation-type": "search",
                                     "param-source": "search-subs-filter",
-                                    "subs-total":{{subs}}
+                                    "subs-total":{{subs_searching}}
                                 },
                                 "clients": 1,
                                 "target-throughput": 1
                             },
                             {
                                 "operation": {
-                                    "name": "bulk-update-index",
+                                    "name": "update field",
                                     "operation-type": "bulk",
                                     "bulk-size":{{insert_bulk_size}},
                                     "param-source": "update-subs-in-books",
@@ -139,7 +154,7 @@
                                     "subs-per-book":{{subs_per_book}},
                                     "books-total": {{docs}} 
                                 },
-                                "clients": 2,
+                                "clients": 1, {# 2 gives 165 docs/sec; 1 - 562 docs/sec. dunno why#}
                                 {#reducing updates 50 times#}
                                 "iterations": {{(docs/insert_bulk_size/50)|int}}
                             }
@@ -147,23 +162,32 @@
                         ]
                     }
                 },
+                 {
+                    "operation": {
+                         "name": "warming filter by term lookup",
+                                    "operation-type": "search",
+                                    "param-source": "search-terms-lookup",
+                                    "subs-total":{{subs_searching}}
+                    },
+                    "iterations":30
+                },
                 {
                     "parallel": {
-                        "completed-by":"bulk-update-term-lookup",
+                        "completed-by":"update term lookup",
                         "tasks": [
                             {
                                 "operation": {
-                                    "name": "randomized search term lookup",
+                                    "name": "filter by term lookup",
                                     "operation-type": "search",
                                     "param-source": "search-terms-lookup",
-                                    "subs-total":{{subs}}
+                                    "subs-total":{{subs_searching}}
                                 },
                                 "clients": 1,
                                 "target-throughput": 1
                             },
                             {
                                 "operation": {
-                                    "name": "bulk-update-term-lookup",
+                                    "name": "update term lookup",
                                     "operation-type": "bulk",
                                     "bulk-size":1,
                                     "param-source": "insert-subs-only",
