@@ -113,6 +113,15 @@ class TestBooksSubsInsert(unittest.TestCase):
                         "subs-per-book":2,
                         "books-total": 100 
                                        })
+        
+    def test_query_term_lookup(self):
+        bulk_size=4
+        o=track.get_random_term_lookup_parameters({"a":1},
+                                       {
+                        "subs-total":20
+                                       })
+        print(json.dumps(o["body"]))
+        
     def test_json(self):
         env = jinja2.Environment(loader=jinja2.FileSystemLoader("."))
         #template_name=io.basename(template_file_name)
