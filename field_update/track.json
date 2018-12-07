@@ -51,7 +51,21 @@
                                     "updated": {
                                       "type": "boolean"
                                     }
-                                  }
+                                  },
+                                 "dynamic_templates": [
+                                    {
+                                      "subscr_columns": {
+                                        "match_mapping_type":"boolean",
+                                        "match": "subscription_*",
+                                        "mapping": {
+                                          "type": "boolean",
+                                          "index": false,
+                                          "store": false,
+                                          "doc_values": true
+                                        }
+                                      }
+                                    } 
+                                 ]
                                 }
                               }
                           }
@@ -88,9 +102,10 @@
                     "operation": {
                         "name": "insert books",
                         "operation-type": "bulk",
-                        {% set docs=100000000 %}
+                        {% set divisor=400 %}
+                        {% set docs=100000000/divisor %}
                         {% set insert_bulk_size=500%}
-                        {% set subs=2000 %}
+                        {% set subs=2000/divisor %}
                         {% set subs_per_book=5 %}
                         "bulk-size":{{insert_bulk_size}},
                         "param-source": "insert-books-subs-parallel",
@@ -118,7 +133,17 @@
                      "max-num-segments":5
                   }
                 },
-                {% set subs_searching=5 %}
+                 {% set subs_searching=5 %}
+                {
+                    "operation": {
+                        "name": "filter by DV",
+                        "operation-type": "search",
+                        "param-source": "search-subsDV-filter",
+                        "subs-total":{{subs_searching}}
+                    },
+                    "clients": 1,
+                    "target-throughput": 1
+                },
                  {
                     "operation": {
                          "name": "warming filter by term lookup",

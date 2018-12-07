@@ -65,6 +65,24 @@ def get_random_search_parameters(track, params, **kwargs):
         "type": type_name
     }
 
+def get_random_searchDV_parameters(track, params, **kwargs):
+    default_index = "books"
+    default_type = "books"
+    index_name = params.get("index", default_index)
+    type_name = params.get("type", default_type)
+    _max_subs = int(params.get("subs-total", "1000"))
+    return {
+          "body":{
+            "query": {
+              "bool": {
+                "must": {"match" : {"title": " ".join(random_text(2))}},
+                "filter": { "term" : { "subscription_"+few_subscriptions(1,_max_subs)[0]:True } }
+              }
+            }
+          },
+        "index": index_name,
+        "type": type_name
+    }
 def get_random_books_update_query(track, params, **kwargs):
     default_index = "books"
     default_type = "books"
@@ -130,6 +148,8 @@ class InsertBooksSubsClient:
             if self.index_subs :
                 subscs = few_subscriptions(self._factory._num_subs, self._factory._max_subs)
                 d["subscriptions"]=subscs
+                for s in subscs:
+                    d["subscription_"+s]=True 
             body+=(json.dumps(d)+'\n')
             i+=1
             if i%self._factory._bulk_size==0:
@@ -304,6 +324,7 @@ def get_random_subscriptions_update_query(track, params, **kwargs):
 
 def register(registry):
     registry.register_param_source("search-subs-filter", get_random_search_parameters)
+    registry.register_param_source("search-subsDV-filter", get_random_searchDV_parameters)
     registry.register_param_source("update-subs-in-books", get_random_books_update_query)
     registry.register_param_source("insert-books-subs-parallel",InsertBooksSubsParamSource)
     registry.register_param_source("insert-books-only", InsertBooksOnly)
