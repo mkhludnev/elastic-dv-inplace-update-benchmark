@@ -1,3 +1,3 @@
 bin\or2run -s LARGE  -p PERSONAL -r EPAM-IN1 -i Ubuntu18.04_64-bit
-sudo apt-get update ;sudo apt install openjdk-8-jre-headless git gcc python3-pip python3-dev --fix-missing; sudo pip3 install esrally;export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/ 
+sudo apt-get update ;sudo apt install openjdk-8-jre-headless git gcc python3-pip python3-dev wamerican --fix-missing; sudo pip3 install esrally;export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/ 
 
