@@ -1,3 +1,13 @@
 bin\or2run -s LARGE  -p PERSONAL -r EPAM-IN1 -i Ubuntu18.04_64-bit
 sudo apt-get update ;sudo apt install openjdk-8-jre-headless git gcc python3-pip python3-dev wamerican --fix-missing; sudo pip3 install esrally;export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/ 
 
+lsblk 
+sudo mkfs -t ext4 /dev/nvme0n1
+sudo mkdir /mnt/tb
+sudo chown -R ubuntu /mnt/tb
+sudo mount /dev/nvme0n1 /mnt/tb/
+esrally configure --advanced-config
+
+git clone https://github.com/m-khl/elastic-termlookup-bench.git
+cd elastic-termlookup-bench/field_update
+rm track_tests.py

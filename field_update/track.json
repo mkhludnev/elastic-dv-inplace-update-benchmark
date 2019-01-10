@@ -114,7 +114,7 @@
                         "subs-per-book":{{subs_per_book}},
                         "books-total": {{docs}}   
                     },
-                    "clients": 2
+                    "clients": 1
                 },
                 {
                     "operation": {
@@ -180,7 +180,7 @@
                                     "books-total": {{docs}},
                                     "detailed-results": true    
                                 },
-                                "clients": 2
+                                "clients": 1
                             }
                         ]
                     }

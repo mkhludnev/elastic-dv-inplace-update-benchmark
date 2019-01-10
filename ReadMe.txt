@@ -5,6 +5,8 @@ Please, see https://github.com/elastic/rally for detailed instructions on rally 
 
 The benchmark reads words from /usr/share/dict/words
 
+ export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+
 $esrally --distribution-version=6.4.0 --track-path=track.json --offline --preserve-install true --car="8gheap"  --client-options="timeout:6000" &
 
 
