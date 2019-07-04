@@ -25,7 +25,8 @@ sudo apt install oracle-java12-installer
 
 
  export JAVA_HOME=/usr/lib/jvm/java-12-oracle
- 
+ export JAVA11_HOME=/usr/lib/jvm/java-11-openjdk-amd64/
+  
  :/mnt/tb/src/elasticsearch$ patch -p 1 -i ~/dv.patch
  
  esrally --revision current --offline --track-path=track.json --preserve-install true --car="8gheap"  --client-options="timeout:6000" --report-file ../rally.out  --quiet &
@@ -43,7 +44,21 @@ $ curl 'localhost:39200/books/books/12306296/_explain?' -H Content-Type:applicat
 {"_shards":{"total":1,"successful":1,"failed":0},"valid":true,"explanations":[{"index":"books","valid":true,"explanation":"+(#subscription_0x75d:[0 TO 0]) #*:*"}]}
 
 $ curl 'localhost:39200/books/_mapping'
-{"books":{"mappings":{"properties":{"abstract":{"type":"text","fields":{"keyword":{"type":"keyword","ignore_above":256}}},"author":{"type":"text","fields":{"keyword":{"type":"keyword","ignore_above":256}}},"pubDate":{"type":"long"},"subscription_0x0":{"type":"long"},"subscription_0x1":{"type":"long"},"subscription_0x10":{"type":"long"},"subscription_0x100":{"type":"long"},"subscription_0x101":{"type":"long"},
+{"books":{
+         "mappings":{
+                "properties":{
+                          "abstract":
+                               {"type":"text",
+                                "fields":{
+                                       "keyword":{"type":"keyword","ignore_above":256}}},
+                          "author":{"type":"text",
+                                 "fields":{"keyword":{"type":"keyword","ignore_above":256}}},
+                          "pubDate":{"type":"long"},
+                          "subscription_0x0":{"type":"long"},
+                          "subscription_0x1":{"type":"long"},
+                          "subscription_0x10":{"type":"long"},
+                          "subscription_0x100":{"type":"long"},"
+                          subscription_0x101":{"type":"long"},
 
 
 $ curl 'localhost:39200/books/_mapping/field/subscription_0x101?include_defaults=true'
