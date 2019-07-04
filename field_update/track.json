@@ -24,12 +24,12 @@
                     "operation": {
                         "operation-type": "create-index",
                           "index": "books",
-                          "settings": {
+                          "body": {
+                            "settings": {
                               "number_of_shards": 100,
                               "number_of_replicas": 0,
                               "index.mapping.total_fields.limit": 100000
                             },
-                          "body": {
                             "mappings": {
                                 "books": {
                                   "dynamic": "strict",
@@ -56,10 +56,9 @@
                                  "dynamic_templates": [
                                     {
                                       "subscr_columns": {
-                                        "match_mapping_type":"boolean",
                                         "match": "subscription_*",
                                         "mapping": {
-                                          "type": "boolean",
+                                          "type": "integer",
                                           "index": false,
                                           "store": false,
                                           "doc_values": true
@@ -77,11 +76,11 @@
                             "operation-type": "create-index",
                             "name":"make subs",
                               "index": "subscriptions",
-                              "settings": {
+                              "body": {
+                                 "settings": {
                                   "number_of_shards": 1,
                                   "number_of_replicas": 0
                                 },
-                              "body": {
                                 "mappings": {
                                    "subscription": {
                                      "dynamic": "strict",

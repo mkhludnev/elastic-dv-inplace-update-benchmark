@@ -121,7 +121,16 @@ class TestBooksSubsInsert(unittest.TestCase):
                         "subs-total":20
                                        })
         print(json.dumps(o["body"]))
-        
+
+    def test_query_DV(self):
+        bulk_size=4
+        o=track.get_random_searchDV_parameters({"a":1},
+                                       {
+                        "subs-total":20
+                                       })
+        print(json.dumps(o["body"]))
+     
+             
     def test_json(self):
         env = jinja2.Environment(loader=jinja2.FileSystemLoader("."))
         #template_name=io.basename(template_file_name)

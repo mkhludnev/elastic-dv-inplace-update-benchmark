@@ -76,7 +76,7 @@ def get_random_searchDV_parameters(track, params, **kwargs):
             "query": {
               "bool": {
                 "must": {"match" : {"title": " ".join(random_text(2))}},
-                "filter": { "term" : { "subscription_"+few_subscriptions(1,_max_subs)[0]:True } }
+                "filter": { "term" : { "subscription_"+few_subscriptions(1,_max_subs)[0]:1 } }
               }
             }
           },
@@ -149,7 +149,7 @@ class InsertBooksSubsClient:
                 subscs = few_subscriptions(self._factory._num_subs, self._factory._max_subs)
                 d["subscriptions"]=subscs
                 for s in subscs:
-                    d["subscription_"+s]=True 
+                    d["subscription_"+s]=1 
             body+=(json.dumps(d)+'\n')
             i+=1
             if i%self._factory._bulk_size==0:
