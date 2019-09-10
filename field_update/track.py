@@ -76,13 +76,14 @@ def get_random_searchDV_parameters(track, params, **kwargs):
             "query": {
               "bool": {
                 "must": {"match" : {"title": " ".join(random_text(2))}},
-                "filter": { "term" : { "subscription_"+few_subscriptions(1,_max_subs)[0]:1 } }
+                "filter": { "range" : { "subscription_"+few_subscriptions(1,_max_subs)[0]:{"gte":1,"lte":1} } }
               }
             }
           },
         "index": index_name,
         "type": type_name
     }
+
 def get_random_books_update_query(track, params, **kwargs):
     default_index = "books"
     default_type = "books"
@@ -96,7 +97,35 @@ def get_random_books_update_query(track, params, **kwargs):
         book_id = random.randint(0,int(params["books-total"])-1)
         subscs= few_subscriptions(_num_subs, _max_subs)
         body+=(json.dumps({ "update" : {"_id" : book_id, "_type" : type_name, "_index" : index_name} })+'\n')
-        body+=(json.dumps({ "doc" : { "subscriptions": subscs, "updated":True}})+'\n')
+        body+=(json.dumps({ "doc" : { "subscriptions": subscs, "updated":True }})+'\n')
+    output = {
+        "body":body,
+        "action-metadata-present":True,
+        "bulk-size":bulkSize,
+        "index":index_name,
+        "type":type_name
+    }
+    return output
+
+def get_books_DV_update_query(track, params, **kwargs):
+    default_index = "books"
+    default_type = "books"
+    index_name = params.get("index", default_index)
+    type_name = params.get("type", default_type)
+    bulkSize = int(params.get("bulk-size", "100"))
+    _max_subs = int(params.get("subs-total", "1000"))
+    _num_subs = int(params.get("subs-per-book", "100"))
+    books_total = int(params.get("books-total", 1000))
+    body=""
+    subscs= few_subscriptions(1, _max_subs)
+    book_id = random.randint(0,books_total-1)
+    step= random.randint(0,books_total-1)
+    boundary = int(_num_subs*bulkSize/_max_subs)
+    for x in range(0,bulkSize):
+        body+=(json.dumps({ "update" : {"_id" : book_id, "_type" : type_name, "_index" : index_name} })+'\n')
+        tick = 1 if x<=boundary else 0
+        body+=(json.dumps({ "doc" : { "subscriptions_"+subscs[0]: tick }})+'\n')
+        book_id = (book_id+step)%books_total
     output = {
         "body":body,
         "action-metadata-present":True,
@@ -271,7 +300,7 @@ class InsertSubsClient:
 
 def get_random_term_lookup_parameters(track, params, **kwargs):
     default_index = "books"
-    default_type = "book"
+    default_type = "books"
     index_name = params.get("index", default_index)
     type_name = params.get("type", default_type)
     _max_subs = int(params.get("subs-total","1000"))
@@ -331,3 +360,4 @@ def register(registry):
     registry.register_param_source("insert-subs-only", InsertSubsOnly)
     registry.register_param_source("search-terms-lookup", get_random_term_lookup_parameters)
     #registry.register_param_source("update-subs-only", get_random_subscriptions_update_query)
+    registry.register_param_source("DV-update-subs-in-books",get_books_DV_update_query)

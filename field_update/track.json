@@ -16,14 +16,20 @@
                     "operation": {
                         "operation-type": "create-index",
                           "index": "books",
+                          "request-params": {
+                              "include_type_name": "true"
+                          },
                           "body": {
                             "settings": {
                               "number_of_shards": 100,
                               "number_of_replicas": 0,
-                              "index.mapping.total_fields.limit": 100000
+                              "index.mapping.total_fields.limit": 100000,
+                              "index.max_terms_count":1000000                            
                             },
                             "mappings": {
                                 "books": {
+                                  "numeric_detection": true,
+                                  "date_detection": false,
                                   "properties": {
                                     "title": {
                                       "type": "text"
@@ -44,6 +50,7 @@
                                       "type": "boolean"
                                     }
                                   },
+                                  "_source": {"enabled":false},
                                  "dynamic_templates": [
                                     {
                                       "subscr_columns": {
@@ -67,6 +74,9 @@
                             "operation-type": "create-index",
                             "name":"make subs",
                               "index": "subscriptions",
+                              "request-params": {
+                                 "include_type_name": "true"
+                              },
                               "body": {
                                  "settings": {
                                   "number_of_shards": 1,
@@ -74,6 +84,8 @@
                                 },
                                 "mappings": {
                                    "subscriptions": {
+                                     "numeric_detection": true,
+                                     "date_detection": false,
                                      "dynamic": "strict",
                                      "properties": {
                                        "books": {
@@ -125,16 +137,42 @@
                   }
                 },
                  {% set subs_searching=5 %}
+                
                 {
-                    "operation": {
-                        "name": "filter by DV",
-                        "operation-type": "search",
-                        "param-source": "search-subsDV-filter",
-                        "subs-total":{{subs_searching}}
-                    },
-                    "clients": 1,
-                    "target-throughput": 1
+                    "parallel": {
+                        "completed-by":"update dv in-place",
+                        "tasks": [
+                            {
+                                "operation": {
+                                    "name": "filter by DV",
+                                    "operation-type": "search",
+                                    "param-source": "search-subsDV-filter",
+                                    "subs-total":{{subs_searching}}
+                                },
+                                "clients": 1,
+                                "target-throughput": 1
+                            },
+                            {
+                                "operation": {
+                                    "name": "update dv in-place",
+                                    "operation-type": "bulk",
+                                    "bulk-size":10000,
+                                    "param-source": "DV-update-subs-in-books",
+                                    {#reducing updates twice#}
+                                    "subs-total":{{subs/2}},
+                                    "subs-per-book":{{subs_per_book}},
+                                    "books-total": {{docs}},
+                                    "detailed-results": true    
+                                },
+                                "clients": 1
+                            }
+                        ]
+                    }
                 },
+                
+                
+                
+                
                  {
                     "operation": {
                          "name": "warming filter by term lookup",
