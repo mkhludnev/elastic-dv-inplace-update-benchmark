@@ -137,20 +137,20 @@ class TestBooksSubsInsert(unittest.TestCase):
         tmp=env.get_template("track.json")
         j=tmp.render()
         #print(j)
-        json.loads(j)
+        print(json.loads(j))
         
     def test_dv_upd(self):
         o=track.get_books_DV_update_query({"a":1},
         { "name": "update dv in-place",
             "operation-type": "bulk",
-            "bulk-size":10000,
+            "bulk-size":10,
             "param-source": "DV-update-subs-in-books",
-            "subs-total":10,
-            "subs-per-book":20,
-            "books-total": 30,
+            "subs-total":1000,
+            "subs-per-book":5,
+            "books-total": 100000000,
             "detailed-results": True    
         })
-        print(json.dumps(o["body"]))
+        print(o)
         
 if __name__ == '__main__':
     unittest.main()
