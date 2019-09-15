@@ -1,4 +1,7 @@
-bin\or2run -s LARGE  -p PERSONAL -r EPAM-IN1 -i Ubuntu18.04_64-bit
+
+
+or2-run-instances -i Ubuntu18.04_64-bit -k mkhludnev-epam-cloud -s large.ssd.500 -p PERSONAL -r EPAM-IN1
+
 sudo apt-get update ;sudo apt install openjdk-11-jdk git gcc python3-pip python3-dev wamerican gradle --fix-missing; sudo pip3 install esrally;export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/ 
 
 
@@ -6,7 +9,7 @@ lsblk
 sudo mkfs -t ext4 /dev/nvme0n1
 sudo mkdir /mnt/tb
 sudo chown -R ubuntu /mnt/tb
-sudo mount /dev/nvme0n1 /mnt/tb/
+sudo mount /dev/nvme0n1 /mnt/tb/               
 esrally configure --advanced-config
 
 git clone https://github.com/m-khl/elastic-termlookup-bench.git

@@ -55,7 +55,7 @@
                                  "dynamic_templates": [
                                     {
                                       "subscr_columns": {
-                                        "match": "subscription_*",
+                                        "match": "dv_*",
                                         "mapping": {
                                           "type": "integer",
                                           "index": false,
@@ -106,7 +106,7 @@
                     "operation": {
                         "name": "insert books",
                         "operation-type": "bulk",
-                        {% set divisor=1 %}
+                        {% set divisor=100 %}
                         {% set docs=100000000/divisor %}
                         {% set insert_bulk_size=500%}
                         {% set subs=2000/divisor %}
@@ -137,7 +137,7 @@
                      "max-num-segments":5
                   }
                 },
-                 {% set subs_searching=5 %}
+                 {% set subs_searching=20 %}
                 
                 {
                     "parallel": {
@@ -160,7 +160,7 @@
                                     "bulk-size":10000,
                                     "param-source": "DV-update-subs-in-books",
                                     {#reducing updates twice#}
-                                    "subs-total":{{subs/2}},
+                                    "subs-total":{{subs}},
                                     "subs-per-book":{{subs_per_book}},
                                     "books-total": {{docs}},
                                     "detailed-results": true    

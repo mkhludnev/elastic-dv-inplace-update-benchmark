@@ -76,7 +76,7 @@ def get_random_searchDV_parameters(track, params, **kwargs):
             "query": {
               "bool": {
                 "must": {"match" : {"title": " ".join(random_text(2))}},
-                "filter": { "range" : { "subscription_"+few_subscriptions(1,_max_subs)[0]:{"gte":1,"lte":1} } }
+                "filter": { "range" : { "dv_"+few_subscriptions(1,_max_subs)[0]:{"gte":1,"lte":1} } }
               }
             }
           },
@@ -123,9 +123,10 @@ def get_books_DV_update_query(track, params, **kwargs):
     boundary = int(_num_subs*bulkSize/_max_subs)
     for x in range(0,bulkSize):
         body+=(json.dumps({ "update" : {"_id" : book_id, "_type" : type_name, "_index" : index_name} })+'\n')
-        tick = 1 if x<=boundary else 0
-        body+=(json.dumps({ "doc" : { "subscriptions_"+subscs[0]: tick }})+'\n')
+        tick = x % 2
+        body+=(json.dumps({ "doc" : { "dv_"+subscs[0]: tick }})+'\n')
         book_id = (book_id+step)%books_total
+        
     output = {
         "body":body,
         "action-metadata-present":True,
@@ -178,7 +179,7 @@ class InsertBooksSubsClient:
                 subscs = few_subscriptions(self._factory._num_subs, self._factory._max_subs)
                 d["subscriptions"]=subscs
                 for s in subscs:
-                    d["subscription_"+s]=1 
+                    d["dv_"+s]=1 
             body+=(json.dumps(d)+'\n')
             i+=1
             if i%self._factory._bulk_size==0:

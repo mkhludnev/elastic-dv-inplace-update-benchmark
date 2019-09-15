@@ -1,0 +1,134 @@
+|   Lap |                                                         Metric |                          Task |     Value |   Unit |
+|------:|---------------------------------------------------------------:|------------------------------:|----------:|-------:|
+|   All |                     Cumulative indexing time of primary shards |                               |   668.268 |    min |
+|   All |             Min cumulative indexing time across primary shards |                               |   5.93272 |    min |
+|   All |          Median cumulative indexing time across primary shards |                               |   6.37222 |    min |
+|   All |             Max cumulative indexing time across primary shards |                               |   21.3853 |    min |
+|   All |            Cumulative indexing throttle time of primary shards |                               |   59074.2 |    min |
+|   All |    Min cumulative indexing throttle time across primary shards |                               |         0 |    min |
+|   All | Median cumulative indexing throttle time across primary shards |                               |   590.737 |    min |
+|   All |    Max cumulative indexing throttle time across primary shards |                               |   596.758 |    min |
+|   All |                        Cumulative merge time of primary shards |                               |   2071.06 |    min |
+|   All |                       Cumulative merge count of primary shards |                               |     39507 |        |
+|   All |                Min cumulative merge time across primary shards |                               |   15.1118 |    min |
+|   All |             Median cumulative merge time across primary shards |                               |   20.4743 |    min |
+|   All |                Max cumulative merge time across primary shards |                               |    22.827 |    min |
+|   All |               Cumulative merge throttle time of primary shards |                               |   168.323 |    min |
+|   All |       Min cumulative merge throttle time across primary shards |                               |   1.00713 |    min |
+|   All |    Median cumulative merge throttle time across primary shards |                               |    1.5844 |    min |
+|   All |       Max cumulative merge throttle time across primary shards |                               |   2.70008 |    min |
+|   All |                      Cumulative refresh time of primary shards |                               |   1347.18 |    min |
+|   All |                     Cumulative refresh count of primary shards |                               |    358194 |        |
+|   All |              Min cumulative refresh time across primary shards |                               |   7.14558 |    min |
+|   All |           Median cumulative refresh time across primary shards |                               |   13.3849 |    min |
+|   All |              Max cumulative refresh time across primary shards |                               |   13.7334 |    min |
+|   All |                        Cumulative flush time of primary shards |                               |   11.3495 |    min |
+|   All |                       Cumulative flush count of primary shards |                               |       415 |        |
+|   All |                Min cumulative flush time across primary shards |                               | 0.0125833 |    min |
+|   All |             Median cumulative flush time across primary shards |                               | 0.0206333 |    min |
+|   All |                Max cumulative flush time across primary shards |                               |   9.25332 |    min |
+|   All |                                               Median CPU usage |                               |     295.7 |      % |
+|   All |                                             Total Young Gen GC |                               |    9431.8 |      s |
+|   All |                                               Total Old Gen GC |                               |   156.221 |      s |
+|   All |                                                     Store size |                               |   36.7825 |     GB |
+|   All |                                                  Translog size |                               |   54.2405 |     GB |
+|   All |                                                  Total written |                               |    1553.1 |     GB |
+|   All |                                         Heap used for segments |                               |    30.411 |     MB |
+|   All |                                       Heap used for doc values |                               |   1.69305 |     MB |
+|   All |                                            Heap used for terms |                               |   26.8952 |     MB |
+|   All |                                            Heap used for norms |                               | 0.0244141 |     MB |
+|   All |                                           Heap used for points |                               |  0.472619 |     MB |
+|   All |                                    Heap used for stored fields |                               |   1.32569 |     MB |
+|   All |                                                  Segment count |                               |       402 |        |
+|   All |                                                 Min Throughput |                  insert books |     25.63 | docs/s |
+|   All |                                              Median Throughput |                  insert books |    2125.1 | docs/s |
+|   All |                                                 Max Throughput |                  insert books |   2211.27 | docs/s |
+|   All |                                        50th percentile latency |                  insert books |   323.237 |     ms |
+|   All |                                        90th percentile latency |                  insert books |   419.965 |     ms |
+|   All |                                        99th percentile latency |                  insert books |   824.832 |     ms |
+|   All |                                      99.9th percentile latency |                  insert books |   1651.63 |     ms |
+|   All |                                     99.99th percentile latency |                  insert books |   2181.53 |     ms |
+|   All |                                       100th percentile latency |                  insert books |   19640.1 |     ms |
+|   All |                                   50th percentile service time |                  insert books |   323.237 |     ms |
+|   All |                                   90th percentile service time |                  insert books |   419.965 |     ms |
+|   All |                                   99th percentile service time |                  insert books |   824.832 |     ms |
+|   All |                                 99.9th percentile service time |                  insert books |   1651.63 |     ms |
+|   All |                                99.99th percentile service time |                  insert books |   2181.53 |     ms |
+|   All |                                  100th percentile service time |                  insert books |   19640.1 |     ms |
+|   All |                                                     error rate |                  insert books |         0 |      % |
+|   All |                                                 Min Throughput |                   insert subs |      0.95 | docs/s |
+|   All |                                              Median Throughput |                   insert subs |       2.3 | docs/s |
+|   All |                                                 Max Throughput |                   insert subs |      2.61 | docs/s |
+|   All |                                        50th percentile latency |                   insert subs |   234.251 |     ms |
+|   All |                                        90th percentile latency |                   insert subs |   451.239 |     ms |
+|   All |                                        99th percentile latency |                   insert subs |   4120.76 |     ms |
+|   All |                                      99.9th percentile latency |                   insert subs |   56068.4 |     ms |
+|   All |                                       100th percentile latency |                   insert subs |   56904.9 |     ms |
+|   All |                                   50th percentile service time |                   insert subs |   234.251 |     ms |
+|   All |                                   90th percentile service time |                   insert subs |   451.239 |     ms |
+|   All |                                   99th percentile service time |                   insert subs |   4120.76 |     ms |
+|   All |                                 99.9th percentile service time |                   insert subs |   56068.4 |     ms |
+|   All |                                  100th percentile service time |                   insert subs |   56904.9 |     ms |
+|   All |                                                     error rate |                   insert subs |         0 |      % |
+|   All |                                                 Min Throughput |                  filter by DV |      1.44 |  ops/s |
+|   All |                                              Median Throughput |                  filter by DV |      1.44 |  ops/s |
+|   All |                                                 Max Throughput |                  filter by DV |      1.44 |  ops/s |
+|   All |                                       100th percentile latency |                  filter by DV |   693.999 |     ms |
+|   All |                                  100th percentile service time |                  filter by DV |   693.999 |     ms |
+|   All |                                                     error rate |                  filter by DV |         0 |      % |
+|   All |                                                 Min Throughput |            update dv in-place |   1376.29 | docs/s |
+|   All |                                              Median Throughput |            update dv in-place |   1376.29 | docs/s |
+|   All |                                                 Max Throughput |            update dv in-place |   1376.29 | docs/s |
+|   All |                                       100th percentile latency |            update dv in-place |   7137.28 |     ms |
+|   All |                                  100th percentile service time |            update dv in-place |   7137.28 |     ms |
+|   All |                                                     error rate |            update dv in-place |         0 |      % |
+|   All |                                                 Min Throughput | warming filter by term lookup |      0.08 |  ops/s |
+|   All |                                              Median Throughput | warming filter by term lookup |      0.09 |  ops/s |
+|   All |                                                 Max Throughput | warming filter by term lookup |      0.09 |  ops/s |
+|   All |                                        50th percentile latency | warming filter by term lookup |   10540.7 |     ms |
+|   All |                                        90th percentile latency | warming filter by term lookup |     11398 |     ms |
+|   All |                                       100th percentile latency | warming filter by term lookup |   12671.8 |     ms |
+|   All |                                   50th percentile service time | warming filter by term lookup |   10540.7 |     ms |
+|   All |                                   90th percentile service time | warming filter by term lookup |     11398 |     ms |
+|   All |                                  100th percentile service time | warming filter by term lookup |   12671.8 |     ms |
+|   All |                                                     error rate | warming filter by term lookup |         0 |      % |
+|   All |                                                 Min Throughput |         filter by term lookup |      0.07 |  ops/s |
+|   All |                                              Median Throughput |         filter by term lookup |      0.07 |  ops/s |
+|   All |                                                 Max Throughput |         filter by term lookup |      0.07 |  ops/s |
+|   All |                                       100th percentile latency |         filter by term lookup |   13920.8 |     ms |
+|   All |                                  100th percentile service time |         filter by term lookup |   13920.8 |     ms |
+|   All |                                                     error rate |         filter by term lookup |         0 |      % |
+|   All |                                                 Min Throughput |            update term lookup |       1.2 | docs/s |
+|   All |                                              Median Throughput |            update term lookup |      1.83 | docs/s |
+|   All |                                                 Max Throughput |            update term lookup |      2.61 | docs/s |
+|   All |                                        50th percentile latency |            update term lookup |   264.462 |     ms |
+|   All |                                        90th percentile latency |            update term lookup |   335.737 |     ms |
+|   All |                                        99th percentile latency |            update term lookup |   4672.05 |     ms |
+|   All |                                      99.9th percentile latency |            update term lookup |   52870.3 |     ms |
+|   All |                                       100th percentile latency |            update term lookup |     54582 |     ms |
+|   All |                                   50th percentile service time |            update term lookup |   264.462 |     ms |
+|   All |                                   90th percentile service time |            update term lookup |   335.737 |     ms |
+|   All |                                   99th percentile service time |            update term lookup |   4672.05 |     ms |
+|   All |                                 99.9th percentile service time |            update term lookup |   52870.3 |     ms |
+|   All |                                  100th percentile service time |            update term lookup |     54582 |     ms |
+|   All |                                                     error rate |            update term lookup |         0 |      % |
+|   All |                                                 Min Throughput |               filter by field |      2.68 |  ops/s |
+|   All |                                              Median Throughput |               filter by field |      2.68 |  ops/s |
+|   All |                                                 Max Throughput |               filter by field |      2.68 |  ops/s |
+|   All |                                       100th percentile latency |               filter by field |   373.084 |     ms |
+|   All |                                  100th percentile service time |               filter by field |   373.084 |     ms |
+|   All |                                                     error rate |               filter by field |         0 |      % |
+|   All |                                                 Min Throughput |                  update field |    822.49 | docs/s |
+|   All |                                              Median Throughput |                  update field |   2993.21 | docs/s |
+|   All |                                                 Max Throughput |                  update field |   3623.74 | docs/s |
+|   All |                                        50th percentile latency |                  update field |   101.942 |     ms |
+|   All |                                        90th percentile latency |                  update field |   176.068 |     ms |
+|   All |                                        99th percentile latency |                  update field |   411.182 |     ms |
+|   All |                                      99.9th percentile latency |                  update field |   1195.39 |     ms |
+|   All |                                       100th percentile latency |                  update field |   2457.31 |     ms |
+|   All |                                   50th percentile service time |                  update field |   101.942 |     ms |
+|   All |                                   90th percentile service time |                  update field |   176.068 |     ms |
+|   All |                                   99th percentile service time |                  update field |   411.182 |     ms |
+|   All |                                 99.9th percentile service time |                  update field |   1195.39 |     ms |
+|   All |                                  100th percentile service time |                  update field |   2457.31 |     ms |
+|   All |                                                     error rate |                  update field |         0 |      % |
