@@ -21,11 +21,12 @@
                           },
                           "body": {
                             "settings": {
-                              "number_of_shards": 100,
+                              "number_of_shards": 10,
                               "number_of_replicas": 0,
                               "index.mapping.total_fields.limit": 100000,
                               "index.max_terms_count":1000000,   
-                              "index.refresh_interval":"600s"                       
+                              "index.refresh_interval":"60s" ,
+	                        "index.soft_deletes.enabled":false		      
                             },
                             "mappings": {
                                 "books": {
@@ -106,9 +107,9 @@
                     "operation": {
                         "name": "insert books",
                         "operation-type": "bulk",
-                        {% set divisor=100 %}
+                        {% set divisor=10 %}
                         {% set docs=100000000/divisor %}
-                        {% set insert_bulk_size=500%}
+                        {% set insert_bulk_size=1000%}
                         {% set subs=2000/divisor %}
                         {% set subs_per_book=5 %}
                         "bulk-size":{{insert_bulk_size}},
@@ -157,7 +158,7 @@
                                 "operation": {
                                     "name": "update dv in-place",
                                     "operation-type": "bulk",
-                                    "bulk-size":10000,
+                                    "bulk-size":10,
                                     "param-source": "DV-update-subs-in-books",
                                     {#reducing updates twice#}
                                     "subs-total":{{subs}},
@@ -165,7 +166,8 @@
                                     "books-total": {{docs}},
                                     "detailed-results": true    
                                 },
-                                "clients": 1
+                                "clients": 1,
+				 "iterations": {{(docs*subs_per_book/1000000)|int}}
                             }
                         ]
                     }
@@ -240,7 +242,7 @@
                                 },
                                 "clients": 1, {# 2 gives 165 docs/sec; 1 - 562 docs/sec. dunno why#}
                                 {#reducing updates 50 times#}
-                                "iterations": {{(docs/insert_bulk_size/50)|int}}
+                                "iterations": {{(docs/insert_bulk_size)|int}}
                             }
 
                         ]

@@ -1,0 +1,512 @@
+2019-09-22 21:45:12,383 -not-actor-/PID:29938 esrally.rally INFO OS [posix.uname_result(sysname='Linux', nodename='ecsf002006ea', release='4.15.0-58-generic', version='#64-Ubuntu SMP Tue Aug 6 11:12:41 UTC 2019', machine='x86_64')]
+2019-09-22 21:45:12,383 -not-actor-/PID:29938 esrally.rally INFO Python [namespace(_multiarch='x86_64-linux-gnu', cache_tag='cpython-36', hexversion=50727152, name='cpython', version=sys.version_info(major=3, minor=6, micro=8, releaselevel='final', serial=0))]
+2019-09-22 21:45:12,384 -not-actor-/PID:29938 esrally.rally INFO Rally version [1.3.0]
+2019-09-22 21:45:12,384 -not-actor-/PID:29938 esrally.utils.net INFO Connecting directly to the Internet (no proxy support).
+2019-09-22 21:45:12,806 -not-actor-/PID:29938 esrally.rally INFO Detected a working Internet connection.
+2019-09-22 21:45:12,824 -not-actor-/PID:29938 esrally.rally INFO Actor system already running locally? [False]
+2019-09-22 21:45:12,824 -not-actor-/PID:29938 esrally.actor INFO Starting actor system with system base [multiprocTCPBase] and capabilities [{'coordinator': True, 'ip': '127.0.0.1', 'Convention Address.IPv4': '127.0.0.1:1900'}].
+2019-09-22 21:45:12,873 -not-actor-/PID:29945 root INFO ++++ Actor System gen (3, 9) started, admin @ ActorAddr-(T|:1900)
+2019-09-22 21:45:12,885 -not-actor-/PID:29938 esrally.racecontrol INFO User specified no pipeline. Automatically derived pipeline [from-sources-complete].
+2019-09-22 21:45:12,886 -not-actor-/PID:29938 esrally.racecontrol INFO Setting default host to [127.0.0.1:39200]
+2019-09-22 21:45:12,886 -not-actor-/PID:29938 esrally.actor INFO Joining already running actor system with system base [multiprocTCPBase].
+2019-09-22 21:45:12,888 ActorAddr-(T|:1900)/PID:29945 esrally.actor INFO Capabilities [{'coordinator': True, 'ip': '127.0.0.1', 'Convention Address.IPv4': '127.0.0.1:1900', 'Thespian ActorSystem Name': 'multiprocTCPBase', 'Thespian ActorSystem Version': 2, 'Thespian Watch Supported': True, 'Python Version': (3, 6, 8, 'final', 0), 'Thespian Generation': (3, 9), 'Thespian Version': '1569188712859'}] match requirements [{'coordinator': True}].
+2019-09-22 21:45:12,888 ActorAddr-(T|:1900)/PID:29945 esrally.actor INFO Capabilities [{'coordinator': True, 'ip': '127.0.0.1', 'Convention Address.IPv4': '127.0.0.1:1900', 'Thespian ActorSystem Name': 'multiprocTCPBase', 'Thespian ActorSystem Version': 2, 'Thespian Watch Supported': True, 'Python Version': (3, 6, 8, 'final', 0), 'Thespian Generation': (3, 9), 'Thespian Version': '1569188712859'}] match requirements [{'coordinator': True}].
+2019-09-22 21:45:12,898 ActorAddr-(T|:39015)/PID:29947 esrally.track.loader INFO Reading track specification file [/home/ubuntu/elastic-dv-inplace-update-benchmark/field_update/track.json].
+2019-09-22 21:45:12,918 ActorAddr-(T|:39015)/PID:29947 esrally.track.loader INFO Final rendered track for '/home/ubuntu/elastic-dv-inplace-update-benchmark/field_update/track.json' has been written to '/tmp/tmp8216vzke.json'.
+2019-09-22 21:45:12,923 ActorAddr-(T|:39015)/PID:29947 esrally.metrics INFO Creating in-memory metrics store
+2019-09-22 21:45:12,923 ActorAddr-(T|:39015)/PID:29947 esrally.metrics INFO Opening metrics store for trial timestamp=[20190922T214512Z], track=[track], challenge=[field-update-then-index], car=[['4gheap']]
+2019-09-22 21:45:12,923 ActorAddr-(T|:39015)/PID:29947 esrally.metrics INFO Creating file race store
+2019-09-22 21:45:12,924 ActorAddr-(T|:39015)/PID:29947 esrally.actor INFO Asking mechanic to start the engine.
+2019-09-22 21:45:12,924 ActorAddr-(T|:39015)/PID:29947 esrally.actor INFO Capabilities [{'coordinator': True, 'ip': '127.0.0.1', 'Convention Address.IPv4': '127.0.0.1:1900', 'Thespian ActorSystem Name': 'multiprocTCPBase', 'Thespian ActorSystem Version': 2, 'Thespian Watch Supported': True, 'Python Version': (3, 6, 8, 'final', 0), 'Thespian Generation': (3, 9), 'Thespian Version': '1569188712859'}] match requirements [{'coordinator': True}].
+2019-09-22 21:45:12,935 ActorAddr-(T|:33513)/PID:29948 esrally.actor INFO Received signal from race control to start engine.
+2019-09-22 21:45:12,936 ActorAddr-(T|:33513)/PID:29948 esrally.metrics INFO Opening metrics store for trial timestamp=[20190922T214512Z], track=[track], challenge=[field-update-then-index], car=[['4gheap']]
+2019-09-22 21:45:13,843 ActorAddr-(T|:33513)/PID:29948 esrally.utils.repo INFO Checking out [master] in [/home/ubuntu/.rally/benchmarks/teams/default] for distribution version [None].
+2019-09-22 21:45:13,864 ActorAddr-(T|:33513)/PID:29948 esrally.utils.process INFO b"Switched to branch 'master'\n"
+2019-09-22 21:45:13,865 ActorAddr-(T|:33513)/PID:29948 esrally.utils.process INFO b"Your branch is up to date with 'origin/master'.\n"
+2019-09-22 21:45:13,866 ActorAddr-(T|:33513)/PID:29948 esrally.utils.repo INFO Rebasing on [master] in [/home/ubuntu/.rally/benchmarks/teams/default] for distribution version [None].
+2019-09-22 21:45:13,884 ActorAddr-(T|:33513)/PID:29948 esrally.utils.process INFO b"Already on 'master'\n"
+2019-09-22 21:45:13,885 ActorAddr-(T|:33513)/PID:29948 esrally.utils.process INFO b"Your branch is up to date with 'origin/master'.\n"
+2019-09-22 21:45:13,924 ActorAddr-(T|:33513)/PID:29948 esrally.utils.process INFO b'Current branch master is up to date.\n'
+2019-09-22 21:45:13,937 ActorAddr-(T|:33513)/PID:29948 esrally.actor INFO Cluster consisting of [{'host': '127.0.0.1', 'port': 39200}] will be provisioned by Rally.
+2019-09-22 21:45:13,937 ActorAddr-(T|:33513)/PID:29948 esrally.actor INFO Capabilities [{'coordinator': True, 'ip': '127.0.0.1', 'Convention Address.IPv4': '127.0.0.1:1900', 'Thespian ActorSystem Name': 'multiprocTCPBase', 'Thespian ActorSystem Version': 2, 'Thespian Watch Supported': True, 'Python Version': (3, 6, 8, 'final', 0), 'Thespian Generation': (3, 9), 'Thespian Version': '1569188712859'}] match requirements [{}].
+2019-09-22 21:45:13,947 ActorAddr-(T|:33053)/PID:30010 esrally.actor INFO Capabilities [{'coordinator': True, 'ip': '127.0.0.1', 'Convention Address.IPv4': '127.0.0.1:1900', 'Thespian ActorSystem Name': 'multiprocTCPBase', 'Thespian ActorSystem Version': 2, 'Thespian Watch Supported': True, 'Python Version': (3, 6, 8, 'final', 0), 'Thespian Generation': (3, 9), 'Thespian Version': '1569188712859'}] match requirements [{'coordinator': True}].
+2019-09-22 21:45:13,955 ActorAddr-(T|:32839)/PID:30011 esrally.actor INFO Starting node(s) [0] on [127.0.0.1].
+2019-09-22 21:45:13,957 ActorAddr-(T|:32839)/PID:30011 esrally.metrics INFO Opening metrics store for trial timestamp=[20190922T214512Z], track=[track], challenge=[field-update-then-index], car=[['4gheap']]
+2019-09-22 21:45:14,700 ActorAddr-(T|:32839)/PID:30011 esrally.utils.repo INFO Checking out revision [c72b2ed] in [/home/ubuntu/.rally/benchmarks/teams/default].
+2019-09-22 21:45:14,717 ActorAddr-(T|:32839)/PID:30011 esrally.utils.process INFO b"Note: checking out 'c72b2ed'.\n"
+2019-09-22 21:45:14,717 ActorAddr-(T|:32839)/PID:30011 esrally.utils.process INFO b'\n'
+2019-09-22 21:45:14,717 ActorAddr-(T|:32839)/PID:30011 esrally.utils.process INFO b"You are in 'detached HEAD' state. You can look around, make experimental\n"
+2019-09-22 21:45:14,718 ActorAddr-(T|:32839)/PID:30011 esrally.utils.process INFO b'changes and commit them, and you can discard any commits you make in this\n'
+2019-09-22 21:45:14,718 ActorAddr-(T|:32839)/PID:30011 esrally.utils.process INFO b'state without impacting any branches by performing another checkout.\n'
+2019-09-22 21:45:14,718 ActorAddr-(T|:32839)/PID:30011 esrally.utils.process INFO b'\n'
+2019-09-22 21:45:14,718 ActorAddr-(T|:32839)/PID:30011 esrally.utils.process INFO b'If you want to create a new branch to retain commits you create, you may\n'
+2019-09-22 21:45:14,718 ActorAddr-(T|:32839)/PID:30011 esrally.utils.process INFO b'do so (now or later) by using -b with the checkout command again. Example:\n'
+2019-09-22 21:45:14,718 ActorAddr-(T|:32839)/PID:30011 esrally.utils.process INFO b'\n'
+2019-09-22 21:45:14,718 ActorAddr-(T|:32839)/PID:30011 esrally.utils.process INFO b'  git checkout -b <new-branch-name>\n'
+2019-09-22 21:45:14,719 ActorAddr-(T|:32839)/PID:30011 esrally.utils.process INFO b'\n'
+2019-09-22 21:45:14,719 ActorAddr-(T|:32839)/PID:30011 esrally.utils.process INFO b'HEAD is now at c72b2ed Have G1-related settings match ES defaults\n'
+2019-09-22 21:45:14,775 ActorAddr-(T|:32839)/PID:30011 esrally.mechanic.java_resolver INFO Allowed JDK versions are [12, 11].
+2019-09-22 21:45:14,835 ActorAddr-(T|:32839)/PID:30011 esrally.mechanic.java_resolver INFO Detected JDK with major version [12] in [/usr/lib/jvm/java-12-oracle].
+2019-09-22 21:45:14,836 ActorAddr-(T|:32839)/PID:30011 esrally.mechanic.supplier INFO Skip fetching sources for Elasticsearch.
+2019-09-22 21:45:14,855 ActorAddr-(T|:32839)/PID:30011 esrally.mechanic.supplier INFO User-specified revision [current] for [Elasticsearch] results in git revision [adc1ef4f01e]
+2019-09-22 21:47:26,611 ActorAddr-(T|:33513)/PID:29948 esrally.client INFO Creating ES client connected to [{'host': '127.0.0.1', 'port': 39200}] with options [{'timeout': 1200000, 'retry-on-timeout': True}]
+2019-09-22 21:45:14,858 ActorAddr-(T|:32839)/PID:30011 esrally.mechanic.supplier INFO Running build command [export JAVA_HOME=/usr/lib/jvm/java-12-oracle; cd /home/ubuntu/.rally/benchmarks/src/elasticsearch; ./gradlew clean >> /home/ubuntu/.rally/benchmarks/races/80ba38ac-54f8-4218-9d5b-408b47a36ec7/build.log 2>&1]
+2019-09-22 21:45:38,939 ActorAddr-(T|:32839)/PID:30011 esrally.mechanic.supplier INFO Running build command [export JAVA_HOME=/usr/lib/jvm/java-12-oracle; cd /home/ubuntu/.rally/benchmarks/src/elasticsearch; ./gradlew :distribution:archives:oss-linux-tar:assemble >> /home/ubuntu/.rally/benchmarks/races/80ba38ac-54f8-4218-9d5b-408b47a36ec7/build.log 2>&1]
+2019-09-22 21:47:12,487 ActorAddr-(T|:32839)/PID:30011 esrally.mechanic.provisioner INFO Preparing candidate locally in [/home/ubuntu/.rally/benchmarks/races/80ba38ac-54f8-4218-9d5b-408b47a36ec7/rally-node-0/install].
+2019-09-22 21:47:12,496 ActorAddr-(T|:32839)/PID:30011 esrally.mechanic.provisioner INFO Unzipping /home/ubuntu/.rally/benchmarks/src/elasticsearch/distribution/archives/oss-linux-tar/build/distributions/elasticsearch-oss-8.0.0-SNAPSHOT-linux-x86_64.tar.gz to /home/ubuntu/.rally/benchmarks/races/80ba38ac-54f8-4218-9d5b-408b47a36ec7/rally-node-0/install
+2019-09-22 21:47:15,962 ActorAddr-(T|:32839)/PID:30011 esrally.mechanic.provisioner INFO Deleting pre-bundled Elasticsearch configuration at [/home/ubuntu/.rally/benchmarks/races/80ba38ac-54f8-4218-9d5b-408b47a36ec7/rally-node-0/install/elasticsearch-8.0.0-SNAPSHOT/config]
+2019-09-22 21:47:15,964 ActorAddr-(T|:32839)/PID:30011 esrally.mechanic.provisioner INFO Reading config template file [/home/ubuntu/.rally/benchmarks/teams/default/cars/v1/vanilla/templates/config/elasticsearch.yml] and writing to [/home/ubuntu/.rally/benchmarks/races/80ba38ac-54f8-4218-9d5b-408b47a36ec7/rally-node-0/install/elasticsearch-8.0.0-SNAPSHOT/config/elasticsearch.yml].
+2019-09-22 21:47:15,970 ActorAddr-(T|:32839)/PID:30011 esrally.mechanic.provisioner INFO Reading config template file [/home/ubuntu/.rally/benchmarks/teams/default/cars/v1/vanilla/templates/config/log4j2.properties] and writing to [/home/ubuntu/.rally/benchmarks/races/80ba38ac-54f8-4218-9d5b-408b47a36ec7/rally-node-0/install/elasticsearch-8.0.0-SNAPSHOT/config/log4j2.properties].
+2019-09-22 21:47:15,974 ActorAddr-(T|:32839)/PID:30011 esrally.mechanic.provisioner INFO Reading config template file [/home/ubuntu/.rally/benchmarks/teams/default/cars/v1/vanilla/templates/config/jvm.options] and writing to [/home/ubuntu/.rally/benchmarks/races/80ba38ac-54f8-4218-9d5b-408b47a36ec7/rally-node-0/install/elasticsearch-8.0.0-SNAPSHOT/config/jvm.options].
+2019-09-22 21:47:15,978 ActorAddr-(T|:32839)/PID:30011 esrally.utils.process INFO Killing all processes which match [java], [elasticsearch] and [/home/ubuntu/.rally/benchmarks/races]
+2019-09-22 21:47:15,983 ActorAddr-(T|:32839)/PID:30011 esrally.mechanic.java_resolver INFO Allowed JDK versions are [12, 11].
+2019-09-22 21:47:16,50 ActorAddr-(T|:32839)/PID:30011 esrally.mechanic.java_resolver INFO Detected JDK with major version [12] in [/usr/lib/jvm/java-12-oracle].
+2019-09-22 21:47:16,51 ActorAddr-(T|:32839)/PID:30011 esrally.mechanic.launcher INFO Starting node [rally-node-0] based on car [4gheap].
+2019-09-22 21:47:16,347 ActorAddr-(T|:32839)/PID:30011 esrally.utils.process INFO b'Java HotSpot(TM) 64-Bit Server VM warning: Option UseConcMarkSweepGC was deprecated in version 9.0 and will likely be removed in a future release.\n'
+2019-09-22 21:47:25,432 ActorAddr-(T|:32839)/PID:30011 esrally.mechanic.launcher INFO Attaching telemetry devices to node [rally-node-0].
+2019-09-22 21:47:25,433 ActorAddr-(T|:32839)/PID:30011 esrally.mechanic.telemetry INFO Using more accurate process-based I/O counters.
+2019-09-22 21:47:26,612 ActorAddr-(T|:33513)/PID:29948 esrally.client INFO SSL support: off
+2019-09-22 21:47:26,766 ActorAddr-(T|:39015)/PID:29947 esrally.actor INFO Mechanic has started engine successfully.
+2019-09-22 21:47:26,612 ActorAddr-(T|:33513)/PID:29948 esrally.client INFO HTTP basic authentication: off
+2019-09-22 21:47:26,613 ActorAddr-(T|:33513)/PID:29948 esrally.client INFO HTTP compression: off
+2019-09-22 21:47:26,614 ActorAddr-(T|:33513)/PID:29948 esrally.mechanic.launcher INFO All cluster nodes have successfully started. Checking if REST API is available.
+2019-09-22 21:47:26,712 ActorAddr-(T|:33513)/PID:29948 esrally.mechanic.launcher INFO REST API is available. Attaching telemetry devices to cluster.
+2019-09-22 21:47:26,763 ActorAddr-(T|:33513)/PID:29948 esrally.mechanic.launcher INFO Telemetry devices are now attached to the cluster.
+2019-09-22 21:47:26,763 ActorAddr-(T|:33513)/PID:29948 esrally.actor INFO Transitioning from [nodes_started] to [apply_meta_info].
+2019-09-22 21:47:26,768 ActorAddr-(T|:33513)/PID:29948 esrally.actor INFO Transitioning from [cluster_started] to [benchmark_starting].
+2019-09-22 21:47:26,767 ActorAddr-(T|:39015)/PID:29947 esrally.actor INFO Telling mechanic of benchmark start.
+2019-09-22 21:47:26,768 ActorAddr-(T|:39015)/PID:29947 esrally.actor INFO Capabilities [{'coordinator': True, 'ip': '127.0.0.1', 'Convention Address.IPv4': '127.0.0.1:1900', 'Thespian ActorSystem Name': 'multiprocTCPBase', 'Thespian ActorSystem Version': 2, 'Thespian Watch Supported': True, 'Python Version': (3, 6, 8, 'final', 0), 'Thespian Generation': (3, 9), 'Thespian Version': '1569188712859'}] match requirements [{'coordinator': True}].
+2019-09-22 21:47:26,770 ActorAddr-(T|:39015)/PID:29947 esrally.actor INFO Telling driver to start benchmark.
+2019-09-22 21:47:26,782 ActorAddr-(T|:33513)/PID:29948 esrally.mechanic.telemetry WARNING Could not determine value at path [merges,total_time_in_millis]. Returning default value [None]
+2019-09-22 21:47:26,783 ActorAddr-(T|:39015)/PID:29947 esrally.actor INFO BenchmarkActor received unknown message [<esrally.mechanic.mechanic.BenchmarkStarted object at 0x7febdb3abb70>] (ignoring).
+2019-09-22 21:47:26,782 ActorAddr-(T|:33513)/PID:29948 esrally.mechanic.telemetry WARNING Could not determine value at path [merges,total_throttled_time_in_millis]. Returning default value [None]
+2019-09-22 21:47:26,782 ActorAddr-(T|:33513)/PID:29948 esrally.mechanic.telemetry WARNING Could not determine value at path [indexing,index_time_in_millis]. Returning default value [None]
+2019-09-22 21:47:26,782 ActorAddr-(T|:33513)/PID:29948 esrally.mechanic.telemetry WARNING Could not determine value at path [indexing,throttle_time_in_millis]. Returning default value [None]
+2019-09-22 21:47:26,782 ActorAddr-(T|:33513)/PID:29948 esrally.mechanic.telemetry WARNING Could not determine value at path [refresh,total_time_in_millis]. Returning default value [None]
+2019-09-22 21:47:26,782 ActorAddr-(T|:33513)/PID:29948 esrally.mechanic.telemetry WARNING Could not determine value at path [flush,total_time_in_millis]. Returning default value [None]
+2019-09-22 21:47:26,790 ActorAddr-(T|:36095)/PID:30397 esrally.metrics INFO Creating in-memory metrics store
+2019-09-22 21:47:26,791 ActorAddr-(T|:36095)/PID:30397 esrally.metrics INFO Opening metrics store for trial timestamp=[20190922T214512Z], track=[track], challenge=[field-update-then-index], car=[['4gheap']]
+2019-09-22 21:47:26,791 ActorAddr-(T|:36095)/PID:30397 esrally.actor INFO Capabilities [{'coordinator': True, 'ip': '127.0.0.1', 'Convention Address.IPv4': '127.0.0.1:1900', 'Thespian ActorSystem Name': 'multiprocTCPBase', 'Thespian ActorSystem Version': 2, 'Thespian Watch Supported': True, 'Python Version': (3, 6, 8, 'final', 0), 'Thespian Generation': (3, 9), 'Thespian Version': '1569188712859'}] match requirements [{'coordinator': True}].
+2019-09-22 21:47:26,879 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO Benchmark is about to start.
+2019-09-22 21:47:26,801 ActorAddr-(T|:46031)/PID:30398 esrally.actor INFO Preparing track [track]
+2019-09-22 21:47:26,802 ActorAddr-(T|:46031)/PID:30398 esrally.utils.modules INFO Loading component [field_update] from [/home/ubuntu/elastic-dv-inplace-update-benchmark/field_update]
+2019-09-22 21:47:26,879 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO Benchmark consists of [10] steps executed by (at most) [2] clients as specified by the allocation matrix:
+[[JoinPoint(0), TaskAllocation [0/1] for delete-index, JoinPoint(1), TaskAllocation [0/1] for create-index, JoinPoint(2), TaskAllocation [0/1] for make subs, JoinPoint(3), TaskAllocation [0/1] for insert books, JoinPoint(4), TaskAllocation [0/1] for insert subs, JoinPoint(5), TaskAllocation [0/1] for force-merge, JoinPoint(6), TaskAllocation [0/1] for filter by DV, JoinPoint(7), TaskAllocation [0/1] for warming filter by term lookup, JoinPoint(8), TaskAllocation [0/1] for filter by term lookup, JoinPoint(9), TaskAllocation [0/1] for filter by field, JoinPoint(10)], [JoinPoint(0), None, JoinPoint(1), None, JoinPoint(2), None, JoinPoint(3), None, JoinPoint(4), None, JoinPoint(5), None, JoinPoint(6), TaskAllocation [0/1] for update dv in-place, JoinPoint(7), None, JoinPoint(8), TaskAllocation [0/1] for update term lookup, JoinPoint(9), TaskAllocation [0/1] for update field, JoinPoint(10)]]
+2019-09-22 21:47:26,880 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO Allocating load generator [0] on [localhost]
+2019-09-22 21:47:26,880 ActorAddr-(T|:36095)/PID:30397 esrally.actor INFO Capabilities [{'coordinator': True, 'ip': '127.0.0.1', 'Convention Address.IPv4': '127.0.0.1:1900', 'Thespian ActorSystem Name': 'multiprocTCPBase', 'Thespian ActorSystem Version': 2, 'Thespian Watch Supported': True, 'Python Version': (3, 6, 8, 'final', 0), 'Thespian Generation': (3, 9), 'Thespian Version': '1569188712859'}] match requirements [{'coordinator': True}].
+2019-09-22 21:47:26,882 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO Allocating load generator [1] on [localhost]
+2019-09-22 21:47:26,883 ActorAddr-(T|:36095)/PID:30397 esrally.actor INFO Capabilities [{'coordinator': True, 'ip': '127.0.0.1', 'Convention Address.IPv4': '127.0.0.1:1900', 'Thespian ActorSystem Name': 'multiprocTCPBase', 'Thespian ActorSystem Version': 2, 'Thespian Watch Supported': True, 'Python Version': (3, 6, 8, 'final', 0), 'Thespian Generation': (3, 9), 'Thespian Version': '1569188712859'}] match requirements [{'coordinator': True}].
+2019-09-22 21:47:26,887 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO Starting load generator [0].
+2019-09-22 21:47:26,889 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO Starting load generator [1].
+2019-09-22 21:47:26,890 ActorAddr-(T|:36095)/PID:30397 esrally.actor INFO A track preparator has exited.
+2019-09-22 21:47:26,893 ActorAddr-(T|:36095)/PID:30397 esrally.actor INFO A track preparator has exited.
+2019-09-22 21:47:26,901 ActorAddr-(T|:42599)/PID:30399 esrally.actor INFO LoadGenerator[0] is about to start.
+2019-09-22 21:47:26,971 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO [1/2] drivers reached join point [0/10].
+2019-09-22 21:47:26,902 ActorAddr-(T|:42599)/PID:30399 esrally.client INFO Creating ES client connected to [{'host': '127.0.0.1', 'port': 39200}] with options [{'timeout': 1200000}]
+2019-09-22 21:47:26,902 ActorAddr-(T|:42599)/PID:30399 esrally.client INFO SSL support: off
+2019-09-22 21:47:26,903 ActorAddr-(T|:42599)/PID:30399 esrally.client INFO HTTP basic authentication: off
+2019-09-22 21:47:26,903 ActorAddr-(T|:42599)/PID:30399 esrally.client INFO HTTP compression: off
+2019-09-22 21:47:26,904 ActorAddr-(T|:42599)/PID:30399 esrally.utils.modules INFO Loading component [field_update] from [/home/ubuntu/elastic-dv-inplace-update-benchmark/field_update]
+2019-09-22 21:47:26,970 ActorAddr-(T|:42599)/PID:30399 esrally.actor INFO LoadGenerator[0] reached join point [JoinPoint(0)].
+2019-09-22 21:47:26,903 ActorAddr-(T|:44803)/PID:30400 esrally.actor INFO LoadGenerator[1] is about to start.
+2019-09-22 21:47:26,904 ActorAddr-(T|:44803)/PID:30400 esrally.client INFO Creating ES client connected to [{'host': '127.0.0.1', 'port': 39200}] with options [{'timeout': 1200000}]
+2019-09-22 21:47:26,905 ActorAddr-(T|:44803)/PID:30400 esrally.client INFO SSL support: off
+2019-09-22 21:47:26,976 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO [2/2] drivers reached join point [0/10].
+2019-09-22 21:47:26,905 ActorAddr-(T|:44803)/PID:30400 esrally.client INFO HTTP basic authentication: off
+2019-09-22 21:47:26,978 ActorAddr-(T|:39015)/PID:29947 esrally.actor INFO Task has finished.
+2019-09-22 21:47:26,978 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO All drivers completed their tasks until join point [0/10].
+2019-09-22 21:47:26,979 ActorAddr-(T|:39015)/PID:29947 esrally.actor INFO Bulk adding request metrics to metrics store.
+2019-09-22 21:47:26,978 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO Scheduling next task for client id [0] at their timestamp [625383.841927] (master timestamp [625383.842523])
+2019-09-22 21:47:26,978 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO Scheduling next task for client id [1] at their timestamp [625383.842067] (master timestamp [625383.842523])
+2019-09-22 21:47:26,905 ActorAddr-(T|:44803)/PID:30400 esrally.client INFO HTTP compression: off
+2019-09-22 21:47:26,981 ActorAddr-(T|:42599)/PID:30399 esrally.actor INFO LoadGenerator[0] is continuing its work at task index [1] on [625383.841927], that is in [0:00:00.996810].
+2019-09-22 21:47:26,906 ActorAddr-(T|:44803)/PID:30400 esrally.utils.modules INFO Loading component [field_update] from [/home/ubuntu/elastic-dv-inplace-update-benchmark/field_update]
+2019-09-22 21:47:26,975 ActorAddr-(T|:44803)/PID:30400 esrally.actor INFO LoadGenerator[1] reached join point [JoinPoint(0)].
+2019-09-22 21:47:26,982 ActorAddr-(T|:44803)/PID:30400 esrally.actor INFO LoadGenerator[1] is continuing its work at task index [1] on [625383.842067], that is in [0:00:00.996070].
+2019-09-22 21:47:27,982 ActorAddr-(T|:32839)/PID:30011 esrally.actor INFO Resetting relative time of system metrics store on host [127.0.0.1].
+2019-09-22 21:47:27,980 ActorAddr-(T|:33513)/PID:29948 esrally.actor INFO Resetting relative time of cluster system metrics store.
+2019-09-22 21:47:27,979 ActorAddr-(T|:42599)/PID:30399 esrally.actor INFO LoadGenerator[0] starts driving now.
+2019-09-22 21:47:27,979 ActorAddr-(T|:44803)/PID:30400 esrally.actor INFO LoadGenerator[1] starts driving now.
+2019-09-22 21:47:27,983 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO [1/2] drivers reached join point [1/10].
+2019-09-22 21:47:27,980 ActorAddr-(T|:44803)/PID:30400 esrally.actor INFO LoadGenerator[1] reached join point [JoinPoint(1)].
+2019-09-22 21:47:27,984 ActorAddr-(T|:42599)/PID:30399 esrally.actor INFO LoadGenerator[0] is executing [delete-index].
+2019-09-22 21:47:27,985 ActorAddr-(T|:42599)/PID:30399 esrally.driver.driver INFO Choosing [deterministic scheduler] for [delete-index].
+2019-09-22 21:47:27,986 ActorAddr-(T|:42599)/PID:30399 esrally.driver.driver INFO Creating iteration-count based schedule with [deterministic] distribution for [delete-index] with [0] warmup iterations and [1] iterations.
+2019-09-22 21:47:28,9 ActorAddr-(T|:42599)/PID:30399 esrally.driver.driver INFO Iteration-count-based schedule stopped after [0] warmup iterations and [1] iterations.
+2019-09-22 21:47:32,995 ActorAddr-(T|:42599)/PID:30399 esrally.actor INFO LoadGenerator[0] is ready for the next task.
+2019-09-22 21:47:32,996 ActorAddr-(T|:42599)/PID:30399 esrally.actor INFO LoadGenerator[0] reached join point [JoinPoint(1)].
+2019-09-22 21:47:32,999 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO [2/2] drivers reached join point [1/10].
+2019-09-22 21:47:33,3 ActorAddr-(T|:39015)/PID:29947 esrally.actor INFO Task has finished.
+2019-09-22 21:47:33,4 ActorAddr-(T|:39015)/PID:29947 esrally.actor INFO Bulk adding request metrics to metrics store.
+2019-09-22 21:47:33,0 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO All drivers completed their tasks until join point [1/10].
+2019-09-22 21:47:33,7 ActorAddr-(T|:44803)/PID:30400 esrally.actor INFO LoadGenerator[1] is continuing its work at task index [3] on [625389.864602], that is in [0:00:00.992864].
+2019-09-22 21:47:33,8 ActorAddr-(T|:42599)/PID:30399 esrally.actor INFO LoadGenerator[0] is continuing its work at task index [3] on [625389.864053], that is in [0:00:00.991229].
+2019-09-22 21:47:33,3 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO Scheduling next task for client id [0] at their timestamp [625389.864053] (master timestamp [625389.867024])
+2019-09-22 21:47:33,3 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO Scheduling next task for client id [1] at their timestamp [625389.864602] (master timestamp [625389.867024])
+2019-09-22 21:47:34,2 ActorAddr-(T|:44803)/PID:30400 esrally.actor INFO LoadGenerator[1] starts driving now.
+2019-09-22 21:47:34,4 ActorAddr-(T|:42599)/PID:30399 esrally.actor INFO LoadGenerator[0] starts driving now.
+2019-09-22 21:47:34,3 ActorAddr-(T|:44803)/PID:30400 esrally.actor INFO LoadGenerator[1] reached join point [JoinPoint(2)].
+2019-09-22 21:47:34,12 ActorAddr-(T|:32839)/PID:30011 esrally.actor INFO Resetting relative time of system metrics store on host [127.0.0.1].
+2019-09-22 21:47:34,8 ActorAddr-(T|:33513)/PID:29948 esrally.actor INFO Resetting relative time of cluster system metrics store.
+2019-09-22 21:47:34,12 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO [1/2] drivers reached join point [2/10].
+2019-09-22 21:47:34,5 ActorAddr-(T|:42599)/PID:30399 esrally.actor INFO LoadGenerator[0] is executing [create-index].
+2019-09-22 21:47:34,5 ActorAddr-(T|:42599)/PID:30399 esrally.driver.driver INFO Choosing [deterministic scheduler] for [create-index].
+2019-09-22 21:47:34,6 ActorAddr-(T|:42599)/PID:30399 esrally.driver.driver INFO Creating iteration-count based schedule with [deterministic] distribution for [create-index] with [0] warmup iterations and [1] iterations.
+2019-09-22 21:47:34,561 ActorAddr-(T|:42599)/PID:30399 esrally.driver.driver INFO Iteration-count-based schedule stopped after [0] warmup iterations and [1] iterations.
+2019-09-22 21:47:39,12 ActorAddr-(T|:42599)/PID:30399 esrally.actor INFO LoadGenerator[0] is ready for the next task.
+2019-09-22 21:47:39,13 ActorAddr-(T|:42599)/PID:30399 esrally.actor INFO LoadGenerator[0] reached join point [JoinPoint(2)].
+2019-09-22 21:47:39,19 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO [2/2] drivers reached join point [2/10].
+2019-09-22 21:47:39,24 ActorAddr-(T|:39015)/PID:29947 esrally.actor INFO Task has finished.
+2019-09-22 21:47:39,24 ActorAddr-(T|:44803)/PID:30400 esrally.actor INFO LoadGenerator[1] is continuing its work at task index [5] on [625395.877972], that is in [0:00:00.989501].
+2019-09-22 21:47:39,26 ActorAddr-(T|:42599)/PID:30399 esrally.actor INFO LoadGenerator[0] is continuing its work at task index [5] on [625395.881680], that is in [0:00:00.991639].
+2019-09-22 21:47:39,25 ActorAddr-(T|:39015)/PID:29947 esrally.actor INFO Bulk adding request metrics to metrics store.
+2019-09-22 21:47:39,21 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO All drivers completed their tasks until join point [2/10].
+2019-09-22 21:47:39,23 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO Scheduling next task for client id [0] at their timestamp [625395.881680] (master timestamp [625395.887270])
+2019-09-22 21:47:39,23 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO Scheduling next task for client id [1] at their timestamp [625395.877972] (master timestamp [625395.887270])
+2019-09-22 21:47:40,15 ActorAddr-(T|:44803)/PID:30400 esrally.actor INFO LoadGenerator[1] starts driving now.
+2019-09-22 21:47:40,19 ActorAddr-(T|:42599)/PID:30399 esrally.actor INFO LoadGenerator[0] starts driving now.
+2019-09-22 21:47:40,20 ActorAddr-(T|:42599)/PID:30399 esrally.actor INFO LoadGenerator[0] is executing [make subs].
+2019-09-22 21:47:40,16 ActorAddr-(T|:44803)/PID:30400 esrally.actor INFO LoadGenerator[1] reached join point [JoinPoint(3)].
+2019-09-22 21:47:40,20 ActorAddr-(T|:42599)/PID:30399 esrally.driver.driver INFO Choosing [deterministic scheduler] for [make subs].
+2019-09-22 21:47:40,28 ActorAddr-(T|:33513)/PID:29948 esrally.actor INFO Resetting relative time of cluster system metrics store.
+2019-09-22 21:47:40,30 ActorAddr-(T|:32839)/PID:30011 esrally.actor INFO Resetting relative time of system metrics store on host [127.0.0.1].
+2019-09-22 21:47:40,31 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO [1/2] drivers reached join point [3/10].
+2019-09-22 21:47:40,21 ActorAddr-(T|:42599)/PID:30399 esrally.driver.driver INFO Creating iteration-count based schedule with [deterministic] distribution for [make subs] with [0] warmup iterations and [1] iterations.
+2019-09-22 21:47:40,114 ActorAddr-(T|:42599)/PID:30399 esrally.driver.driver INFO Iteration-count-based schedule stopped after [0] warmup iterations and [1] iterations.
+2019-09-22 21:47:45,28 ActorAddr-(T|:42599)/PID:30399 esrally.actor INFO LoadGenerator[0] is ready for the next task.
+2019-09-22 21:47:45,29 ActorAddr-(T|:42599)/PID:30399 esrally.actor INFO LoadGenerator[0] reached join point [JoinPoint(3)].
+2019-09-22 21:47:45,35 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO [2/2] drivers reached join point [3/10].
+2019-09-22 21:47:45,39 ActorAddr-(T|:39015)/PID:29947 esrally.actor INFO Task has finished.
+2019-09-22 21:47:45,40 ActorAddr-(T|:39015)/PID:29947 esrally.actor INFO Bulk adding request metrics to metrics store.
+2019-09-22 21:47:45,42 ActorAddr-(T|:42599)/PID:30399 esrally.actor INFO LoadGenerator[0] is continuing its work at task index [7] on [625401.897231], that is in [0:00:00.990694].
+2019-09-22 21:47:45,43 ActorAddr-(T|:44803)/PID:30400 esrally.actor INFO LoadGenerator[1] is continuing its work at task index [7] on [625401.888430], that is in [0:00:00.980672].
+2019-09-22 21:47:45,35 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO All drivers completed their tasks until join point [3/10].
+2019-09-22 21:47:45,38 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO Scheduling next task for client id [0] at their timestamp [625401.897231] (master timestamp [625401.902575])
+2019-09-22 21:47:45,39 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO Scheduling next task for client id [1] at their timestamp [625401.888430] (master timestamp [625401.902575])
+2019-09-22 21:47:46,26 ActorAddr-(T|:44803)/PID:30400 esrally.actor INFO LoadGenerator[1] starts driving now.
+2019-09-22 21:47:46,27 ActorAddr-(T|:44803)/PID:30400 esrally.actor INFO LoadGenerator[1] reached join point [JoinPoint(4)].
+2019-09-22 21:47:46,29 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO [1/2] drivers reached join point [4/10].
+2019-09-22 21:47:46,35 ActorAddr-(T|:42599)/PID:30399 esrally.actor INFO LoadGenerator[0] starts driving now.
+2019-09-22 21:47:46,43 ActorAddr-(T|:33513)/PID:29948 esrally.actor INFO Resetting relative time of cluster system metrics store.
+2019-09-22 21:47:46,45 ActorAddr-(T|:32839)/PID:30011 esrally.actor INFO Resetting relative time of system metrics store on host [127.0.0.1].
+2019-09-22 21:47:46,35 ActorAddr-(T|:42599)/PID:30399 esrally.actor INFO LoadGenerator[0] is executing [insert books].
+2019-09-22 21:47:46,36 ActorAddr-(T|:42599)/PID:30399 esrally.driver.driver INFO Choosing [deterministic scheduler] for [insert books].
+2019-09-22 21:47:46,36 ActorAddr-(T|:42599)/PID:30399 esrally.driver.driver INFO Creating iteration-count based schedule with [deterministic] distribution for [insert books] with [0] warmup iterations and [10000] iterations.
+2019-09-22 22:26:43,495 ActorAddr-(T|:42599)/PID:30399 esrally.driver.driver INFO Iteration-count-based schedule stopped after [0] warmup iterations and [10000] iterations.
+2019-09-22 22:26:44,903 ActorAddr-(T|:42599)/PID:30399 esrally.actor INFO LoadGenerator[0] is ready for the next task.
+2019-09-22 22:26:44,904 ActorAddr-(T|:42599)/PID:30399 esrally.actor INFO LoadGenerator[0] reached join point [JoinPoint(4)].
+2019-09-22 22:26:45,61 ActorAddr-(T|:42599)/PID:30399 esrally.actor INFO LoadGenerator[0] is continuing its work at task index [9] on [627741.921772], that is in [0:00:00.996729].
+2019-09-22 22:26:44,907 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO [2/2] drivers reached join point [4/10].
+2019-09-22 22:26:45,65 ActorAddr-(T|:44803)/PID:30400 esrally.actor INFO LoadGenerator[1] is continuing its work at task index [9] on [627741.922166], that is in [0:00:00.992851].
+2019-09-22 22:26:44,908 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO All drivers completed their tasks until join point [4/10].
+2019-09-22 22:26:45,60 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO Scheduling next task for client id [0] at their timestamp [627741.921772] (master timestamp [627741.923890])
+2019-09-22 22:26:45,61 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO Scheduling next task for client id [1] at their timestamp [627741.922166] (master timestamp [627741.923890])
+2019-09-22 22:26:45,64 ActorAddr-(T|:39015)/PID:29947 esrally.actor INFO Task has finished.
+2019-09-22 22:26:45,64 ActorAddr-(T|:39015)/PID:29947 esrally.actor INFO Bulk adding request metrics to metrics store.
+2019-09-22 22:26:46,59 ActorAddr-(T|:42599)/PID:30399 esrally.actor INFO LoadGenerator[0] starts driving now.
+2019-09-22 22:26:46,60 ActorAddr-(T|:44803)/PID:30400 esrally.actor INFO LoadGenerator[1] starts driving now.
+2019-09-22 22:26:46,61 ActorAddr-(T|:44803)/PID:30400 esrally.actor INFO LoadGenerator[1] reached join point [JoinPoint(5)].
+2019-09-22 22:26:46,60 ActorAddr-(T|:42599)/PID:30399 esrally.actor INFO LoadGenerator[0] is executing [insert subs].
+2019-09-22 22:26:46,66 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO [1/2] drivers reached join point [5/10].
+2019-09-22 22:26:46,61 ActorAddr-(T|:42599)/PID:30399 esrally.driver.driver INFO Choosing [deterministic scheduler] for [insert subs].
+2019-09-22 22:26:46,61 ActorAddr-(T|:42599)/PID:30399 esrally.driver.driver INFO Creating iteration-count based schedule with [deterministic] distribution for [insert subs] with [0] warmup iterations and [200] iterations.
+2019-09-22 22:26:46,127 ActorAddr-(T|:33513)/PID:29948 esrally.actor INFO Resetting relative time of cluster system metrics store.
+2019-09-22 22:26:46,130 ActorAddr-(T|:32839)/PID:30011 esrally.actor INFO Resetting relative time of system metrics store on host [127.0.0.1].
+2019-09-22 22:27:47,526 ActorAddr-(T|:42599)/PID:30399 esrally.driver.driver INFO Iteration-count-based schedule stopped after [0] warmup iterations and [200] iterations.
+2019-09-22 22:27:51,130 ActorAddr-(T|:42599)/PID:30399 esrally.actor INFO LoadGenerator[0] is ready for the next task.
+2019-09-22 22:27:51,131 ActorAddr-(T|:42599)/PID:30399 esrally.actor INFO LoadGenerator[0] reached join point [JoinPoint(5)].
+2019-09-22 22:27:51,134 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO [2/2] drivers reached join point [5/10].
+2019-09-22 22:27:51,147 ActorAddr-(T|:39015)/PID:29947 esrally.actor INFO Task has finished.
+2019-09-22 22:27:51,150 ActorAddr-(T|:42599)/PID:30399 esrally.actor INFO LoadGenerator[0] is continuing its work at task index [11] on [627808.010557], that is in [0:00:00.996155].
+2019-09-22 22:27:51,148 ActorAddr-(T|:39015)/PID:29947 esrally.actor INFO Bulk adding request metrics to metrics store.
+2019-09-22 22:27:51,153 ActorAddr-(T|:44803)/PID:30400 esrally.actor INFO LoadGenerator[1] is continuing its work at task index [11] on [627808.007653], that is in [0:00:00.989985].
+2019-09-22 22:27:51,135 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO All drivers completed their tasks until join point [5/10].
+2019-09-22 22:27:51,148 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO Scheduling next task for client id [0] at their timestamp [627808.010557] (master timestamp [627808.012772])
+2019-09-22 22:27:51,149 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO Scheduling next task for client id [1] at their timestamp [627808.007653] (master timestamp [627808.012772])
+2019-09-22 22:27:52,145 ActorAddr-(T|:44803)/PID:30400 esrally.actor INFO LoadGenerator[1] starts driving now.
+2019-09-22 22:27:52,148 ActorAddr-(T|:42599)/PID:30399 esrally.actor INFO LoadGenerator[0] starts driving now.
+2019-09-22 22:27:52,147 ActorAddr-(T|:44803)/PID:30400 esrally.actor INFO LoadGenerator[1] reached join point [JoinPoint(6)].
+2019-09-22 22:27:52,152 ActorAddr-(T|:33513)/PID:29948 esrally.actor INFO Resetting relative time of cluster system metrics store.
+2019-09-22 22:27:52,154 ActorAddr-(T|:32839)/PID:30011 esrally.actor INFO Resetting relative time of system metrics store on host [127.0.0.1].
+2019-09-22 22:27:52,151 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO [1/2] drivers reached join point [6/10].
+2019-09-22 22:27:52,149 ActorAddr-(T|:42599)/PID:30399 esrally.actor INFO LoadGenerator[0] is executing [force-merge].
+2019-09-22 22:27:52,149 ActorAddr-(T|:42599)/PID:30399 esrally.driver.driver INFO Choosing [deterministic scheduler] for [force-merge].
+2019-09-22 22:27:52,150 ActorAddr-(T|:42599)/PID:30399 esrally.driver.driver INFO Creating iteration-count based schedule with [deterministic] distribution for [force-merge] with [0] warmup iterations and [1] iterations.
+2019-09-22 22:30:58,390 ActorAddr-(T|:42599)/PID:30399 esrally.driver.driver INFO Iteration-count-based schedule stopped after [0] warmup iterations and [1] iterations.
+2019-09-22 22:31:02,335 ActorAddr-(T|:42599)/PID:30399 esrally.actor INFO LoadGenerator[0] is ready for the next task.
+2019-09-22 22:31:02,335 ActorAddr-(T|:42599)/PID:30399 esrally.actor INFO LoadGenerator[0] reached join point [JoinPoint(6)].
+2019-09-22 22:31:02,340 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO [2/2] drivers reached join point [6/10].
+2019-09-22 22:31:02,346 ActorAddr-(T|:39015)/PID:29947 esrally.actor INFO Task has finished.
+2019-09-22 22:31:02,347 ActorAddr-(T|:39015)/PID:29947 esrally.actor INFO Bulk adding request metrics to metrics store.
+2019-09-22 22:31:02,352 ActorAddr-(T|:44803)/PID:30400 esrally.actor INFO LoadGenerator[1] is continuing its work at task index [13] on [627999.209638], that is in [0:00:00.993810].
+2019-09-22 22:31:02,353 ActorAddr-(T|:42599)/PID:30399 esrally.actor INFO LoadGenerator[0] is continuing its work at task index [13] on [627999.209286], that is in [0:00:00.992350].
+2019-09-22 22:31:02,341 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO All drivers completed their tasks until join point [6/10].
+2019-09-22 22:31:02,349 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO Scheduling next task for client id [0] at their timestamp [627999.209286] (master timestamp [627999.213313])
+2019-09-22 22:31:02,350 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO Scheduling next task for client id [1] at their timestamp [627999.209638] (master timestamp [627999.213313])
+2019-09-22 22:31:03,347 ActorAddr-(T|:44803)/PID:30400 esrally.actor INFO LoadGenerator[1] starts driving now.
+2019-09-22 22:31:03,350 ActorAddr-(T|:33513)/PID:29948 esrally.actor INFO Resetting relative time of cluster system metrics store.
+2019-09-22 22:31:03,352 ActorAddr-(T|:32839)/PID:30011 esrally.actor INFO Resetting relative time of system metrics store on host [127.0.0.1].
+2019-09-22 22:31:03,349 ActorAddr-(T|:42599)/PID:30399 esrally.actor INFO LoadGenerator[0] starts driving now.
+2019-09-22 22:31:03,352 ActorAddr-(T|:42599)/PID:30399 esrally.actor INFO LoadGenerator[0] is executing [filter by DV].
+2019-09-22 22:31:03,353 ActorAddr-(T|:42599)/PID:30399 esrally.driver.driver INFO Choosing [deterministic scheduler] for [filter by DV].
+2019-09-22 22:31:03,353 ActorAddr-(T|:42599)/PID:30399 esrally.driver.driver INFO Creating iteration-count based schedule with [deterministic] distribution for [filter by DV] with [0] warmup iterations and [1] iterations.
+2019-09-22 22:31:03,347 ActorAddr-(T|:44803)/PID:30400 esrally.actor INFO LoadGenerator[1] is executing [update dv in-place].
+2019-09-22 22:31:03,348 ActorAddr-(T|:44803)/PID:30400 esrally.driver.driver INFO Choosing [deterministic scheduler] for [update dv in-place].
+2019-09-22 22:31:03,349 ActorAddr-(T|:44803)/PID:30400 esrally.driver.driver INFO Creating iteration-count based schedule with [deterministic] distribution for [update dv in-place] with [0] warmup iterations and [50] iterations.
+2019-09-22 22:31:03,775 ActorAddr-(T|:42599)/PID:30399 esrally.driver.driver INFO Iteration-count-based schedule stopped after [0] warmup iterations and [1] iterations.
+2019-09-22 22:31:04,225 ActorAddr-(T|:44803)/PID:30400 esrally.driver.driver INFO Iteration-count-based schedule stopped after [0] warmup iterations and [50] iterations.
+2019-09-22 22:31:08,361 ActorAddr-(T|:42599)/PID:30399 esrally.actor INFO LoadGenerator[0] is ready for the next task.
+2019-09-22 22:31:08,362 ActorAddr-(T|:42599)/PID:30399 esrally.actor INFO LoadGenerator[0] reached join point [JoinPoint(7)].
+2019-09-22 22:31:08,366 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO [1/2] drivers reached join point [7/10].
+2019-09-22 22:31:08,367 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO Tasks before [JoinPoint(7)] are able to complete the parent structure. Checking if clients [[1]] have finished yet.
+2019-09-22 22:31:08,368 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO Client id [1] did not yet finish.
+2019-09-22 22:31:08,377 ActorAddr-(T|:44803)/PID:30400 esrally.actor INFO LoadGenerator[1] is ready for the next task.
+2019-09-22 22:31:08,377 ActorAddr-(T|:44803)/PID:30400 esrally.actor INFO LoadGenerator[1] reached join point [JoinPoint(7)].
+2019-09-22 22:31:08,380 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO [2/2] drivers reached join point [7/10].
+2019-09-22 22:31:08,381 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO All drivers completed their tasks until join point [7/10].
+2019-09-22 22:31:08,384 ActorAddr-(T|:39015)/PID:29947 esrally.actor INFO Task has finished.
+2019-09-22 22:31:08,383 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO Scheduling next task for client id [0] at their timestamp [628005.244691] (master timestamp [628005.247757])
+2019-09-22 22:31:08,385 ActorAddr-(T|:39015)/PID:29947 esrally.actor INFO Bulk adding request metrics to metrics store.
+2019-09-22 22:31:08,384 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO Scheduling next task for client id [1] at their timestamp [628005.245552] (master timestamp [628005.247757])
+2019-09-22 22:31:08,387 ActorAddr-(T|:44803)/PID:30400 esrally.actor INFO LoadGenerator[1] is continuing its work at task index [15] on [628005.245552], that is in [0:00:00.994159].
+2019-09-22 22:31:08,388 ActorAddr-(T|:42599)/PID:30399 esrally.actor INFO LoadGenerator[0] is continuing its work at task index [15] on [628005.244691], that is in [0:00:00.991895].
+2019-09-22 22:31:09,382 ActorAddr-(T|:44803)/PID:30400 esrally.actor INFO LoadGenerator[1] starts driving now.
+2019-09-22 22:31:09,383 ActorAddr-(T|:44803)/PID:30400 esrally.actor INFO LoadGenerator[1] reached join point [JoinPoint(8)].
+2019-09-22 22:31:09,386 ActorAddr-(T|:42599)/PID:30399 esrally.actor INFO LoadGenerator[0] starts driving now.
+2019-09-22 22:31:09,388 ActorAddr-(T|:33513)/PID:29948 esrally.actor INFO Resetting relative time of cluster system metrics store.
+2019-09-22 22:31:09,390 ActorAddr-(T|:32839)/PID:30011 esrally.actor INFO Resetting relative time of system metrics store on host [127.0.0.1].
+2019-09-22 22:31:09,386 ActorAddr-(T|:42599)/PID:30399 esrally.actor INFO LoadGenerator[0] is executing [warming filter by term lookup].
+2019-09-22 22:31:09,387 ActorAddr-(T|:42599)/PID:30399 esrally.driver.driver INFO Choosing [deterministic scheduler] for [warming filter by term lookup].
+2019-09-22 22:31:09,393 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO [1/2] drivers reached join point [8/10].
+2019-09-22 22:31:09,387 ActorAddr-(T|:42599)/PID:30399 esrally.driver.driver INFO Creating iteration-count based schedule with [deterministic] distribution for [warming filter by term lookup] with [0] warmup iterations and [30] iterations.
+2019-09-22 22:31:57,623 ActorAddr-(T|:42599)/PID:30399 esrally.driver.driver INFO Iteration-count-based schedule stopped after [0] warmup iterations and [30] iterations.
+2019-09-22 22:31:59,428 ActorAddr-(T|:42599)/PID:30399 esrally.actor INFO LoadGenerator[0] is ready for the next task.
+2019-09-22 22:31:59,429 ActorAddr-(T|:42599)/PID:30399 esrally.actor INFO LoadGenerator[0] reached join point [JoinPoint(8)].
+2019-09-22 22:31:59,435 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO [2/2] drivers reached join point [8/10].
+2019-09-22 22:31:59,441 ActorAddr-(T|:39015)/PID:29947 esrally.actor INFO Task has finished.
+2019-09-22 22:31:59,442 ActorAddr-(T|:42599)/PID:30399 esrally.actor INFO LoadGenerator[0] is continuing its work at task index [17] on [628056.299200], that is in [0:00:00.992776].
+2019-09-22 22:31:59,442 ActorAddr-(T|:39015)/PID:29947 esrally.actor INFO Bulk adding request metrics to metrics store.
+2019-09-22 22:31:59,445 ActorAddr-(T|:44803)/PID:30400 esrally.actor INFO LoadGenerator[1] is continuing its work at task index [17] on [628056.295007], that is in [0:00:00.985787].
+2019-09-22 22:31:59,435 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO All drivers completed their tasks until join point [8/10].
+2019-09-22 22:31:59,440 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO Scheduling next task for client id [0] at their timestamp [628056.299200] (master timestamp [628056.304801])
+2019-09-22 22:31:59,444 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO Scheduling next task for client id [1] at their timestamp [628056.295007] (master timestamp [628056.304801])
+2019-09-22 22:32:00,437 ActorAddr-(T|:42599)/PID:30399 esrally.actor INFO LoadGenerator[0] starts driving now.
+2019-09-22 22:32:00,433 ActorAddr-(T|:44803)/PID:30400 esrally.actor INFO LoadGenerator[1] starts driving now.
+2019-09-22 22:32:00,434 ActorAddr-(T|:44803)/PID:30400 esrally.actor INFO LoadGenerator[1] is executing [update term lookup].
+2019-09-22 22:32:00,434 ActorAddr-(T|:44803)/PID:30400 esrally.driver.driver INFO Choosing [deterministic scheduler] for [update term lookup].
+2019-09-22 22:32:00,434 ActorAddr-(T|:44803)/PID:30400 esrally.driver.driver INFO Creating iteration-count based schedule with [deterministic] distribution for [update term lookup] with [0] warmup iterations and [100] iterations.
+2019-09-22 22:32:00,444 ActorAddr-(T|:33513)/PID:29948 esrally.actor INFO Resetting relative time of cluster system metrics store.
+2019-09-22 22:32:00,446 ActorAddr-(T|:32839)/PID:30011 esrally.actor INFO Resetting relative time of system metrics store on host [127.0.0.1].
+2019-09-22 22:32:00,438 ActorAddr-(T|:42599)/PID:30399 esrally.actor INFO LoadGenerator[0] is executing [filter by term lookup].
+2019-09-22 22:32:00,438 ActorAddr-(T|:42599)/PID:30399 esrally.driver.driver INFO Choosing [deterministic scheduler] for [filter by term lookup].
+2019-09-22 22:32:00,439 ActorAddr-(T|:42599)/PID:30399 esrally.driver.driver INFO Creating iteration-count based schedule with [deterministic] distribution for [filter by term lookup] with [0] warmup iterations and [1] iterations.
+2019-09-22 22:32:02,868 ActorAddr-(T|:42599)/PID:30399 esrally.driver.driver INFO Iteration-count-based schedule stopped after [0] warmup iterations and [1] iterations.
+2019-09-22 22:32:05,444 ActorAddr-(T|:42599)/PID:30399 esrally.actor INFO LoadGenerator[0] is ready for the next task.
+2019-09-22 22:32:05,446 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO [1/2] drivers reached join point [9/10].
+2019-09-22 22:32:05,444 ActorAddr-(T|:42599)/PID:30399 esrally.actor INFO LoadGenerator[0] reached join point [JoinPoint(9)].
+2019-09-22 22:32:05,447 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO Tasks before [JoinPoint(9)] are able to complete the parent structure. Checking if clients [[1]] have finished yet.
+2019-09-22 22:32:05,447 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO Client id [1] did not yet finish.
+2019-09-22 22:32:35,15 ActorAddr-(T|:44803)/PID:30400 esrally.driver.driver INFO Iteration-count-based schedule stopped after [0] warmup iterations and [100] iterations.
+2019-09-22 22:32:35,466 ActorAddr-(T|:44803)/PID:30400 esrally.actor INFO LoadGenerator[1] is ready for the next task.
+2019-09-22 22:32:35,471 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO [2/2] drivers reached join point [9/10].
+2019-09-22 22:32:35,467 ActorAddr-(T|:44803)/PID:30400 esrally.actor INFO LoadGenerator[1] reached join point [JoinPoint(9)].
+2019-09-22 22:32:35,491 ActorAddr-(T|:39015)/PID:29947 esrally.actor INFO Task has finished.
+2019-09-22 22:32:35,493 ActorAddr-(T|:44803)/PID:30400 esrally.actor INFO LoadGenerator[1] is continuing its work at task index [19] on [628092.352039], that is in [0:00:00.994437].
+2019-09-22 22:32:35,494 ActorAddr-(T|:42599)/PID:30399 esrally.actor INFO LoadGenerator[0] is continuing its work at task index [19] on [628092.354377], that is in [0:00:00.996320].
+2019-09-22 22:32:35,472 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO All drivers completed their tasks until join point [9/10].
+2019-09-22 22:32:35,492 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO Scheduling next task for client id [0] at their timestamp [628092.354377] (master timestamp [628092.356190])
+2019-09-22 22:32:35,493 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO Scheduling next task for client id [1] at their timestamp [628092.352039] (master timestamp [628092.356190])
+2019-09-22 22:32:35,491 ActorAddr-(T|:39015)/PID:29947 esrally.actor INFO Bulk adding request metrics to metrics store.
+2019-09-22 22:32:36,489 ActorAddr-(T|:44803)/PID:30400 esrally.actor INFO LoadGenerator[1] starts driving now.
+2019-09-22 22:32:36,492 ActorAddr-(T|:42599)/PID:30399 esrally.actor INFO LoadGenerator[0] starts driving now.
+2019-09-22 22:32:36,490 ActorAddr-(T|:44803)/PID:30400 esrally.actor INFO LoadGenerator[1] is executing [update field].
+2019-09-22 22:32:36,493 ActorAddr-(T|:42599)/PID:30399 esrally.actor INFO LoadGenerator[0] is executing [filter by field].
+2019-09-22 22:32:36,499 ActorAddr-(T|:33513)/PID:29948 esrally.actor INFO Resetting relative time of cluster system metrics store.
+2019-09-22 22:32:36,501 ActorAddr-(T|:32839)/PID:30011 esrally.actor INFO Resetting relative time of system metrics store on host [127.0.0.1].
+2019-09-22 22:32:36,493 ActorAddr-(T|:42599)/PID:30399 esrally.driver.driver INFO Choosing [deterministic scheduler] for [filter by field].
+2019-09-22 22:32:36,491 ActorAddr-(T|:44803)/PID:30400 esrally.driver.driver INFO Choosing [deterministic scheduler] for [update field].
+2019-09-22 22:32:36,493 ActorAddr-(T|:42599)/PID:30399 esrally.driver.driver INFO Creating iteration-count based schedule with [deterministic] distribution for [filter by field] with [0] warmup iterations and [1] iterations.
+2019-09-22 22:32:36,491 ActorAddr-(T|:44803)/PID:30400 esrally.driver.driver INFO Creating iteration-count based schedule with [deterministic] distribution for [update field] with [0] warmup iterations and [10000] iterations.
+2019-09-22 22:32:36,538 ActorAddr-(T|:42599)/PID:30399 esrally.driver.driver INFO Iteration-count-based schedule stopped after [0] warmup iterations and [1] iterations.
+2019-09-22 22:32:41,500 ActorAddr-(T|:42599)/PID:30399 esrally.actor INFO LoadGenerator[0] is ready for the next task.
+2019-09-22 22:32:41,501 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO [1/2] drivers reached join point [10/10].
+2019-09-22 22:32:41,500 ActorAddr-(T|:42599)/PID:30399 esrally.actor INFO LoadGenerator[0] reached join point [JoinPoint(10)].
+2019-09-22 22:32:41,502 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO Tasks before [JoinPoint(10)] are able to complete the parent structure. Checking if clients [[1]] have finished yet.
+2019-09-22 22:32:41,502 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO Client id [1] did not yet finish.
+2019-09-22 22:49:07,706 ActorAddr-(T|:44803)/PID:30400 esrally.driver.driver INFO Iteration-count-based schedule stopped after [0] warmup iterations and [10000] iterations.
+2019-09-22 22:49:07,853 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO [2/2] drivers reached join point [10/10].
+2019-09-22 22:49:07,850 ActorAddr-(T|:44803)/PID:30400 esrally.actor INFO LoadGenerator[1] is ready for the next task.
+2019-09-22 22:49:07,851 ActorAddr-(T|:44803)/PID:30400 esrally.actor INFO LoadGenerator[1] reached join point [JoinPoint(10)].
+2019-09-22 22:49:07,854 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO All drivers completed their tasks until join point [10/10].
+2019-09-22 22:49:07,988 ActorAddr-(T|:36095)/PID:30397 esrally.driver.driver INFO All steps completed.
+2019-09-22 22:49:07,989 ActorAddr-(T|:36095)/PID:30397 esrally.metrics INFO Closing metrics store.
+2019-09-22 22:49:07,993 ActorAddr-(T|:39015)/PID:29947 esrally.actor INFO Benchmark is complete.
+2019-09-22 22:49:08,104 ActorAddr-(T|:33513)/PID:29948 esrally.actor INFO Transitioning from [benchmark_started] to [benchmark_stopping].
+2019-09-22 22:49:08,104 ActorAddr-(T|:36095)/PID:30397 esrally.actor INFO Main driver received ActorExitRequest and will terminate all load generators.
+2019-09-22 22:49:07,993 ActorAddr-(T|:39015)/PID:29947 esrally.actor INFO Bulk adding request metrics to metrics store.
+2019-09-22 22:49:08,108 ActorAddr-(T|:42599)/PID:30399 esrally.actor INFO LoadGenerator[0] is exiting due to ActorExitRequest.
+2019-09-22 22:49:08,107 ActorAddr-(T|:44803)/PID:30400 esrally.actor INFO LoadGenerator[1] is exiting due to ActorExitRequest.
+2019-09-22 22:49:08,112 ActorAddr-(T|:36095)/PID:30397 esrally.actor INFO Load generator [1] has exited.
+2019-09-22 22:49:08,119 ActorAddr-(T|:39015)/PID:29947 esrally.actor INFO BenchmarkActor received unknown message [ChildActorExited:ActorAddr-(T|:36095)] (ignoring).
+2019-09-22 22:49:08,117 ActorAddr-(T|:36095)/PID:30397 esrally.actor INFO Load generator [0] has exited.
+2019-09-22 22:49:08,126 ActorAddr-(T|:39015)/PID:29947 esrally.actor INFO BenchmarkActor received unknown message [ChildActorExited:ActorAddr-(T|:36095)] (ignoring).
+2019-09-22 22:49:08,201 ActorAddr-(T|:33513)/PID:29948 esrally.mechanic.telemetry INFO Gathering indices stats for all primaries on benchmark stop.
+2019-09-22 22:49:08,214 ActorAddr-(T|:39015)/PID:29947 esrally.actor INFO Bulk adding system metrics to metrics store.
+2019-09-22 22:49:08,214 ActorAddr-(T|:39015)/PID:29947 esrally.actor INFO Asking mechanic to stop the engine.
+2019-09-22 22:49:08,246 ActorAddr-(T|:33513)/PID:29948 esrally.actor INFO Transitioning from [benchmark_stopped] to [cluster_stopping].
+2019-09-22 22:49:08,248 ActorAddr-(T|:32839)/PID:30011 esrally.actor INFO Stopping nodes [rally-node-0].
+2019-09-22 22:49:10,19 ActorAddr-(T|:39015)/PID:29947 esrally.actor INFO Mechanic has stopped engine successfully.
+2019-09-22 22:49:08,248 ActorAddr-(T|:32839)/PID:30011 esrally.mechanic.launcher INFO Shutting down [1] nodes on this host.
+2019-09-22 22:49:10,30 ActorAddr-(T|:33053)/PID:30010 esrally.actor INFO mechanic.Dispatcher#receiveMessage unrecognized(msg = [<class 'thespian.actors.ChildActorExited'>] sender = [ActorAddr-(T|:32839)])
+2019-09-22 22:49:10,16 ActorAddr-(T|:32839)/PID:30011 esrally.mechanic.launcher INFO Done shutdown node [rally-node-0] in [1.8] s.
+2019-09-22 22:49:10,17 ActorAddr-(T|:32839)/PID:30011 esrally.mechanic.provisioner INFO Preserving benchmark candidate installation at [/home/ubuntu/.rally/benchmarks/races/80ba38ac-54f8-4218-9d5b-408b47a36ec7/rally-node-0/install].
+2019-09-22 22:49:10,21 ActorAddr-(T|:32839)/PID:30011 esrally.metrics INFO Closing metrics store.
+2019-09-22 22:49:10,38 ActorAddr-(T|:33053)/PID:30010 esrally.actor INFO mechanic.Dispatcher#receiveMessage unrecognized(msg = [<class 'thespian.actors.ChildActorExited'>] sender = [ActorAddr-(T|:33053)])
+2019-09-22 22:49:10,19 ActorAddr-(T|:39015)/PID:29947 esrally.actor INFO Bulk adding system metrics to metrics store.
+2019-09-22 22:49:11,153 ActorAddr-(T|:39015)/PID:29947 esrally.reporter INFO [1m
+------------------------------------------------------
+    _______             __   _____
+   / ____(_)___  ____ _/ /  / ___/_________  ________
+  / /_  / / __ \/ __ `/ /   \__ \/ ___/ __ \/ ___/ _ \
+ / __/ / / / / / /_/ / /   ___/ / /__/ /_/ / /  /  __/
+/_/   /_/_/ /_/\__,_/_/   /____/\___/\____/_/   \___/
+------------------------------------------------------
+            [0m
+2019-09-22 22:49:11,159 ActorAddr-(T|:39015)/PID:29947 esrally.reporter INFO |                                                         Metric |                          Task |       Value |   Unit |
+|---------------------------------------------------------------:|------------------------------:|------------:|-------:|
+|                     Cumulative indexing time of primary shards |                               |      33.453 |    min |
+|             Min cumulative indexing time across primary shards |                               |     1.35675 |    min |
+|          Median cumulative indexing time across primary shards |                               |      3.1349 |    min |
+|             Max cumulative indexing time across primary shards |                               |     3.67587 |    min |
+|            Cumulative indexing throttle time of primary shards |                               |           0 |    min |
+|    Min cumulative indexing throttle time across primary shards |                               |           0 |    min |
+| Median cumulative indexing throttle time across primary shards |                               |           0 |    min |
+|    Max cumulative indexing throttle time across primary shards |                               |           0 |    min |
+|                        Cumulative merge time of primary shards |                               |     27.3283 |    min |
+|                       Cumulative merge count of primary shards |                               |          40 |        |
+|                Min cumulative merge time across primary shards |                               |           0 |    min |
+|             Median cumulative merge time across primary shards |                               |     2.75815 |    min |
+|                Max cumulative merge time across primary shards |                               |     2.93545 |    min |
+|               Cumulative merge throttle time of primary shards |                               |    0.168483 |    min |
+|       Min cumulative merge throttle time across primary shards |                               |           0 |    min |
+|    Median cumulative merge throttle time across primary shards |                               |   0.0153833 |    min |
+|       Max cumulative merge throttle time across primary shards |                               |   0.0219333 |    min |
+|                      Cumulative refresh time of primary shards |                               |      7.7807 |    min |
+|                     Cumulative refresh count of primary shards |                               |         586 |        |
+|              Min cumulative refresh time across primary shards |                               |      0.5625 |    min |
+|           Median cumulative refresh time across primary shards |                               |    0.723133 |    min |
+|              Max cumulative refresh time across primary shards |                               |     0.76525 |    min |
+|                        Cumulative flush time of primary shards |                               |    0.479467 |    min |
+|                       Cumulative flush count of primary shards |                               |          22 |        |
+|                Min cumulative flush time across primary shards |                               | 0.000433333 |    min |
+|             Median cumulative flush time across primary shards |                               |   0.0395333 |    min |
+|                Max cumulative flush time across primary shards |                               |       0.092 |    min |
+|                                             Total Young Gen GC |                               |     161.536 |      s |
+|                                               Total Old Gen GC |                               |        0.79 |      s |
+|                                                     Store size |                               |     5.87065 |     GB |
+|                                                  Translog size |                               |      5.8778 |     GB |
+|                                                     Index size |                               |     8.68481 |     GB |
+|                                                  Total written |                               |     32.1551 |     GB |
+|                                         Heap used for segments |                               |     3.53873 |     MB |
+|                                       Heap used for doc values |                               |   0.0217438 |     MB |
+|                                            Heap used for terms |                               |     3.24657 |     MB |
+|                                            Heap used for norms |                               |  0.00244141 |     MB |
+|                                           Heap used for points |                               |   0.0685062 |     MB |
+|                                    Heap used for stored fields |                               |    0.199463 |     MB |
+|                                                  Segment count |                               |          92 |        |
+|                                                 Min Throughput |                  insert books |      559.08 | docs/s |
+|                                              Median Throughput |                  insert books |     4308.81 | docs/s |
+|                                                 Max Throughput |                  insert books |     4451.04 | docs/s |
+|                                        50th percentile latency |                  insert books |     110.013 |     ms |
+|                                        90th percentile latency |                  insert books |     147.116 |     ms |
+|                                        99th percentile latency |                  insert books |     244.965 |     ms |
+|                                      99.9th percentile latency |                  insert books |     468.758 |     ms |
+|                                     99.99th percentile latency |                  insert books |     647.489 |     ms |
+|                                       100th percentile latency |                  insert books |     1672.36 |     ms |
+|                                   50th percentile service time |                  insert books |     110.013 |     ms |
+|                                   90th percentile service time |                  insert books |     147.116 |     ms |
+|                                   99th percentile service time |                  insert books |     244.965 |     ms |
+|                                 99.9th percentile service time |                  insert books |     468.758 |     ms |
+|                                99.99th percentile service time |                  insert books |     647.489 |     ms |
+|                                  100th percentile service time |                  insert books |     1672.36 |     ms |
+|                                                     error rate |                  insert books |           0 |      % |
+|                                                 Min Throughput |                   insert subs |        1.89 | docs/s |
+|                                              Median Throughput |                   insert subs |        3.17 | docs/s |
+|                                                 Max Throughput |                   insert subs |        3.56 | docs/s |
+|                                        50th percentile latency |                   insert subs |     281.813 |     ms |
+|                                        90th percentile latency |                   insert subs |     329.156 |     ms |
+|                                        99th percentile latency |                   insert subs |     767.129 |     ms |
+|                                       100th percentile latency |                   insert subs |     2502.11 |     ms |
+|                                   50th percentile service time |                   insert subs |     281.813 |     ms |
+|                                   90th percentile service time |                   insert subs |     329.156 |     ms |
+|                                   99th percentile service time |                   insert subs |     767.129 |     ms |
+|                                  100th percentile service time |                   insert subs |     2502.11 |     ms |
+|                                                     error rate |                   insert subs |           0 |      % |
+|                                                 Min Throughput |                  filter by DV |        2.38 |  ops/s |
+|                                              Median Throughput |                  filter by DV |        2.38 |  ops/s |
+|                                                 Max Throughput |                  filter by DV |        2.38 |  ops/s |
+|                                       100th percentile latency |                  filter by DV |     420.017 |     ms |
+|                                  100th percentile service time |                  filter by DV |     420.017 |     ms |
+|                                                     error rate |                  filter by DV |           0 |      % |
+|                                                 Min Throughput |            update dv in-place |      583.07 | docs/s |
+|                                              Median Throughput |            update dv in-place |      583.07 | docs/s |
+|                                                 Max Throughput |            update dv in-place |      583.07 | docs/s |
+|                                        50th percentile latency |            update dv in-place |     11.8766 |     ms |
+|                                        90th percentile latency |            update dv in-place |     27.9356 |     ms |
+|                                       100th percentile latency |            update dv in-place |     72.8074 |     ms |
+|                                   50th percentile service time |            update dv in-place |     11.8766 |     ms |
+|                                   90th percentile service time |            update dv in-place |     27.9356 |     ms |
+|                                  100th percentile service time |            update dv in-place |     72.8074 |     ms |
+|                                                     error rate |            update dv in-place |           0 |      % |
+|                                                 Min Throughput | warming filter by term lookup |        0.32 |  ops/s |
+|                                              Median Throughput | warming filter by term lookup |        0.61 |  ops/s |
+|                                                 Max Throughput | warming filter by term lookup |        0.63 |  ops/s |
+|                                        50th percentile latency | warming filter by term lookup |     1556.96 |     ms |
+|                                        90th percentile latency | warming filter by term lookup |     1650.83 |     ms |
+|                                       100th percentile latency | warming filter by term lookup |     3103.91 |     ms |
+|                                   50th percentile service time | warming filter by term lookup |     1556.96 |     ms |
+|                                   90th percentile service time | warming filter by term lookup |     1650.83 |     ms |
+|                                  100th percentile service time | warming filter by term lookup |     3103.91 |     ms |
+|                                                     error rate | warming filter by term lookup |           0 |      % |
+|                                                 Min Throughput |         filter by term lookup |        0.41 |  ops/s |
+|                                              Median Throughput |         filter by term lookup |        0.41 |  ops/s |
+|                                                 Max Throughput |         filter by term lookup |        0.41 |  ops/s |
+|                                       100th percentile latency |         filter by term lookup |     2424.48 |     ms |
+|                                  100th percentile service time |         filter by term lookup |     2424.48 |     ms |
+|                                                     error rate |         filter by term lookup |           0 |      % |
+|                                                 Min Throughput |            update term lookup |        1.04 | docs/s |
+|                                              Median Throughput |            update term lookup |        2.73 | docs/s |
+|                                                 Max Throughput |            update term lookup |        2.96 | docs/s |
+|                                        50th percentile latency |            update term lookup |     297.755 |     ms |
+|                                        90th percentile latency |            update term lookup |     331.388 |     ms |
+|                                        99th percentile latency |            update term lookup |     1349.29 |     ms |
+|                                       100th percentile latency |            update term lookup |     2448.45 |     ms |
+|                                   50th percentile service time |            update term lookup |     297.755 |     ms |
+|                                   90th percentile service time |            update term lookup |     331.388 |     ms |
+|                                   99th percentile service time |            update term lookup |     1349.29 |     ms |
+|                                  100th percentile service time |            update term lookup |     2448.45 |     ms |
+|                                                     error rate |            update term lookup |           0 |      % |
+|                                                 Min Throughput |               filter by field |       23.08 |  ops/s |
+|                                              Median Throughput |               filter by field |       23.08 |  ops/s |
+|                                                 Max Throughput |               filter by field |       23.08 |  ops/s |
+|                                       100th percentile latency |               filter by field |      43.216 |     ms |
+|                                  100th percentile service time |               filter by field |      43.216 |     ms |
+|                                                     error rate |               filter by field |           0 |      % |
+|                                                 Min Throughput |                  update field |     3457.48 | docs/s |
+|                                              Median Throughput |                  update field |     10434.2 | docs/s |
+|                                                 Max Throughput |                  update field |     12642.3 | docs/s |
+|                                        50th percentile latency |                  update field |      65.126 |     ms |
+|                                        90th percentile latency |                  update field |     111.063 |     ms |
+|                                        99th percentile latency |                  update field |      522.13 |     ms |
+|                                      99.9th percentile latency |                  update field |     719.699 |     ms |
+|                                     99.99th percentile latency |                  update field |     889.364 |     ms |
+|                                       100th percentile latency |                  update field |     983.727 |     ms |
+|                                   50th percentile service time |                  update field |      65.126 |     ms |
+|                                   90th percentile service time |                  update field |     111.063 |     ms |
+|                                   99th percentile service time |                  update field |      522.13 |     ms |
+|                                 99.9th percentile service time |                  update field |     719.699 |     ms |
+|                                99.99th percentile service time |                  update field |     889.364 |     ms |
+|                                  100th percentile service time |                  update field |     983.727 |     ms |
+|                                                     error rate |                  update field |           0 |      % |
+
+2019-09-22 22:49:11,174 ActorAddr-(T|:39015)/PID:29947 esrally.metrics INFO Closing metrics store.
